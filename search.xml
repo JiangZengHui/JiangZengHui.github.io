@@ -8,7 +8,7 @@
       <link href="/2019/10/22/first-blog/"/>
       <url>/2019/10/22/first-blog/</url>
       
-        <content type="html"><![CDATA[<p>蒋曾辉</p>]]></content>
+        <content type="html"><![CDATA[<p>蒋曾辉</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       

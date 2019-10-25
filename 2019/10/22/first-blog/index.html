@@ -9,7 +9,10 @@
     <meta name="google-site-verification" content="GpCldqgtKT">
     <meta name="360-site-verification" content>
     <meta name="description" content="蒋曾辉
-">
+
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) { re">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -291,7 +294,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -433,7 +436,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3
+                    55
                 </div>
                 
 
@@ -457,7 +460,25 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>蒋曾辉</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr />
 
@@ -950,7 +971,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="first blog">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="first blog">
                         
                         <span class="card-title">first blog</span>
                     </div>
@@ -960,6 +981,9 @@
                         
                             蒋曾辉
 
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { re
                         
                     </div>
                     <div class="publish-info">
@@ -986,7 +1010,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="first blog">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="first blog">
                         
                         <span class="card-title">first blog</span>
                     </div>
@@ -996,6 +1020,9 @@
                         
                             蒋曾辉
 
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { re
                         
                     </div>
                     <div class="publish-info">
@@ -1159,7 +1186,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">3</span>
+            <span class="white-color">55</span>
             
 
             <br>
