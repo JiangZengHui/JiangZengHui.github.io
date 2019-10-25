@@ -5,9 +5,9 @@
   <subtitle>JZengHui</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://jzenghui.top/"/>
+  <link href="http://jzenghui.top/"/>
   <updated>2019-10-25T04:04:52.308Z</updated>
-  <id>https://jzenghui.top/</id>
+  <id>http://jzenghui.top/</id>
   
   <author>
     <name>蒋曾辉</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>first blog</title>
-    <link href="https://jzenghui.top/2019/10/22/first-blog/"/>
-    <id>https://jzenghui.top/2019/10/22/first-blog/</id>
+    <link href="http://jzenghui.top/2019/10/22/first-blog/"/>
+    <id>http://jzenghui.top/2019/10/22/first-blog/</id>
     <published>2019-10-22T05:54:35.000Z</published>
     <updated>2019-10-25T04:04:52.308Z</updated>
     
