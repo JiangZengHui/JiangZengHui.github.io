@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiangzenghui.github.io/2019/10/22/first-blog/</loc>
+    
+    <lastmod>2019-10-25T04:04:52.308Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jiangzenghui.github.io/about/index.html</loc>
     
     <lastmod>2019-10-23T05:43:01.842Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://jiangzenghui.github.io/friends/index.html</loc>
     
     <lastmod>2019-10-23T04:51:45.040Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jiangzenghui.github.io/2019/10/22/first-blog/</loc>
-    
-    <lastmod>2019-10-22T08:33:56.103Z</lastmod>
     
   </url>
   
