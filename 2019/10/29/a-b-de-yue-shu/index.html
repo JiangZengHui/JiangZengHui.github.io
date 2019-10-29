@@ -4,11 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="树, 蒋曾辉 网络工程 网络安全">
+    <meta name="keywords" content="约数之和, 蒋曾辉 网络工程 网络安全">
     <meta name="baidu-site-verification" content="RFKXEadp8E">
     <meta name="google-site-verification" content="RFKXEadp8E">
     <meta name="360-site-verification" content>
-    <meta name="description" content="树 | 蒋曾辉的博客">
+    <meta name="description" content="题目A^B所有约数之和对9901取模的值。
+输入2 3输出15 解析A= p1^k1 *p2^k2 *p3^k *...* pn^kn
+A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
+因为p1取( p1^0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>树 | 蒋曾辉的博客</title>
+    <title>约数之和 | 蒋曾辉的博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -290,13 +293,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        树
+                        约数之和
                     </div>
                 </div>
             </div>
@@ -406,11 +409,24 @@
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        <span class="chip bg-color">无标签</span>
+                        
+                        <a href="/tags/算法/" target="_blank">
+                            <span class="chip bg-color">算法</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/算法/" class="post-category" target="_blank">
+                            算法
+                        </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -432,14 +448,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    384
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -455,7 +471,65 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p><code>A^B所有约数之和对9901取模的值。</code></p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><pre><code>2 3</code></pre><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><pre><code>15 </code></pre><h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><pre><code>A= p1^k1 *p2^k2 *p3^k *...* pn^kn
+A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB</code></pre><ul>
+<li>因为p1取( p1^0…k1)  都是A^B的约数。<br>而( pi^c *pj^d )也是A^B的约数。(所有最简约数的乘积也是他的约数)<br>因此A^B的约数之和等于</li>
+</ul>
+<pre><code> (p1^0 +p1^1 +... +pn^k1) * (p2^0 +p2^1 +.... +p2^k2) *... 
+ *(pn^0 +pn^1 +... +pn^kn);</code></pre><ul>
+<li>计算 </li>
+<li>当k为奇数时 </li>
+</ul>
+<pre><code>sum(p,k)= p^0 +p^1 +... +p^k
+        =( p^0 +p^1 +...+p^(k/2)) +(p^(k/2+1) +...p^k);
+        =( p^0 +p^1 +...+p^(k/2)) +p^(k/2+1) (p^0 +... p^(k/2));
+        =( 1+ p^(k/2+1)) *( p^0 +p^1 +... +p^(k/2))
+        =(1 +p^(k/2+1)) *sum(p, k/2);</code></pre><ul>
+<li>当k为偶数时 </li>
+</ul>
+<pre><code>sum(p,k)=sum(p,k-1)*p+1    </code></pre><ul>
+<li>(相当于把指数都减1   然后再乘以p相当于指数加一，再加上p^0=1); </li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
+using namespace std;
+const int mod=9901;
+int A,B; 
+
+int kuaisumi(int p,int k){
+    p%=mod;
+    int ans=1;
+    while(k){
+        if(k&amp;1) ans=ans*p%mod;
+        p=p*p%mod;
+        k&gt;&gt;=1;
+    }
+    return ans;
+}
+
+int sum(int p,int k){
+    if(k==0) return 1;
+    if(k%2==0) return (p%mod*sum(p,k-1)+1)%mod;
+    return (1+kuaisumi(p,k/2+1))*sum(p,k/2)%mod;
+}
+
+int main()
+{
+    cin&gt;&gt;A&gt;&gt;B;
+    int ans=1;
+    for(int i=2;i&lt;=A;i++){
+        int s=0;
+        while(A%i==0){
+            s++;
+            A/=i;
+        }
+//        cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;&quot; &quot;&lt;&lt;B&lt;&lt;endl;
+        if(s) ans=ans*sum(i,s*B)%mod;
+    } 
+    if(A) cout&lt;&lt;ans&lt;&lt;endl;
+    else cout&lt;&lt;0&lt;&lt;endl;
+    return 0;
+}</code></pre>
             </div>
             <hr />
 
@@ -613,9 +687,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《树》
+                    《约数之和》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/29/shu/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/29/a-b-de-yue-shu/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蒋曾辉
             </a> 采用
@@ -656,7 +730,7 @@
         repo: 'JiangZengHui.github.io',
         owner: 'JiangZengHui',
         admin: "JiangZengHui",
-        id: '2019/10/29/shu/',
+        id: '2019/10/29/a-b-de-yue-shu/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -944,19 +1018,19 @@
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2019/10/29/shu/">
+                <a href="/2019/10/29/a-b-de-yue-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="树">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="约数之和">
                         
-                        <span class="card-title">树</span>
+                        <span class="card-title">约数之和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            求A^B所有约数之和对9901取模的值。
                         
                     </div>
                     <div class="publish-info">
@@ -965,10 +1039,25 @@
                             </span>
                         <span class="publish-author">
                             
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
+                                </a>
+                            
+                            
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1161,7 +1250,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">0</span>
+            <span class="white-color">384</span>
             
 
             <br>

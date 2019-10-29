@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jzenghui.top/"/>
-  <updated>2019-10-29T07:28:37.051Z</updated>
+  <updated>2019-10-29T12:25:41.541Z</updated>
   <id>https://jzenghui.top/</id>
   
   <author>
@@ -17,16 +17,29 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>树</title>
-    <link href="https://jzenghui.top/2019/10/29/shu/"/>
-    <id>https://jzenghui.top/2019/10/29/shu/</id>
+    <title>约数之和</title>
+    <link href="https://jzenghui.top/2019/10/29/a-b-de-yue-shu/"/>
+    <id>https://jzenghui.top/2019/10/29/a-b-de-yue-shu/</id>
     <published>2019-10-29T07:28:37.000Z</published>
-    <updated>2019-10-29T07:28:37.051Z</updated>
+    <updated>2019-10-29T12:25:41.541Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;&lt;code&gt;A^B所有约数之和对9901取模的值。&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;输入&quot;&gt;&lt;a href=&quot;#输入&quot;
+        
+      
+    
     </summary>
     
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://jzenghui.top/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
