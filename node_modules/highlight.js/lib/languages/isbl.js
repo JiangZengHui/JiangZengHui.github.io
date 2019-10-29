@@ -3123,7 +3123,7 @@ module.exports = function(hljs) {
     keywords: KEYWORDS,
     begin: UNDERSCORE_IDENT_RE,
     relevance: 0,
-    contains: [TYPES, METHODS],
+    containts: [TYPES, METHODS],
   };
 
   // Имена функций
