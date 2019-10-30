@@ -407,8 +407,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/差分-区间处理/" target="_blank">
-                            <span class="chip bg-color">差分 区间处理</span>
+                        <a href="/tags/差分/" target="_blank">
+                            <span class="chip bg-color">差分</span>
+                        </a>
+                        
+                        <a href="/tags/区间处理/" target="_blank">
+                            <span class="chip bg-color">区间处理</span>
                         </a>
                         
                     </div>
@@ -445,7 +449,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    653
+                    652
                 </div>
                 
 
@@ -468,19 +472,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>有 N 头牛站成一行，被编队为1、2、3…N，每头牛的身高都为整数。<br>当且仅当两头牛中间的牛身高都比它们矮时，两头牛方可看到对方。<br>现在，我们只知道其中最高的牛是第 P 头，它的身高是 H ，剩余牛的身高未知。<br>但是，我们还知道这群牛之中存在着 M 对关系，每对关系都指明了某两头牛 A 和 B 可以相互看见。</p>
+                <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>有 N 头牛站成一行，被编队为1、2、3…N，每头牛的身高都为整数。<br>当且仅当两头牛中间的牛身高都比它们矮时，两头牛方可看到对方。<br>现在，我们只知道其中最高的牛是第 P 头，它的身高是 H ，剩余牛的身高未知。<br>但是，我们还知道这群牛之中存在着 M 对关系，每对关系都指明了某两头牛 A 和 B 可以相互看见。</p>
 <p>求每头牛的身高的最大可能值是多少。</p>
-<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行输入整数N,P,H,M，数据用空格隔开。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行输入整数N,P,H,M，数据用空格隔开。</p>
 <p>接下来M行，每行输出两个整数 A 和 B ，代表牛 A 和牛 B 可以相互看见，数据用空格隔开。</p>
-<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>一共输出 N 行数据，每行输出一个整数。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>一共输出 N 行数据，每行输出一个整数。</p>
 <p>第 i 行输出的整数代表第 i 头牛可能的最大身高。</p>
-<h6 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h6><p>1≤N≤10000,<br>1≤H≤1000000,<br>1≤A,B≤10000,<br>0≤M≤10000</p>
-<h6 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h6><pre><code>9 3 5 5
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤N≤10000,<br>1≤H≤1000000,<br>1≤A,B≤10000,<br>0≤M≤10000</p>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><pre><code>9 3 5 5
 1 3
 5 3
 4 3
 3 7
-9 8</code></pre><h6 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h6><pre><code>5
+9 8</code></pre><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><pre><code>5
 4
 5
 3
@@ -488,13 +492,13 @@
 4
 5
 5
-5</code></pre><h6 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h6><ul>
+5</code></pre><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
 <li>此题中给出的关系对可能存在重复</li>
 </ul>
-<h6 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h6><ul>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
 <li>题目中说对于两头牛它们可以互相看见，说明两牛之间的牛的身高都比这两只低，因此根据最优的原则，我们可知中间的牛可以都比这两只小1即可。</li>
 <li>现在我们考虑关系会不会有交叉的情况。</li>
-<li>假设i&lt;j&lt;k&lt;l;存在关系ik和jl，因为存在关系ik，因此k的身高大于j，又因为存在jl，所以j的身高大于k，前后互相矛盾，因此不存在关系存在交叉的情况。<br>所以对于该问题，我们可以假设全部都是最高身高，然后每出现一对关系，就将他们之间的牛的身高全减1，因为涉及区间加减1，我们可以采用差分和前缀和的关系来解决该问题，具体实现看代码，注意关系判重。<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5></li>
+<li>假设i&lt;j&lt;k&lt;l;存在关系ik和jl，因为存在关系ik，因此k的身高大于j，又因为存在jl，所以j的身高大于k，前后互相矛盾，因此不存在关系存在交叉的情况。<br>所以对于该问题，我们可以假设全部都是最高身高，然后每出现一对关系，就将他们之间的牛的身高全减1，因为涉及区间加减1，我们可以采用差分和前缀和的关系来解决该问题，具体实现看代码，注意关系判重。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
 </ul>
 <pre><code>#include &lt;iostream&gt;
 #include &lt;map&gt;
@@ -1009,29 +1013,56 @@ int main()
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/22/first-blog/">
+                <a href="/2019/08/30/qi-xi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="first blog">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="七夕祭">
                         
-                        <span class="card-title">first blog</span>
+                        <span class="card-title">七夕祭</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            七夕节因牛郎织女的传说而被扣上了「情人节」的帽子。 于是TYVJ今年举办了一次线下七夕祭。
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-22
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
                         </span>
                         <span class="publish-author">
                             
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
+                                </a>
+                            
+                            
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/贪心/" target="_blank">
+                        <span class="chip bg-color">贪心</span>
+                    </a>
+                    
+                    <a href="/tags/前缀和/" target="_blank">
+                        <span class="chip bg-color">前缀和</span>
+                    </a>
+                    
+                    <a href="/tags/中位数/" target="_blank">
+                        <span class="chip bg-color">中位数</span>
+                    </a>
+                    
+                    <a href="/tags/排序/" target="_blank">
+                        <span class="chip bg-color">排序</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1240,7 +1271,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">1k</span>
+            <span class="white-color">3.4k</span>
             
 
             <br>

@@ -4,14 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="约数之和, 蒋曾辉 网络工程 网络安全">
+    <meta name="keywords" content="ST算法, 蒋曾辉 网络工程 网络安全">
     <meta name="baidu-site-verification" content="RFKXEadp8E">
     <meta name="google-site-verification" content="RFKXEadp8E">
     <meta name="360-site-verification" content>
-    <meta name="description" content="题目A^B所有约数之和对9901取模的值。
-输入2 3输出15 解析A= p1^k1 *p2^k2 *p3^k *...* pn^kn
-A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
-因为p1取( p1^0">
+    <meta name="description" content="ST算法初始化
+dp[i][j]代表以i为起点，2^j 宽的最值 ，即以i+2^j-1结束。
+arr[i]代表原数组。
+
+void ST_prework(int n){
+    fir(i,1,n) dp[i][0]=arr[i];    ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>约数之和 | 蒋曾辉的博客</title>
+    <title>ST算法 | 蒋曾辉的博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -293,13 +295,13 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        约数之和
+                        ST算法
                     </div>
                 </div>
             </div>
@@ -410,8 +412,8 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/递归/" target="_blank">
-                            <span class="chip bg-color">递归</span>
+                        <a href="/tags/模板/" target="_blank">
+                            <span class="chip bg-color">模板</span>
                         </a>
                         
                     </div>
@@ -434,7 +436,7 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-29
+                    2019-08-03
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -448,14 +450,14 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    384
+                    129
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
                 
@@ -471,64 +473,24 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p><code>A^B所有约数之和对9901取模的值。</code></p>
-<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><pre><code>2 3</code></pre><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><pre><code>15 </code></pre><h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><pre><code>A= p1^k1 *p2^k2 *p3^k *...* pn^kn
-A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB</code></pre><ul>
-<li>因为p1取( p1^0…k1)  都是A^B的约数。<br>而( pi^c *pj^d )也是A^B的约数。(所有最简约数的乘积也是他的约数)<br>因此A^B的约数之和等于</li>
+                <h4 id="ST算法初始化"><a href="#ST算法初始化" class="headerlink" title="ST算法初始化"></a>ST算法初始化</h4><ul>
+<li>dp[i][j]代表以i为起点，2^j 宽的最值 ，即以i+2^j-1结束。</li>
+<li>arr[i]代表原数组。</li>
 </ul>
-<pre><code> (p1^0 +p1^1 +... +pn^k1) * (p2^0 +p2^1 +.... +p2^k2) *... 
- *(pn^0 +pn^1 +... +pn^kn);</code></pre><ul>
-<li>计算 </li>
-<li>当k为奇数时 </li>
-</ul>
-<pre><code>sum(p,k)= p^0 +p^1 +... +p^k
-        =( p^0 +p^1 +...+p^(k/2)) +(p^(k/2+1) +...p^k);
-        =( p^0 +p^1 +...+p^(k/2)) +p^(k/2+1) (p^0 +... p^(k/2));
-        =( 1+ p^(k/2+1)) *( p^0 +p^1 +... +p^(k/2))
-        =(1 +p^(k/2+1)) *sum(p, k/2);</code></pre><ul>
-<li>当k为偶数时 </li>
-</ul>
-<pre><code>sum(p,k)=sum(p,k-1)*p+1    </code></pre><ul>
-<li>(相当于把指数都减1   然后再乘以p相当于指数加一，再加上p^0=1); </li>
-</ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-using namespace std;
-const int mod=9901;
-int A,B; 
-
-int kuaisumi(int p,int k){
-    p%=mod;
-    int ans=1;
-    while(k){
-        if(k&amp;1) ans=ans*p%mod;
-        p=p*p%mod;
-        k&gt;&gt;=1;
-    }
-    return ans;
-}
-
-int sum(int p,int k){
-    if(k==0) return 1;
-    if(k%2==0) return (p%mod*sum(p,k-1)+1)%mod;
-    return (1+kuaisumi(p,k/2+1))*sum(p,k/2)%mod;
-}
-
-int main()
-{
-    cin&gt;&gt;A&gt;&gt;B;
-    int ans=1;
-    for(int i=2;i&lt;=A;i++){
-        int s=0;
-        while(A%i==0){
-            s++;
-            A/=i;
+<pre><code>void ST_prework(int n){
+    fir(i,1,n) dp[i][0]=arr[i];    
+    int k=log(n*1.0)/log(2.0);
+    fir(j,1,k){
+        fir(i,1,n-(1&lt;&lt;j)+1){
+            dp[i][j]=min(dp[i][j-1],dp[i+(1&lt;&lt;(j-1))][j-1]);
         }
-//        cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;&quot; &quot;&lt;&lt;B&lt;&lt;endl;
-        if(s) ans=ans*sum(i,s*B)%mod;
-    } 
-    if(A) cout&lt;&lt;ans&lt;&lt;endl;
-    else cout&lt;&lt;0&lt;&lt;endl;
-    return 0;
+    }
+} </code></pre><h4 id="ST取值"><a href="#ST取值" class="headerlink" title="ST取值"></a>ST取值</h4><ul>
+<li>取出L到R的最值。</li>
+</ul>
+<pre><code>int ST_query(int l,int r){
+    int k=log((r-l+1)*1.0)/log(2.0);
+    return min(dp[l][k],dp[r-(1&lt;&lt;k)+1][k]); 
 }</code></pre>
             </div>
             <hr />
@@ -687,9 +649,9 @@ int main()
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《约数之和》
+                    《ST算法》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/29/a-b-de-yue-shu/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/03/st-suan-fa/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蒋曾辉
             </a> 采用
@@ -730,7 +692,7 @@ int main()
         repo: 'JiangZengHui.github.io',
         owner: 'JiangZengHui',
         admin: "JiangZengHui",
-        id: '2019/08/29/a-b-de-yue-shu/',
+        id: '2019/08/03/st-suan-fa/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1017,48 +979,29 @@ int main()
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/30/zui-gao-de-niu/">
+                <a href="/2019/10/22/first-blog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="最高的牛">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="first blog">
                         
-                        <span class="card-title">最高的牛</span>
+                        <span class="card-title">first blog</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            求每头牛的身高的最大可能值是多少。
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-22
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
-                                </a>
-                            
-                            
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/差分/" target="_blank">
-                        <span class="chip bg-color">差分</span>
-                    </a>
-                    
-                    <a href="/tags/区间处理/" target="_blank">
-                        <span class="chip bg-color">区间处理</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1067,27 +1010,27 @@ int main()
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/29/a-b-de-yue-shu/">
+                <a href="/2019/08/02/tian-cai-acm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="约数之和">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="天才ACM">
                         
-                        <span class="card-title">约数之和</span>
+                        <span class="card-title">天才ACM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            求A^B所有约数之和对9901取模的值。
+                            现在给定一个长度为 N 的数列 A 以及一个整数 T。 我们要把 A 分成若干段，使得每一段的“校验值”都不超过 T。 求最少需要分成几段。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-29
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-02
                             </span>
                         <span class="publish-author">
                             
@@ -1101,12 +1044,19 @@ int main()
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/递归/" target="_blank">
-                        <span class="chip bg-color">递归</span>
+                    <a href="/tags/归并/" target="_blank">
+                        <span class="chip bg-color">归并</span>
+                    </a>
+                    
+                    <a href="/tags/快排/" target="_blank">
+                        <span class="chip bg-color">快排</span>
+                    </a>
+                    
+                    <a href="/tags/倍增/" target="_blank">
+                        <span class="chip bg-color">倍增</span>
                     </a>
                     
                 </div>
@@ -1268,7 +1218,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">3.4k</span>
+            <span class="white-color">5k</span>
             
 
             <br>

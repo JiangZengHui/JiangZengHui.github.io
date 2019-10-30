@@ -17,11 +17,11 @@
     
     
     <entry>
-      <title>最高的牛</title>
-      <link href="/2019/08/30/zui-gao-de-niu/"/>
-      <url>/2019/08/30/zui-gao-de-niu/</url>
+      <title>ST算法</title>
+      <link href="/2019/08/03/st-suan-fa/"/>
+      <url>/2019/08/03/st-suan-fa/</url>
       
-        <content type="html"><![CDATA[<h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>有 N 头牛站成一行，被编队为1、2、3…N，每头牛的身高都为整数。<br>当且仅当两头牛中间的牛身高都比它们矮时，两头牛方可看到对方。<br>现在，我们只知道其中最高的牛是第 P 头，它的身高是 H ，剩余牛的身高未知。<br>但是，我们还知道这群牛之中存在着 M 对关系，每对关系都指明了某两头牛 A 和 B 可以相互看见。</p><p>求每头牛的身高的最大可能值是多少。</p><h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行输入整数N,P,H,M，数据用空格隔开。</p><p>接下来M行，每行输出两个整数 A 和 B ，代表牛 A 和牛 B 可以相互看见，数据用空格隔开。</p><h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>一共输出 N 行数据，每行输出一个整数。</p><p>第 i 行输出的整数代表第 i 头牛可能的最大身高。</p><h6 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h6><p>1≤N≤10000,<br>1≤H≤1000000,<br>1≤A,B≤10000,<br>0≤M≤10000</p><h6 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h6><pre><code>9 3 5 51 35 34 33 79 8</code></pre><h6 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h6><pre><code>545344555</code></pre><h6 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h6><ul><li>此题中给出的关系对可能存在重复</li></ul><h6 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h6><ul><li>题目中说对于两头牛它们可以互相看见，说明两牛之间的牛的身高都比这两只低，因此根据最优的原则，我们可知中间的牛可以都比这两只小1即可。</li><li>现在我们考虑关系会不会有交叉的情况。</li><li>假设i&lt;j&lt;k&lt;l;存在关系ik和jl，因为存在关系ik，因此k的身高大于j，又因为存在jl，所以j的身高大于k，前后互相矛盾，因此不存在关系存在交叉的情况。<br>所以对于该问题，我们可以假设全部都是最高身高，然后每出现一对关系，就将他们之间的牛的身高全减1，因为涉及区间加减1，我们可以采用差分和前缀和的关系来解决该问题，具体实现看代码，注意关系判重。<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5></li></ul><pre><code>#include &lt;iostream&gt;#include &lt;map&gt;using namespace std;int n,p,h,m;int a[10005];map&lt;int,int&gt; ma;int main(){    cin&gt;&gt;n&gt;&gt;p&gt;&gt;h&gt;&gt;m;    for(int i=0,x,y;i&lt;m;i++){        cin&gt;&gt;x&gt;&gt;y;        if(x&gt;y) swap(x,y);        if(ma[x]!=y){            a[x+1]-=1;            a[y]+=1;            ma[x]=y;        }        }    for(int i=1;i&lt;=n;i++){        a[i]=a[i-1]+a[i];    }    for(int i=1;i&lt;=n;i++){        cout&lt;&lt;a[i]+h&lt;&lt;endl;    }    return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<h4 id="ST算法初始化"><a href="#ST算法初始化" class="headerlink" title="ST算法初始化"></a>ST算法初始化</h4><ul><li>dp[i][j]代表以i为起点，2^j 宽的最值 ，即以i+2^j-1结束。</li><li>arr[i]代表原数组。</li></ul><pre><code>void ST_prework(int n){    fir(i,1,n) dp[i][0]=arr[i];        int k=log(n*1.0)/log(2.0);    fir(j,1,k){        fir(i,1,n-(1&lt;&lt;j)+1){            dp[i][j]=min(dp[i][j-1],dp[i+(1&lt;&lt;(j-1))][j-1]);        }    }} </code></pre><h4 id="ST取值"><a href="#ST取值" class="headerlink" title="ST取值"></a>ST取值</h4><ul><li>取出L到R的最值。</li></ul><pre><code>int ST_query(int l,int r){    int k=log((r-l+1)*1.0)/log(2.0);    return min(dp[l][k],dp[r-(1&lt;&lt;k)+1][k]); }</code></pre>]]></content>
       
       
       <categories>
@@ -33,7 +33,146 @@
       
         <tags>
             
-            <tag> 差分 区间处理 </tag>
+            <tag> 模板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>天才ACM</title>
+      <link href="/2019/08/02/tian-cai-acm/"/>
+      <url>/2019/08/02/tian-cai-acm/</url>
+      
+        <content type="html"><![CDATA[<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给定一个整数 M，对于任意一个整数集合 S，定义“校验值”如下:</p><p>从集合 S 中取出 M 对数(即 2∗M 个数，不能重复使用集合中的数，如果 S 中的整数不够 M 对，则取到不能取为止)，使得“每对数的差的平方”之和最大，这个最大值就称为集合 S 的“校验值”。</p><p>现在给定一个长度为 N 的数列 A 以及一个整数 T。</p><p>我们要把 A 分成若干段，使得每一段的“校验值”都不超过 T。</p><p>求最少需要分成几段。</p><h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行输入整数 K，代表有 K 组测试数据。</p><p>对于每组测试数据，第一行包含三个整数 N,M,T 。</p><p>第二行包含 N 个整数，表示数列 A1,A2…AN 。</p><h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对于每组测试数据，输出其答案，每个答案占一行。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤K≤12<br>1≤N,M≤500000<br>0≤T≤1018<br>0≤Ai≤220</p><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><pre><code>25 1 498 2 1 7 95 1 648 2 1 7 9</code></pre><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><pre><code>21</code></pre><h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><ul><li>初看这个题，校检值可以排序后枚举最前最后来计算，但是怎么知道应该计算的范围呢？即每段区间。</li><li>我们可以用二分来解决，二分枚举区间范围，然后计算。但是二分每次计算的都是大范围的一半，然后每次都要重复排序，所以时间会超限。</li><li>我们就想到，可以倒着来，用倍增，每次枚举一，排好序计算如果满足条件就递增距离就乘以二，然后区间长度加上他，直到k+1是枚举的递增的长度为len时，刚好不满足校检值小于t，那么就从k开始枚举递增len的一半直到不能枚举。</li><li>这样的话，还有一个好处，就是每次枚举递增的一段，我们排好序以后，再枚举递增的下一段的时候，我们可以用归并排序的思想，只要把后面的刚加入的一段用快排排好，然后两端合并即可，这样会大大减少时间复杂度。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li></ul><pre><code>#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;algorithm&gt;using namespace std;typedef long long ll;#define fiir(i,a,b) for(int i=a;i&lt;=b;i++)const int N=500005;ll arr[N],temp[N],b[N],n,m,t,ans;void merger(int l,int mid,int r){    int x=l,y=mid;    fiir(i,l,r) {        if(y&gt;r||(x&lt;mid&amp;&amp;temp[x]&lt;=temp[y])){            b[i]=temp[x++];        }else{            b[i]=temp[y++];        }    }}int check(int l,int mid,int r){    fiir(i,mid,r) temp[i]=arr[i];    sort(temp+mid,temp+r+1);    merger(l,mid,r);    ll kk=0;    for(int i=0;i&lt;(r-l+1)/2&amp;&amp;i&lt;m;i++) kk+=(ll)pow(b[r-i]-b[l+i],2);    if(kk&gt;t) return 0;    else {        fiir(i,l,r) temp[i]=b[i];        return 1;    }}void work(int l,int r){    temp[l]=arr[l];    int len=1;    while(r&lt;=n){        if(!len){            len=1;            ans++;            l=++r;            temp[l]=arr[l];        }else if(r+len&lt;=n&amp;&amp;check(l,r+1,r+len)){            r+=len;            len&lt;&lt;=1;            if(r==n) break;        }else{            len&gt;&gt;=1;        }    }    if(r==n) ans++;//    fiir(i,1,n) cout&lt;&lt;temp[i]&lt;&lt;&quot; &quot;;cout&lt;&lt;endl;}int main(){    ios::sync_with_stdio(false);    int k;    cin&gt;&gt;k;    while(k--){        ans=0;        cin&gt;&gt;n&gt;&gt;m&gt;&gt;t;        fiir(i,1,n) cin&gt;&gt;arr[i];        work(1,1);        cout&lt;&lt;ans&lt;&lt;endl;    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 归并 </tag>
+            
+            <tag> 快排 </tag>
+            
+            <tag> 倍增 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>超快速排序</title>
+      <link href="/2019/08/01/chao-kuai-su-pai-xu/"/>
+      <url>/2019/08/01/chao-kuai-su-pai-xu/</url>
+      
+        <content type="html"><![CDATA[<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>在这个问题中，您必须分析特定的排序算法—-超快速排序。</p><p>该算法通过交换两个相邻的序列元素来处理n个不同整数的序列，直到序列按升序排序。</p><p>对于输入序列9 1 0 5 4，超快速排序生成输出0 1 4 5 9。</p><p>您的任务是确定超快速排序需要执行多少交换操作才能对给定的输入序列进行排序。</p><h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入包括一些测试用例。</p><p>每个测试用例的第一行输入整数n，代表该用例中输入序列的长度。</p><p>接下来n行每行输入一个整数ai,代表用例中输入序列的具体数据，第i行的数据代表序列中第i个数。</p><p>当输入用例中包含的输入序列长度为0时，输入终止，该序列无需处理。</p><h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对于每个需要处理的输入序列，输出一个整数op，代表对给定输入序列进行排序所需的最小交换操作数，每个整数占一行。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>0≤N&lt;500000<br>0≤ai≤999999999</p><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><p>5<br>9 1 0 5 4<br>3<br>1 2 3<br>0</p><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><p>6<br>0</p><h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><ul><li><p>归并排序求逆序对</p></li><li><p>第一眼看这个题，发现它就是模仿冒泡排序，假如相邻两个后面一个大于前面一个就交换他们的位置，并且次数减一。但是一看数据量，发现O(n^2)的代码根本不可能通过.</p></li><li><p>仔细细想交换的次数不就是逆序对数，因为一个数后面有几个比他小的他就会交换几次，所以我们求出逆序对数就好了，而求逆序对数，我们可以使用归并来求，归并排序中当合并的时候，假如后面一个数组的数小的时候我们就可以知道 ，前面一个数组剩下的全部都比他大，所以</p><pre><code>ans+=mid-l+1;</code></pre><p>具体实现如下。</p><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li></ul><pre><code>#include &lt;iostream&gt;using namespace std;typedef long long ll;#define filr(i,a,b) for(i=a;i&lt;=b;i++)ll n,arr[500005],temp[500005],i,ans;void merger_sort(ll l,ll r){    if(r&lt;=l) return ;    ll mid=(l+r)&gt;&gt;1;    merger_sort(l,mid);    merger_sort(mid+1,r);    ll k=mid+1,t=l,x=l;    while(x&lt;=mid||k&lt;=r){        if(k&gt;r||(x&lt;=mid&amp;&amp;arr[x]&lt;=arr[k])){            temp[t++]=arr[x++];        }else{            temp[t++]=arr[k++];            ans+=mid-x+1;        }    }     filr(i,l,r) arr[i]=temp[i];}int main(){    while(cin&gt;&gt;n&amp;&amp;n){        ans=0;        filr(i,1,n) cin&gt;&gt;arr[i];        merger_sort(1,n);        cout&lt;&lt;ans&lt;&lt;endl;    }    return 0;} </code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 归并 </tag>
+            
+            <tag> 逆序对 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>动态中位数</title>
+      <link href="/2019/07/30/dong-tai-zhong-wei-shu/"/>
+      <url>/2019/07/30/dong-tai-zhong-wei-shu/</url>
+      
+        <content type="html"><![CDATA[<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>依次读入一个整数序列，每当已经读入的整数个数为奇数时，输出已读入的整数构成的序列的中位数。</p><h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行输入一个整数P，代表后面数据集的个数，接下来若干行输入各个数据集。<br>每个数据集的第一行首先输入一个代表数据集的编号的整数。<br>然后输入一个整数M，代表数据集中包含数据的个数，M一定为奇数，数据之间用空格隔开。<br>数据集的剩余行由数据集的数据构成，每行包含10个数据，最后一行数据量可能少于10个，数据之间用空格隔开。</p><h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对于每个数据集，第一行输出两个整数，分别代表数据集的编号以及输出中位数的个数（应为数据个数加一的二分之一），数据之间用空格隔开。<br>数据集的剩余行由输出的中位数构成，每行包含10个数据，最后一行数据量可能少于10个，数据之间用空格隔开。</p><p>输出中不应该存在空行。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤P≤1000.<br>1≤M≤9999.</p><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><pre><code>3 1 9 1 2 3 4 5 6 7 8 9 2 9 9 8 7 6 5 4 3 2 1 3 23 23 41 13 22 -3 24 -31 -11 -8 -7 3 5 103 211 -311 -45 -67 -73 -81 -99 -33 24 56</code></pre><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><pre><code>1 51 2 3 4 52 59 8 7 6 53 1223 23 22 22 13 3 5 5 3 -3 -7 -3</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul><li>这个题我们可以用对顶堆来处理，即一个小根堆和一个大根堆来处理，大根堆存排序后的前1…i/2个，小根堆存排序后的后i/2+1…n个，这样的话小根堆的第一个一定是中位数。</li><li>具体实现过程是读入第一个数假如小根堆，然后每读入一个数都跟小根堆的第一个数比较，大于等于的就加入小根堆，否则假如大根堆。</li><li>每加入一个数后还要比较小根堆和大根堆的数目，小根堆的数目大于大根堆就将小根堆的第一个数移进大根堆，然后比较如果大根堆的数目大于小根堆，就将大根堆的第一个数移进小根堆，用这种办法来维护，大根堆存排序后的前1…i/2个，小根堆存排序后的后i/2+1…n个。<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4></li></ul><pre><code>#include &lt;iostream&gt;#include &lt;queue&gt;using namespace std;int p,m,x,arr[10000],ans[10000];int main(){    cin&gt;&gt;p;    while(p--){            priority_queue&lt;int&gt; qued;        priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; quer;        cin&gt;&gt;x&gt;&gt;m;        cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;(m+1)/2&lt;&lt;endl;        cin&gt;&gt;x;        cout&lt;&lt;x&lt;&lt;&quot; &quot;;        quer.push(x);        for(int i=2;i&lt;=m;i++){            cin&gt;&gt;x;            if(x&gt;=quer.top()) quer.push(x);            else qued.push(x);            if(quer.size()&gt;qued.size()){                qued.push(quer.top());                quer.pop();            }            if(qued.size()&gt;quer.size()){                quer.push(qued.top());                qued.pop();            }            if(i&amp;1) cout&lt;&lt;quer.top()&lt;&lt;&quot; &quot;;            if(i%20==0) cout&lt;&lt;endl;        }        cout&lt;&lt;endl;    }    return 0;} </code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 对顶堆 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>七夕祭</title>
+      <link href="/2019/07/30/qi-xi-ji/"/>
+      <url>/2019/07/30/qi-xi-ji/</url>
+      
+        <content type="html"><![CDATA[<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>七夕节因牛郎织女的传说而被扣上了「情人节」的帽子。</p><p>于是TYVJ今年举办了一次线下七夕祭。</p><p>Vani同学今年成功邀请到了cl同学陪他来共度七夕，于是他们决定去TYVJ七夕祭游玩。</p><p>TYVJ七夕祭和11区的夏祭的形式很像。</p><p>矩形的祭典会场由N排M列共计N×M个摊点组成。</p><p>虽然摊点种类繁多，不过cl只对其中的一部分摊点感兴趣，比如章鱼烧、苹果糖、棉花糖、射的屋……什么的。</p><p>Vani预先联系了七夕祭的负责人zhq，希望能够通过恰当地布置会场，使得各行中cl感兴趣的摊点数一样多，并且各列中cl感兴趣的摊点数也一样多。</p><p>不过zhq告诉Vani，摊点已经随意布置完毕了，如果想满足cl的要求，唯一的调整方式就是交换两个相邻的摊点。</p><p>两个摊点相邻，当且仅当他们处在同一行或者同一列的相邻位置上。</p><p>由于zhq率领的TYVJ开发小组成功地扭曲了空间，每一行或每一列的第一个位置和最后一个位置也算作相邻。</p><p>现在Vani想知道他的两个要求最多能满足多少个。</p><p>在此前提下，至少需要交换多少次摊点。</p><h4 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h4><p>第一行包含三个整数N和M和T，T表示cl对多少个摊点感兴趣。</p><p>接下来T行，每行两个整数x, y，表示cl对处在第x行第y列的摊点感兴趣。</p><h4 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h4><p>首先输出一个字符串。</p><p>如果能满足Vani的全部两个要求，输出both；</p><p>如果通过调整只能使得各行中cl感兴趣的摊点数一样多，输出row；</p><p>如果只能使各列中cl感兴趣的摊点数一样多，输出column；</p><p>如果均不能满足，输出impossible。</p><p>如果输出的字符串不是impossible， 接下来输出最小交换次数，与字符串之间用一个空格隔开。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p><em>1≤N,M≤100000 ,<br>0≤T≤min(N∗M,100000),<br>1≤x≤N,<br>1≤y≤M</em></p><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><pre><code>2 3 41 32 12 22 3</code></pre><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><pre><code>row 1</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul><li><p>这个题目比较像均分纸牌问题和货仓选址问题的结合</p></li><li><p>均分纸牌问题说的是：<br>一共有i个人站成一行，每个人都有a[i]个纸牌数，每次我们可以将一个人的一张纸牌给他相邻的一个人，求经过多少次我们可以将他们的纸牌数分成一样。</p><p>均分纸牌的解法是：<br>将每个人的纸牌数都减去平均值，然后利用前缀和从第一个开始，如果他的前缀和等于0，答案数不变，否则加上他的前缀和的绝对值。因为第一个如果不够肯定只能问第二个拿，这样推理第二个也是一样，因此这种方案肯定是对的。<br>那么假设sum为前缀和。</p></li></ul><pre><code>   ans = sum[1] + sum[2] + ... + sum[n];</code></pre><ul><li><p>当不能平均分配时无解，即总和对n取余不等于0</p></li><li><p>环形均分纸牌指的是 第一个和最后一个也是相邻的，既形成一个圆。<br>环形均分纸牌的解法于它类似：<br>环形中肯定有一个k点，k于k+1点不会交换纸牌，然后把k它假设为1，k+1假设为n，然后利用均分纸牌的方案，求解即可。但是这样时间复杂度很高，k要从1遍历到n，那我们有没有什么可以迅速求解出k点的方法呢？<br>肯定是有的，假设sum[i]为以1为起点的前缀和，num[i]为以k点为起点的前缀和<br>我们分析k+1点可知k+1点的前缀和可以写成 num[k+1]=sum[k+1]-sum[k];<br>那么 </p></li></ul><pre><code>   num[k+1]=sum[k+1]-sum[k];   num[k+2]=sum[k+2]-sum[k];   ......   num[1]=sum[1]+sum[n]-sum[k];   num[2]=sum[2]+sum[n]-sum[k];   ......</code></pre><ul><li>因为是均分，所以sum[n]肯定是等于0的，那么就变成了求解问题就变成了<br>求：</li></ul><pre><code>   ans = |sum[1]-sum[k]| + |sum[2]-sum[k]| + ... + |sum[n]-sum[k]|;</code></pre><ul><li>很容易看出，我们把这个公式看成每一个点到k的点距离的和，那我们就用到了货仓选址问题，那么答案就是当sum数组排序后，他的中位数就是离所有点的距离之和最小的。<br>所以sum排序后。</li></ul><pre><code>   k=(n+1)&gt;&gt;1;</code></pre><ul><li><p>问题就解决了。</p></li><li><p>我们再回到这个问题。题目中要求每一行中或每一列中都包含相等数目的小摊，因为只能交换相邻的两个位置，交换行就不会影响列，交换列就不会影响行，所以我们可以将行列分开单独处理。分别都是一个环形的均分纸牌问题。<br>如果行列都有解就把步数相加。</p><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li></ul><pre><code>#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;typedef long long ll;#define filr(i,a,b) for(ll i=a;i&lt;=b;i++)#define fild(i,a,b) for(ll i=a;i&gt;=b;i--)const int N=1e5+5;ll r[N],c[N];ll calc(ll arr[],ll num,ll sum){    ll temp=sum/num,i;    filr(i,1,num) arr[i]+=arr[i-1]-temp;    sort(arr+1,arr+num+1);    ll ans=0,kk=arr[(num+1)/2];    filr(i,1,num) ans+=abs(arr[i]-kk);    return ans;}int main(){    ll n,m,t,x,y,sumx=0,sumy=0,i;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;t;    filr(i,1,t){        cin&gt;&gt;x&gt;&gt;y;        r[x]++;        c[y]++;    }    filr(i,1,n) sumx+=r[i];    filr(i,1,m) sumy+=c[i];    ll is_x=sumx%n,is_y=sumy%m;    if(!is_x&amp;&amp;!is_y) cout&lt;&lt;&quot;both &quot;&lt;&lt;calc(r,n,sumx)+calc(c,m,sumy)&lt;&lt;endl;    else if(!is_x&amp;&amp;is_y) cout&lt;&lt;&quot;row &quot;&lt;&lt;calc(r,n,sumx)&lt;&lt;endl;    else if(is_x&amp;&amp;!is_y) cout&lt;&lt;&quot;column &quot;&lt;&lt;calc(c,m,sumy)&lt;&lt;endl;    else cout&lt;&lt;&quot;impossible&quot;&lt;&lt;endl;    return 0;} </code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 贪心 </tag>
+            
+            <tag> 前缀和 </tag>
+            
+            <tag> 中位数 </tag>
+            
+            <tag> 排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最高的牛</title>
+      <link href="/2019/07/30/zui-gao-de-niu/"/>
+      <url>/2019/07/30/zui-gao-de-niu/</url>
+      
+        <content type="html"><![CDATA[<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>有 N 头牛站成一行，被编队为1、2、3…N，每头牛的身高都为整数。<br>当且仅当两头牛中间的牛身高都比它们矮时，两头牛方可看到对方。<br>现在，我们只知道其中最高的牛是第 P 头，它的身高是 H ，剩余牛的身高未知。<br>但是，我们还知道这群牛之中存在着 M 对关系，每对关系都指明了某两头牛 A 和 B 可以相互看见。</p><p>求每头牛的身高的最大可能值是多少。</p><h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行输入整数N,P,H,M，数据用空格隔开。</p><p>接下来M行，每行输出两个整数 A 和 B ，代表牛 A 和牛 B 可以相互看见，数据用空格隔开。</p><h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>一共输出 N 行数据，每行输出一个整数。</p><p>第 i 行输出的整数代表第 i 头牛可能的最大身高。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤N≤10000,<br>1≤H≤1000000,<br>1≤A,B≤10000,<br>0≤M≤10000</p><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><pre><code>9 3 5 51 35 34 33 79 8</code></pre><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><pre><code>545344555</code></pre><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul><li>此题中给出的关系对可能存在重复</li></ul><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul><li>题目中说对于两头牛它们可以互相看见，说明两牛之间的牛的身高都比这两只低，因此根据最优的原则，我们可知中间的牛可以都比这两只小1即可。</li><li>现在我们考虑关系会不会有交叉的情况。</li><li>假设i&lt;j&lt;k&lt;l;存在关系ik和jl，因为存在关系ik，因此k的身高大于j，又因为存在jl，所以j的身高大于k，前后互相矛盾，因此不存在关系存在交叉的情况。<br>所以对于该问题，我们可以假设全部都是最高身高，然后每出现一对关系，就将他们之间的牛的身高全减1，因为涉及区间加减1，我们可以采用差分和前缀和的关系来解决该问题，具体实现看代码，注意关系判重。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li></ul><pre><code>#include &lt;iostream&gt;#include &lt;map&gt;using namespace std;int n,p,h,m;int a[10005];map&lt;int,int&gt; ma;int main(){    cin&gt;&gt;n&gt;&gt;p&gt;&gt;h&gt;&gt;m;    for(int i=0,x,y;i&lt;m;i++){        cin&gt;&gt;x&gt;&gt;y;        if(x&gt;y) swap(x,y);        if(ma[x]!=y){            a[x+1]-=1;            a[y]+=1;            ma[x]=y;        }        }    for(int i=1;i&lt;=n;i++){        a[i]=a[i-1]+a[i];    }    for(int i=1;i&lt;=n;i++){        cout&lt;&lt;a[i]+h&lt;&lt;endl;    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 差分 </tag>
+            
+            <tag> 区间处理 </tag>
             
         </tags>
       
@@ -43,8 +182,8 @@
     
     <entry>
       <title>约数之和</title>
-      <link href="/2019/08/29/a-b-de-yue-shu/"/>
-      <url>/2019/08/29/a-b-de-yue-shu/</url>
+      <link href="/2019/07/29/a-b-de-yue-shu/"/>
+      <url>/2019/07/29/a-b-de-yue-shu/</url>
       
         <content type="html"><![CDATA[<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p><code>A^B所有约数之和对9901取模的值。</code></p><h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><pre><code>2 3</code></pre><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><pre><code>15 </code></pre><h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><pre><code>A= p1^k1 *p2^k2 *p3^k *...* pn^knA^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB</code></pre><ul><li>因为p1取( p1^0…k1)  都是A^B的约数。<br>而( pi^c *pj^d )也是A^B的约数。(所有最简约数的乘积也是他的约数)<br>因此A^B的约数之和等于</li></ul><pre><code> (p1^0 +p1^1 +... +pn^k1) * (p2^0 +p2^1 +.... +p2^k2) *...  *(pn^0 +pn^1 +... +pn^kn);</code></pre><ul><li>计算 </li><li>当k为奇数时 </li></ul><pre><code>sum(p,k)= p^0 +p^1 +... +p^k        =( p^0 +p^1 +...+p^(k/2)) +(p^(k/2+1) +...p^k);        =( p^0 +p^1 +...+p^(k/2)) +p^(k/2+1) (p^0 +... p^(k/2));        =( 1+ p^(k/2+1)) *( p^0 +p^1 +... +p^(k/2))        =(1 +p^(k/2+1)) *sum(p, k/2);</code></pre><ul><li>当k为偶数时 </li></ul><pre><code>sum(p,k)=sum(p,k-1)*p+1    </code></pre><ul><li>(相当于把指数都减1   然后再乘以p相当于指数加一，再加上p^0=1); </li></ul><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;using namespace std;const int mod=9901;int A,B; int kuaisumi(int p,int k){    p%=mod;    int ans=1;    while(k){        if(k&amp;1) ans=ans*p%mod;        p=p*p%mod;        k&gt;&gt;=1;    }    return ans;}int sum(int p,int k){    if(k==0) return 1;    if(k%2==0) return (p%mod*sum(p,k-1)+1)%mod;    return (1+kuaisumi(p,k/2+1))*sum(p,k/2)%mod;}int main(){    cin&gt;&gt;A&gt;&gt;B;    int ans=1;    for(int i=2;i&lt;=A;i++){        int s=0;        while(A%i==0){            s++;            A/=i;        }//        cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;&quot; &quot;&lt;&lt;B&lt;&lt;endl;        if(s) ans=ans*sum(i,s*B)%mod;    }     if(A) cout&lt;&lt;ans&lt;&lt;endl;    else cout&lt;&lt;0&lt;&lt;endl;    return 0;}</code></pre>]]></content>
       
