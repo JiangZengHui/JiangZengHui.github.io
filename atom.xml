@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jzenghui.top/"/>
-  <updated>2019-10-25T04:04:52.308Z</updated>
+  <updated>2019-10-30T13:15:52.652Z</updated>
   <id>https://jzenghui.top/</id>
   
   <author>
@@ -17,83 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>first blog</title>
-    <link href="https://jzenghui.top/2019/10/22/first-blog/"/>
-    <id>https://jzenghui.top/2019/10/22/first-blog/</id>
-    <published>2019-10-22T05:54:35.000Z</published>
-    <updated>2019-10-25T04:04:52.308Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ST算法</title>
-    <link href="https://jzenghui.top/2019/08/03/st-suan-fa/"/>
-    <id>https://jzenghui.top/2019/08/03/st-suan-fa/</id>
-    <published>2019-08-03T08:27:49.000Z</published>
-    <updated>2019-10-30T11:30:54.963Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4 id=&quot;ST算法初始化&quot;&gt;&lt;a href=&quot;#ST算法初始化&quot; class=&quot;headerlink&quot; title=&quot;ST算法初始化&quot;&gt;&lt;/a&gt;ST算法初始化&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;dp[i][j]代表以i为起点，2^j 宽的最值
-        
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="模板" scheme="https://jzenghui.top/tags/%E6%A8%A1%E6%9D%BF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>天才ACM</title>
-    <link href="https://jzenghui.top/2019/08/02/tian-cai-acm/"/>
-    <id>https://jzenghui.top/2019/08/02/tian-cai-acm/</id>
-    <published>2019-08-02T02:29:37.000Z</published>
-    <updated>2019-10-30T11:30:49.354Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;给定一个整数 M，对于任意一个整数集合 S，定义“校验值”如下:&lt;/p&gt;
-&lt;p&gt;从集合 S 中取出 M 对数(即 2∗M
-        
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="归并" scheme="https://jzenghui.top/tags/%E5%BD%92%E5%B9%B6/"/>
-    
-      <category term="快排" scheme="https://jzenghui.top/tags/%E5%BF%AB%E6%8E%92/"/>
-    
-      <category term="倍增" scheme="https://jzenghui.top/tags/%E5%80%8D%E5%A2%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>超快速排序</title>
-    <link href="https://jzenghui.top/2019/08/01/chao-kuai-su-pai-xu/"/>
-    <id>https://jzenghui.top/2019/08/01/chao-kuai-su-pai-xu/</id>
-    <published>2019-08-01T02:22:37.000Z</published>
-    <updated>2019-10-30T11:30:41.549Z</updated>
+    <title>蚯蚓</title>
+    <link href="https://jzenghui.top/2019/09/13/qiu-yin/"/>
+    <id>https://jzenghui.top/2019/09/13/qiu-yin/</id>
+    <published>2019-09-13T05:14:35.000Z</published>
+    <updated>2019-10-30T13:15:52.652Z</updated>
     
     <summary type="html">
     
@@ -110,18 +38,16 @@
       <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="归并" scheme="https://jzenghui.top/tags/%E5%BD%92%E5%B9%B6/"/>
-    
-      <category term="逆序对" scheme="https://jzenghui.top/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
+      <category term="单调堆" scheme="https://jzenghui.top/tags/%E5%8D%95%E8%B0%83%E5%A0%86/"/>
     
   </entry>
   
   <entry>
-    <title>动态中位数</title>
-    <link href="https://jzenghui.top/2019/07/30/dong-tai-zhong-wei-shu/"/>
-    <id>https://jzenghui.top/2019/07/30/dong-tai-zhong-wei-shu/</id>
-    <published>2019-07-30T11:19:16.000Z</published>
-    <updated>2019-10-30T11:30:35.593Z</updated>
+    <title>树形地铁系统</title>
+    <link href="https://jzenghui.top/2019/08/30/shu-xing-di-tie-xi-tong/"/>
+    <id>https://jzenghui.top/2019/08/30/shu-xing-di-tie-xi-tong/</id>
+    <published>2019-08-30T14:45:32.000Z</published>
+    <updated>2019-10-30T13:46:35.497Z</updated>
     
     <summary type="html">
     
@@ -129,7 +55,218 @@
       
         
         
-          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;依次读入一个整数序列，每当已经读入的整数个数为奇数时，输出已读入的整数构成的序列的中位数。&lt;/p&gt;
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="树的最小表示" scheme="https://jzenghui.top/tags/%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生日礼物</title>
+    <link href="https://jzenghui.top/2019/08/30/sheng-ri-li-wu/"/>
+    <id>https://jzenghui.top/2019/08/30/sheng-ri-li-wu/</id>
+    <published>2019-08-30T13:47:01.000Z</published>
+    <updated>2019-10-30T13:48:02.105Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;翰翰18岁生日的时候，达达给她看了一个神奇的序列 A1,A2,…,AN。&lt;/p&gt;
+&lt;p&gt;她被允许从中选择不超过 M
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="优先队列" scheme="https://jzenghui.top/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据备份</title>
+    <link href="https://jzenghui.top/2019/08/29/shu-ju-bei-fen/"/>
+    <id>https://jzenghui.top/2019/08/29/shu-ju-bei-fen/</id>
+    <published>2019-08-29T14:42:17.000Z</published>
+    <updated>2019-10-30T13:45:00.847Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="优先队列" scheme="https://jzenghui.top/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>荷马史诗</title>
+    <link href="https://jzenghui.top/2019/08/28/he-ma-shi-shi/"/>
+    <id>https://jzenghui.top/2019/08/28/he-ma-shi-shi/</id>
+    <published>2019-08-28T13:40:50.000Z</published>
+    <updated>2019-10-30T13:41:41.987Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;追逐影子的人，自己就是影子。
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="优先队列" scheme="https://jzenghui.top/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>城市游戏</title>
+    <link href="https://jzenghui.top/2019/08/27/cheng-shi-you-xi/"/>
+    <id>https://jzenghui.top/2019/08/27/cheng-shi-you-xi/</id>
+    <published>2019-08-27T13:39:17.000Z</published>
+    <updated>2019-10-30T13:40:06.075Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="单调堆" scheme="https://jzenghui.top/tags/%E5%8D%95%E8%B0%83%E5%A0%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>双栈排序</title>
+    <link href="https://jzenghui.top/2019/08/26/shuang-zhan-pai-xu/"/>
+    <id>https://jzenghui.top/2019/08/26/shuang-zhan-pai-xu/</id>
+    <published>2019-08-26T13:37:21.000Z</published>
+    <updated>2019-10-30T13:38:40.403Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="二分图" scheme="https://jzenghui.top/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>矩阵</title>
+    <link href="https://jzenghui.top/2019/08/25/ju-zhen/"/>
+    <id>https://jzenghui.top/2019/08/25/ju-zhen/</id>
+    <published>2019-08-25T14:35:10.000Z</published>
+    <updated>2019-10-30T13:36:16.148Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="前缀和" scheme="https://jzenghui.top/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"/>
+    
+      <category term="Hash" scheme="https://jzenghui.top/tags/Hash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>矩阵距离</title>
+    <link href="https://jzenghui.top/2019/08/22/ju-zhen-ju-chi/"/>
+    <id>https://jzenghui.top/2019/08/22/ju-zhen-ju-chi/</id>
+    <published>2019-08-22T14:33:17.000Z</published>
+    <updated>2019-10-30T13:34:29.368Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;给定一个N行M列的01矩阵A，A[i][j] 与 A[k][l]
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="BFS" scheme="https://jzenghui.top/tags/BFS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>可达性统计</title>
+    <link href="https://jzenghui.top/2019/08/21/ke-da-xing-tong-ji/"/>
+    <id>https://jzenghui.top/2019/08/21/ke-da-xing-tong-ji/</id>
+    <published>2019-08-21T14:31:38.000Z</published>
+    <updated>2019-10-30T13:32:46.301Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;给定一张N个点M条边的有向无环图，分别统计从每个点出发能够到达的点的数量。&lt;/p&gt;
 &lt;h4 id=&quot;输入格式&quot;&gt;&lt;a
         
       
@@ -139,16 +276,16 @@
       <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="对顶堆" scheme="https://jzenghui.top/tags/%E5%AF%B9%E9%A1%B6%E5%A0%86/"/>
+      <category term="拓扑排序" scheme="https://jzenghui.top/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
     
   </entry>
   
   <entry>
-    <title>七夕祭</title>
-    <link href="https://jzenghui.top/2019/07/30/qi-xi-ji/"/>
-    <id>https://jzenghui.top/2019/07/30/qi-xi-ji/</id>
-    <published>2019-07-30T11:06:58.000Z</published>
-    <updated>2019-10-30T11:30:29.557Z</updated>
+    <title>最长异或值路径</title>
+    <link href="https://jzenghui.top/2019/08/19/zui-chang-yi-huo-zhi-lu-jing/"/>
+    <id>https://jzenghui.top/2019/08/19/zui-chang-yi-huo-zhi-lu-jing/</id>
+    <published>2019-08-19T14:29:54.000Z</published>
+    <updated>2019-10-30T13:30:54.334Z</updated>
     
     <summary type="html">
     
@@ -165,22 +302,187 @@
       <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
+      <category term="Tire树" scheme="https://jzenghui.top/tags/Tire%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最大异或对</title>
+    <link href="https://jzenghui.top/2019/08/18/zui-da-yi-huo-dui/"/>
+    <id>https://jzenghui.top/2019/08/18/zui-da-yi-huo-dui/</id>
+    <published>2019-08-18T14:28:26.000Z</published>
+    <updated>2019-10-30T13:29:22.286Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;在给定的N个整数A1，A2……AN中选出两个进行xor（异或）运算，得到的结果最大是多少？&lt;/p&gt;
+&lt;h4 id=&quot;输入格式&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Tire树" scheme="https://jzenghui.top/tags/Tire%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前缀统计</title>
+    <link href="https://jzenghui.top/2019/08/18/qian-zhui-tong-ji/"/>
+    <id>https://jzenghui.top/2019/08/18/qian-zhui-tong-ji/</id>
+    <published>2019-08-18T14:26:32.000Z</published>
+    <updated>2019-10-30T13:27:43.448Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Tire树" scheme="https://jzenghui.top/tags/Tire%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>超市</title>
+    <link href="https://jzenghui.top/2019/08/17/chao-shi/"/>
+    <id>https://jzenghui.top/2019/08/17/chao-shi/</id>
+    <published>2019-08-17T14:24:44.000Z</published>
+    <updated>2019-10-30T13:26:03.519Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="并查集" scheme="https://jzenghui.top/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    
+      <category term="优先队列" scheme="https://jzenghui.top/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    
       <category term="贪心" scheme="https://jzenghui.top/tags/%E8%B4%AA%E5%BF%83/"/>
     
-      <category term="前缀和" scheme="https://jzenghui.top/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"/>
+  </entry>
+  
+  <entry>
+    <title>Welcome Party</title>
+    <link href="https://jzenghui.top/2019/08/16/welcome-party/"/>
+    <id>https://jzenghui.top/2019/08/16/welcome-party/</id>
+    <published>2019-08-16T14:22:30.000Z</published>
+    <updated>2019-10-30T13:24:09.088Z</updated>
     
-      <category term="中位数" scheme="https://jzenghui.top/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;Problem-Description&quot;&gt;&lt;a href=&quot;#Problem-Description&quot; class=&quot;headerlink&quot; title=&quot;Problem Description&quot;&gt;&lt;/a&gt;Problem
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="并查集" scheme="https://jzenghui.top/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    
+      <category term="优先队列" scheme="https://jzenghui.top/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    
+      <category term="BFS" scheme="https://jzenghui.top/tags/BFS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>回文子串的最大长度</title>
+    <link href="https://jzenghui.top/2019/08/15/hui-wen-zi-chuan-de-zui-da-chang-du/"/>
+    <id>https://jzenghui.top/2019/08/15/hui-wen-zi-chuan-de-zui-da-chang-du/</id>
+    <published>2019-08-15T14:17:11.000Z</published>
+    <updated>2019-10-30T13:18:31.280Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Hash" scheme="https://jzenghui.top/tags/Hash/"/>
+    
+      <category term="二分" scheme="https://jzenghui.top/tags/%E4%BA%8C%E5%88%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>后缀数组</title>
+    <link href="https://jzenghui.top/2019/08/15/hou-zhui-shu-zu/"/>
+    <id>https://jzenghui.top/2019/08/15/hou-zhui-shu-zu/</id>
+    <published>2019-08-15T13:19:47.000Z</published>
+    <updated>2019-10-30T13:21:00.791Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;后缀数组 (SA)
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
     
       <category term="排序" scheme="https://jzenghui.top/tags/%E6%8E%92%E5%BA%8F/"/>
     
+      <category term="Hash" scheme="https://jzenghui.top/tags/Hash/"/>
+    
+      <category term="二分" scheme="https://jzenghui.top/tags/%E4%BA%8C%E5%88%86/"/>
+    
   </entry>
   
   <entry>
-    <title>最高的牛</title>
-    <link href="https://jzenghui.top/2019/07/30/zui-gao-de-niu/"/>
-    <id>https://jzenghui.top/2019/07/30/zui-gao-de-niu/</id>
-    <published>2019-07-30T10:31:42.000Z</published>
-    <updated>2019-10-30T11:30:10.017Z</updated>
+    <title>火车进出栈问题</title>
+    <link href="https://jzenghui.top/2019/08/12/huo-che-jin-chu-zhan-wen-ti/"/>
+    <id>https://jzenghui.top/2019/08/12/huo-che-jin-chu-zhan-wen-ti/</id>
+    <published>2019-08-12T04:12:53.000Z</published>
+    <updated>2019-10-30T13:14:00.364Z</updated>
     
     <summary type="html">
     
@@ -188,7 +490,7 @@
       
         
         
-          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;有 N
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
         
       
     
@@ -197,18 +499,16 @@
       <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="差分" scheme="https://jzenghui.top/tags/%E5%B7%AE%E5%88%86/"/>
-    
-      <category term="区间处理" scheme="https://jzenghui.top/tags/%E5%8C%BA%E9%97%B4%E5%A4%84%E7%90%86/"/>
+      <category term="卡特兰数" scheme="https://jzenghui.top/tags/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/"/>
     
   </entry>
   
   <entry>
-    <title>约数之和</title>
-    <link href="https://jzenghui.top/2019/07/29/a-b-de-yue-shu/"/>
-    <id>https://jzenghui.top/2019/07/29/a-b-de-yue-shu/</id>
-    <published>2019-07-29T07:28:37.000Z</published>
-    <updated>2019-10-30T11:30:04.670Z</updated>
+    <title>直方图中最大矩形</title>
+    <link href="https://jzenghui.top/2019/08/11/zhi-fang-tu-zhong-zui-da-ju-xing/"/>
+    <id>https://jzenghui.top/2019/08/11/zhi-fang-tu-zhong-zui-da-ju-xing/</id>
+    <published>2019-08-11T13:09:02.000Z</published>
+    <updated>2019-10-30T13:11:39.910Z</updated>
     
     <summary type="html">
     
@@ -216,8 +516,7 @@
       
         
         
-          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;&lt;code&gt;A^B所有约数之和对9901取模的值。&lt;/code&gt;&lt;/p&gt;
-&lt;h4 id=&quot;输入&quot;&gt;&lt;a href=&quot;#输入&quot;
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
         
       
     
@@ -226,7 +525,37 @@
       <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="递归" scheme="https://jzenghui.top/tags/%E9%80%92%E5%BD%92/"/>
+      <category term="单调堆" scheme="https://jzenghui.top/tags/%E5%8D%95%E8%B0%83%E5%A0%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最大子序和</title>
+    <link href="https://jzenghui.top/2019/08/10/zui-da-zi-xu-he/"/>
+    <id>https://jzenghui.top/2019/08/10/zui-da-zi-xu-he/</id>
+    <published>2019-08-10T13:05:03.000Z</published>
+    <updated>2019-10-30T13:07:14.148Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;输入一个长度为n的整数序列，从中找出一段长度不超过m的连续子序列，使得子&lt;/p&gt;
+&lt;p&gt;序列中所有数的和最大。&lt;/p&gt;
+&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="前缀和" scheme="https://jzenghui.top/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"/>
+    
+      <category term="单调堆" scheme="https://jzenghui.top/tags/%E5%8D%95%E8%B0%83%E5%A0%86/"/>
     
   </entry>
   
