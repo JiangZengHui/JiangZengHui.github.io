@@ -4,7 +4,7 @@ top: false
 cover: false
 toc: true
 mathjax: true
-date: 2019-8-29 15:28:37
+date: 2019-07-29 15:28:37
 password:
 summary: 求A^B所有约数之和对9901取模的值。
 tags: 递归
