@@ -4,9 +4,47 @@
   
     
     <entry>
+      <title>first blog</title>
+      <link href="/2019/10/22/first-blog/"/>
+      <url>/2019/10/22/first-blog/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最高的牛</title>
+      <link href="/2019/08/30/zui-gao-de-niu/"/>
+      <url>/2019/08/30/zui-gao-de-niu/</url>
+      
+        <content type="html"><![CDATA[<h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>有 N 头牛站成一行，被编队为1、2、3…N，每头牛的身高都为整数。<br>当且仅当两头牛中间的牛身高都比它们矮时，两头牛方可看到对方。<br>现在，我们只知道其中最高的牛是第 P 头，它的身高是 H ，剩余牛的身高未知。<br>但是，我们还知道这群牛之中存在着 M 对关系，每对关系都指明了某两头牛 A 和 B 可以相互看见。</p><p>求每头牛的身高的最大可能值是多少。</p><h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行输入整数N,P,H,M，数据用空格隔开。</p><p>接下来M行，每行输出两个整数 A 和 B ，代表牛 A 和牛 B 可以相互看见，数据用空格隔开。</p><h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>一共输出 N 行数据，每行输出一个整数。</p><p>第 i 行输出的整数代表第 i 头牛可能的最大身高。</p><h6 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h6><p>1≤N≤10000,<br>1≤H≤1000000,<br>1≤A,B≤10000,<br>0≤M≤10000</p><h6 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h6><pre><code>9 3 5 51 35 34 33 79 8</code></pre><h6 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h6><pre><code>545344555</code></pre><h6 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h6><ul><li>此题中给出的关系对可能存在重复</li></ul><h6 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h6><ul><li>题目中说对于两头牛它们可以互相看见，说明两牛之间的牛的身高都比这两只低，因此根据最优的原则，我们可知中间的牛可以都比这两只小1即可。</li><li>现在我们考虑关系会不会有交叉的情况。</li><li>假设i&lt;j&lt;k&lt;l;存在关系ik和jl，因为存在关系ik，因此k的身高大于j，又因为存在jl，所以j的身高大于k，前后互相矛盾，因此不存在关系存在交叉的情况。<br>所以对于该问题，我们可以假设全部都是最高身高，然后每出现一对关系，就将他们之间的牛的身高全减1，因为涉及区间加减1，我们可以采用差分和前缀和的关系来解决该问题，具体实现看代码，注意关系判重。<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5></li></ul><pre><code>#include &lt;iostream&gt;#include &lt;map&gt;using namespace std;int n,p,h,m;int a[10005];map&lt;int,int&gt; ma;int main(){    cin&gt;&gt;n&gt;&gt;p&gt;&gt;h&gt;&gt;m;    for(int i=0,x,y;i&lt;m;i++){        cin&gt;&gt;x&gt;&gt;y;        if(x&gt;y) swap(x,y);        if(ma[x]!=y){            a[x+1]-=1;            a[y]+=1;            ma[x]=y;        }        }    for(int i=1;i&lt;=n;i++){        a[i]=a[i-1]+a[i];    }    for(int i=1;i&lt;=n;i++){        cout&lt;&lt;a[i]+h&lt;&lt;endl;    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 差分 区间处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>约数之和</title>
-      <link href="/2019/10/29/a-b-de-yue-shu/"/>
-      <url>/2019/10/29/a-b-de-yue-shu/</url>
+      <link href="/2019/08/29/a-b-de-yue-shu/"/>
+      <url>/2019/08/29/a-b-de-yue-shu/</url>
       
         <content type="html"><![CDATA[<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p><code>A^B所有约数之和对9901取模的值。</code></p><h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><pre><code>2 3</code></pre><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><pre><code>15 </code></pre><h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><pre><code>A= p1^k1 *p2^k2 *p3^k *...* pn^knA^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB</code></pre><ul><li>因为p1取( p1^0…k1)  都是A^B的约数。<br>而( pi^c *pj^d )也是A^B的约数。(所有最简约数的乘积也是他的约数)<br>因此A^B的约数之和等于</li></ul><pre><code> (p1^0 +p1^1 +... +pn^k1) * (p2^0 +p2^1 +.... +p2^k2) *...  *(pn^0 +pn^1 +... +pn^kn);</code></pre><ul><li>计算 </li><li>当k为奇数时 </li></ul><pre><code>sum(p,k)= p^0 +p^1 +... +p^k        =( p^0 +p^1 +...+p^(k/2)) +(p^(k/2+1) +...p^k);        =( p^0 +p^1 +...+p^(k/2)) +p^(k/2+1) (p^0 +... p^(k/2));        =( 1+ p^(k/2+1)) *( p^0 +p^1 +... +p^(k/2))        =(1 +p^(k/2+1)) *sum(p, k/2);</code></pre><ul><li>当k为偶数时 </li></ul><pre><code>sum(p,k)=sum(p,k-1)*p+1    </code></pre><ul><li>(相当于把指数都减1   然后再乘以p相当于指数加一，再加上p^0=1); </li></ul><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;using namespace std;const int mod=9901;int A,B; int kuaisumi(int p,int k){    p%=mod;    int ans=1;    while(k){        if(k&amp;1) ans=ans*p%mod;        p=p*p%mod;        k&gt;&gt;=1;    }    return ans;}int sum(int p,int k){    if(k==0) return 1;    if(k%2==0) return (p%mod*sum(p,k-1)+1)%mod;    return (1+kuaisumi(p,k/2+1))*sum(p,k/2)%mod;}int main(){    cin&gt;&gt;A&gt;&gt;B;    int ans=1;    for(int i=2;i&lt;=A;i++){        int s=0;        while(A%i==0){            s++;            A/=i;        }//        cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;&quot; &quot;&lt;&lt;B&lt;&lt;endl;        if(s) ans=ans*sum(i,s*B)%mod;    }     if(A) cout&lt;&lt;ans&lt;&lt;endl;    else cout&lt;&lt;0&lt;&lt;endl;    return 0;}</code></pre>]]></content>
       
@@ -20,22 +58,9 @@
       
         <tags>
             
-            <tag> 算法 </tag>
+            <tag> 递归 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>first blog</title>
-      <link href="/2019/10/22/first-blog/"/>
-      <url>/2019/10/22/first-blog/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
       
     </entry>
     

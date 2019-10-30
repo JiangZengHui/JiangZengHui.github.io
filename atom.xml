@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jzenghui.top/"/>
-  <updated>2019-10-29T12:25:41.541Z</updated>
+  <updated>2019-10-25T04:04:52.308Z</updated>
   <id>https://jzenghui.top/</id>
   
   <author>
@@ -17,11 +17,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>first blog</title>
+    <link href="https://jzenghui.top/2019/10/22/first-blog/"/>
+    <id>https://jzenghui.top/2019/10/22/first-blog/</id>
+    <published>2019-10-22T05:54:35.000Z</published>
+    <updated>2019-10-25T04:04:52.308Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>最高的牛</title>
+    <link href="https://jzenghui.top/2019/08/30/zui-gao-de-niu/"/>
+    <id>https://jzenghui.top/2019/08/30/zui-gao-de-niu/</id>
+    <published>2019-08-30T10:31:42.000Z</published>
+    <updated>2019-10-30T10:35:07.169Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h5 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h5&gt;&lt;p&gt;有 N
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="差分 区间处理" scheme="https://jzenghui.top/tags/%E5%B7%AE%E5%88%86-%E5%8C%BA%E9%97%B4%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>约数之和</title>
-    <link href="https://jzenghui.top/2019/10/29/a-b-de-yue-shu/"/>
-    <id>https://jzenghui.top/2019/10/29/a-b-de-yue-shu/</id>
-    <published>2019-10-29T07:28:37.000Z</published>
-    <updated>2019-10-29T12:25:41.541Z</updated>
+    <link href="https://jzenghui.top/2019/08/29/a-b-de-yue-shu/"/>
+    <id>https://jzenghui.top/2019/08/29/a-b-de-yue-shu/</id>
+    <published>2019-08-29T07:28:37.000Z</published>
+    <updated>2019-10-30T10:30:34.168Z</updated>
     
     <summary type="html">
     
@@ -39,21 +79,7 @@
       <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://jzenghui.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>first blog</title>
-    <link href="https://jzenghui.top/2019/10/22/first-blog/"/>
-    <id>https://jzenghui.top/2019/10/22/first-blog/</id>
-    <published>2019-10-22T05:54:35.000Z</published>
-    <updated>2019-10-25T04:04:52.308Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
+      <category term="递归" scheme="https://jzenghui.top/tags/%E9%80%92%E5%BD%92/"/>
     
   </entry>
   
