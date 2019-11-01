@@ -4,11 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Welcome Party, 蒋曾辉 网络工程 网络安全">
+    <meta name="keywords" content="Shell脚本编程, 蒋曾辉 网络工程 网络安全">
     <meta name="baidu-site-verification" content="RFKXEadp8E">
     <meta name="google-site-verification" content="RFKXEadp8E">
     <meta name="360-site-verification" content>
-    <meta name="description" content="Problem DescriptionThe 44th World Finals of the International Collegiate Programming Contest (ICPC 2020) will be held in">
+    <meta name="description" content="一.Shell简介Shell是一个用C语言编写的程序，通过Shell用户可以访问操作系统内核服务，类似于DOS下的command和后来的cmd.exe。Shell既是一种命令语言，又是一种程序设计语言。作为命令语言，它交互式地解释和执行用户">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Welcome Party | 蒋曾辉的博客</title>
+    <title>Shell脚本编程 | 蒋曾辉的博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -290,13 +290,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Welcome Party
+                        Shell脚本编程
                     </div>
                 </div>
             </div>
@@ -407,16 +407,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/并查集/" target="_blank">
-                            <span class="chip bg-color">并查集</span>
-                        </a>
-                        
-                        <a href="/tags/优先队列/" target="_blank">
-                            <span class="chip bg-color">优先队列</span>
-                        </a>
-                        
-                        <a href="/tags/BFS/" target="_blank">
-                            <span class="chip bg-color">BFS</span>
+                        <a href="/tags/Linux网络运维/" target="_blank">
+                            <span class="chip bg-color">Linux网络运维</span>
                         </a>
                         
                     </div>
@@ -427,8 +419,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/算法/" class="post-category" target="_blank">
-                            算法
+                        <a href="/categories/Linux/" class="post-category" target="_blank">
+                            Linux
                         </a>
                         
                     </div>
@@ -439,7 +431,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-16
+                    2019-10-22
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -453,14 +445,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    16 分
                 </div>
                 
                 
@@ -476,108 +468,593 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h4><p>The 44th World Finals of the International Collegiate Programming Contest (ICPC 2020) will be held in Moscow, Russia. To celebrate this annual event for the best competitive programmers around the world, it is decided to host a welcome party for all n participants of the World Finals, numbered from 1 to n for convenience.</p>
-<p>The party will be held in a large hall. For security reasons, all participants must present their badge to the staff and pass a security check in order to be admitted into the hall. Due to the lack of equipment to perform the security check, it is decided to open only one entrance to the hall, and therefore only one person can enter the hall at a time.</p>
-<p>Some participants are friends with each other. There are m pairs of mutual friendship relations. Needless to say, parties are more fun with friends. When a participant enters the hall, if he or she finds that none of his or her friends is in the hall, then that participant will be unhappy, even if his or her friends will be in the hall later. So, one big problem for the organizer is the order according to which participants enter the hall, as this will determine the number of unhappy participants. You are asked to find an order that minimizes the number of unhappy participants. Because participants with smaller numbers are more important (for example the ICPC director may get the number 1), if there are multiple such orders, you need to find the lexicographically smallest one, so that important participants enter the hall first.</p>
-<p>Please note that if participant a and b are friends, and if participant b and c are friends, it’s NOT necessary that participant a and c are friends.</p>
-<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>There are multiple test cases. The first line of the input contains a positive integer T, indicating the number of cases. For each test case:</p>
-<p>The first line contains two integers n and m (1&lt;=n,m&lt;=10^6), the number of participants and the number of friendship relations.</p>
-<p>The following m lines each contains two integers a and b (1&lt;=a,b&lt;=n,a≠b), indicating that the a-th and the b-th participant are friends. Each friendship pair is only described once in the input.</p>
-<p>It is guaranteed that neither the sum of n nor the sum of m of all cases will exceed 10^6.</p>
-<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>For each case, print a single integer on the first line, indicating the minimum number of unhappy participants. On the second line, print a permutation of  to  separated by a space, indicating the lexicographically smallest ordering of participants entering the hall that achieves this minimum number.</p>
-<p>Consider two orderings P=p1,p2,…,pn and Q=q1,q2,..,qn, we say P is lexicographically smaller than Q, if there exists an integer  k(1&lt;=k&lt;=n), such that  holds for all pi=qi,1&lt;=i&lt;k and pk&lt;qk.</p>
-<p>Please, DO NOT output extra spaces at the end of each line, or your solution may be considered incorrect!</p>
-<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h4><pre><code>2
-4 3
-1 2
-1 3
-1 4
-4 2
-1 2
-3 4</code></pre><h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h4><pre><code>1
-1 2 3 4
-2
-1 2 3 4</code></pre><h4 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h4><p>有n个人要参加聚会，1~n分别表示他们的序列，m行表示他们之间的关系，这n个人一次进场，若进场后发现没有自己的朋友，这个人就会不开心。现在要求排他们的入场顺序，使得不开心的人数最少，同时，进场人的字典序最小。</p>
-<h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><ul>
-<li>我们可以将每个人看成一个点，那么每队关系都是一条边，那么我们可以知道，肯定会有多个连通图，对于每个连通图，只要有一个人进入了，那么这个连通图的每个人进去的时候我们都有办法让他们开心，只要沿着当前进入的这个人后面他的朋友进去，然后她朋友的朋友再进，这就是一个广搜的过程。</li>
-<li>但是有多个联通图，所以我们可以将他们每个连通图的序号最小的人先加入联通图，然后再进行广搜即可。但是怎么保证字典序最小呢？</li>
-<li>我们可以使用优先队列，初始化的时候是每个连通图最小的点。然后模拟广搜过程，每当优先队列第一个人出列，就将他们的朋友加进来，记得标记进了队列。</li>
-<li>代码有详细注释。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
+                <h4 id="一-Shell简介"><a href="#一-Shell简介" class="headerlink" title="一.Shell简介"></a>一.Shell简介</h4><p>Shell是一个用C语言编写的程序，通过Shell用户可以访问操作系统内核服务，类似于DOS下的command和后来的cmd.exe。Shell既是一种命令语言，又是一种程序设计语言。作为命令语言，它交互式地解释和执行用户输入的命令；作为程序设计语言，它定义了各种变量、参数、函数、流程控制等等。它调用了系统核心的大部分功能来执行程序、建立文件并以并行的方式协调各个程序的运行。因此，对于用户来说，shell是最重要的实用程序，深入了解和熟练掌握shell的特性极其使用方法，是用好Unix/Linux系统的关键。</p>
+<h4 id="二-两类程序设计语言"><a href="#二-两类程序设计语言" class="headerlink" title="二.两类程序设计语言"></a>二.两类程序设计语言</h4><p>我们经常说道的shell脚本，其实是因为Shell是一种脚本语言，也就是解释性语言。程序设计语言可以分为两类：编译型语言和解释型语言。<br>| 语言 | 区别 |<br>|–|–|<br>| 编译型语言 | 需要预先将我们写好的源代码转换成目标代码，这个过程被称作“编译”。运行程序时，直接读取目标代码。由于编译后的目标代码非常接近计算机底层，因此执行效率很高，这是编译型语言的优点 |<br>| 解释型语言 | 也叫做脚本语言。执行这类程序时，解释器需要读取我们编写的源代码，并将其转换成目标代码，再由计算机运行。因为每次执行程序都多了编译的过程，因此效率有所下降 |</p>
+<h4 id="三-Shell脚本解释器"><a href="#三-Shell脚本解释器" class="headerlink" title="三.Shell脚本解释器"></a>三.Shell脚本解释器</h4><p>Linux的Shell脚本解释器种类众多，一个系统可以存在多个shell脚本解释器，可以通过cat /etc/shells 命令查看系统中安装的shell脚本解释器。</p>
+<pre><code>[root@centos6-1 ~]# cat /etc/shells 
+/bin/sh
+/bin/bash
+/sbin/nologin
+/bin/dash
+/bin/tcsh
+/bin/csh
+[root@centos6-1 ~]# </code></pre><p>bash由于易用和免费，在日常工作中被广泛使用。同时，Bash也是大多数Linux系统默认的Shell脚本解释器。</p>
+<h4 id="四-Hello-World"><a href="#四-Hello-World" class="headerlink" title="四.Hello World"></a>四.Hello World</h4><p>新建helloworld.sh</p>
+<pre><code>[root@centos6-1 ~]# touch helloworld.sh</code></pre><p>编辑helloworld.sh文件，添入一下内容</p>
+<pre><code>#!/bin/bash
+echo &quot;helloworld&quot;</code></pre><ul>
+<li>#! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种Shell，这里指定bash</li>
+<li>echo 是Shell的一个内部指令，用于在屏幕上打印出指定的字符串<br>赋予当前用户helloworld.sh的执行权限(刚创建的文件没有执行权限)</li>
 </ul>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;queue&gt;
-#include&lt;cstdio&gt;
-#include&lt;cmath&gt;
-#include&lt;vector&gt;
-using namespace std;
+<pre><code>[root@centos6-1 ~]# chmod u+x helloworld.sh</code></pre><p>执行hellowo.sh脚本方式一</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+helloworld
+[root@centos6-1 ~]# </code></pre><blockquote>
+<p>注意，一定要写成./helloworld.sh，而不是helloworld.sh，linux系统会去PATH里寻找有没有叫helloworld.sh的，而helloworld.sh不在PATH里，所以写成helloworld.sh是会找不到命令的，要用./helloworld.sh告诉系统说，就在当前目录找。</p>
+</blockquote>
+<p>执行hellowo.sh脚本方式二</p>
+<pre><code>[root@centos6-1 ~]# /bin/sh helloworld.sh 
+helloworld
+[root@centos6-1 ~]# </code></pre><blockquote>
+<p>这种运行方式是，直接运行解释器，其参数就是shell脚本的文件名，当使用这种方式时，脚本中的#!/bin/bash指定的解释器是不生效的，当前使用什么解释器就是什么解释器</p>
+</blockquote>
+<h4 id="五-变量"><a href="#五-变量" class="headerlink" title="五.变量"></a>五.变量</h4><ul>
+<li>语法格式：变量名=变量值<br>shell变量定义的严格语法限制：</li>
+</ul>
+<pre><code>变量名和等号之间不能有空格
+变量名首个字符必须为英文字母
+不能包含标点符号但能够使用下划线(_)
+不能使用空格
+不能使用 bash 里的关键字</code></pre><h5 id="1-变量类型"><a href="#1-变量类型" class="headerlink" title="1.变量类型"></a>1.变量类型</h5><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>局部变量</td>
+<td>局部变量在脚本或命令中定义，仅在当前shell实例中有效，其他shell启动的程序不能访问局部变量</td>
+</tr>
+<tr>
+<td>环境变量</td>
+<td>所有的程序，包括shell启动的程序，都能访问环境变量，有些程 序需要环境变量来保证其正常运行。可以用过set命令查看当前环境变量</td>
+</tr>
+<tr>
+<td>shell变量</td>
+<td>由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell 的正常运行</td>
+</tr>
+</tbody></table>
+<h5 id="2-定义变量"><a href="#2-定义变量" class="headerlink" title="2.定义变量"></a>2.定义变量</h5><pre><code>name=&quot;zaomianbao&quot;</code></pre><h5 id="3-引用变量"><a href="#3-引用变量" class="headerlink" title="3.引用变量"></a>3.引用变量</h5><pre><code>name=&quot;zaomianbao&quot;
+echo ${name}
+echo $name</code></pre><p>引用一个定义过的变量，只要在变量名前面加$即可，变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界。</p>
+<h5 id="4-重新定义变量"><a href="#4-重新定义变量" class="headerlink" title="4.重新定义变量"></a>4.重新定义变量</h5><blockquote>
+<p>已定义的变量，可以被重新定义</p>
+</blockquote>
+<pre><code>name=&quot;zaomianbao&quot;
+echo ${name}
+name=&quot;tiechui&quot;
+echo ${name}</code></pre><h5 id="5-只读变量"><a href="#5-只读变量" class="headerlink" title="5.只读变量"></a>5.只读变量</h5><blockquote>
+<p>使用readonly命令可以将变量定义为只读变量，只读变量的值不能被改变</p>
+</blockquote>
+<pre><code>name=&quot;zaomianbao&quot;
+readonly name
+name=&quot;tiechui&quot;</code></pre><h5 id="6-删除变量"><a href="#6-删除变量" class="headerlink" title="6.删除变量"></a>6.删除变量</h5><pre><code>name=&quot;zaomianbao&quot;
+unset name
+echo $name</code></pre><p>使用unset命令可以删除变量，变量被删除后不能再次使用，同时unset命令不能删除只读变量。</p>
+<h4 id="六-参数传递"><a href="#六-参数传递" class="headerlink" title="六.参数传递"></a>六.参数传递</h4><blockquote>
+<p>在执行Shell脚本时，可以向脚本传递参数。脚本内获取参数的格式为:$n。n代表一个数字，1为执行脚本的第一个参数，2为执行脚本的第二个参数，以此类推…<br>$0 表示当前脚本名称。</p>
+</blockquote>
+<p>1.修改helloworld.sh为</p>
+<pre><code>#!/bin/bash
+echo $1
+echo $2
+echo $3</code></pre><p>2.执行携带参数</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh haha wowow nini
+haha
+wowow
+nini
+[root@centos6-1 ~]#</code></pre><p>七.特殊字符<br>| 字符| 意义|<br>|–|–|<br>|$#|    传递到脚本的参数个数|<br>|$<em>|    以一个单字符串显示所有向脚本传递的参数|<br>|$$|    脚本运行的当前进程ID号|<br>|$!|    后台运行的最后一个进程的ID号|<br>|$@|    与$</em>相同，但是使用时加引号，并在引号中返回每个参数|<br>|$?|    显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误</p>
+<blockquote>
+<p>$* 和 $@ 区别：</p>
+<ul>
+<li>相同点：都表示传递给脚本的所有参数。</li>
+<li>不同点：不被” “包含时，$和$@都以$1 $2… $n 的形式组成参数列表。 被” “包含时，”$” 会将所有的参数作为一个整体，以”$1 $2 … $n” 的形式组成一个整串;”$@” 会将各个参数分开，以”$1” “$2” … “$n”<br>的 形式组成一个参数列表。</li>
+</ul>
+</blockquote>
+<h4 id="八-Shell字符串"><a href="#八-Shell字符串" class="headerlink" title="八.Shell字符串"></a>八.Shell字符串</h4><blockquote>
+<p>shell字符串可以用单引号，也可以用双引号，也可以不用引号</p>
+</blockquote>
+<p>单引号</p>
+<pre><code>name=&#39;my name is zaomianbao&#39;</code></pre><ul>
+<li>单引号字符串中不支持引用变量，任何字符都会原样输出</li>
+<li>单引号字串中不能出现单引号（对单引号使用转义符后也不行）<br>双引号</li>
+</ul>
+<pre><code>name=&#39;my name is zaomianbao&#39;
+name_again=&quot;\&quot;${name}\&quot;&quot;</code></pre><ul>
+<li>双引号里可以引有变量</li>
+<li>双引号里支持转义字符</li>
+</ul>
+<p>字符串长度</p>
+<pre><code>name=&#39;my name is zaomianbao&#39;
+echo ${#name}   //执行输出为21</code></pre><p>截取字符串</p>
+<pre><code>name=&#39;my name is zaomianbao&#39;
+echo ${name:11:20}   //执行输出zaomianbao</code></pre><h4 id="九-shell数组"><a href="#九-shell数组" class="headerlink" title="九.shell数组"></a>九.shell数组</h4><ul>
+<li>bash支持一维数组（不支持多维数组），并且没有限定数组的大小。在Shell中，用括号来表示数组，数组元素用“空格”符号分割开。定义数组的一般形式为：<br>　　array_name=(value1 … valuen)
+　　</li>
+</ul>
+<blockquote>
+<p>下面的例子将展示shell数组常见的所有操作</p>
+</blockquote>
+<pre><code>//第一数组
+[root@centos6-1 ~]# usernames=(1 2 33 44 adsd1)
+//默认读取第一个
+[root@centos6-1 ~]# echo ${usernames}
+1
+//读取下标为0的
+[root@centos6-1 ~]# echo ${usernames[0]}
+1
+//读取下标为1的
+[root@centos6-1 ~]# echo ${usernames[1]}
+2
+//读取所有
+[root@centos6-1 ~]# echo ${usernames[*]}
+1 2 33 44 adsd1
+//同样是读取所有
+[root@centos6-1 ~]# echo ${usernames[@]}
+1 2 33 44 adsd1
+//获取数组长度
+[root@centos6-1 ~]# echo ${#usernames[@]}
+5
+//同样可以获取数组长度
+[root@centos6-1 ~]# echo ${#usernames[*]}
+5
+[root@centos6-1 ~]# </code></pre><h4 id="十-shell运算符"><a href="#十-shell运算符" class="headerlink" title="十.shell运算符"></a>十.shell运算符</h4><ul>
+<li>Shell和其他编程语音一样，支持包括:算术、关系、布尔、字符串等运算符。</li>
+<li>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。expr 是一款表达式计算工具，使用它能完成表达式的求值操作。</li>
+</ul>
+<h5 id="1-算术运算符"><a href="#1-算术运算符" class="headerlink" title="1.算术运算符"></a>1.算术运算符</h5><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>加法</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减法</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除法</td>
+</tr>
+<tr>
+<td>%</td>
+<td>模，即取余</td>
+</tr>
+<tr>
+<td>下面是详细例子</td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code>#!/bin/bash
 
-const int N=1000005;
-int vis[N];
-int root[N];
-int arr[N];
-vector&lt;int&gt; p[N];
+a=10
+b=20
 
-int find(int x){
-    if(x!=root[x]) root[x]=find(root[x]);
-    return root[x];
+val=`expr $a + $b`
+echo &quot;a + b : $val&quot;
+
+val=`expr $a - $b`
+echo &quot;a - b : $val&quot;
+
+val=`expr $a \* $b`
+echo &quot;a * b : $val&quot;
+
+val=`expr $b / $a`
+echo &quot;b / a : $val&quot;
+
+val=`expr $b % $a`
+echo &quot;b % a : $val&quot;
+
+if [ $a == $b ]
+then
+   echo &quot;a 等于 b&quot;
+fi
+if [ $a != $b ]
+then
+   echo &quot;a 不等于 b&quot;
+fi</code></pre><p>执行</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+a + b : 30
+a - b : -10
+a * b : 200
+b / a : 2
+b % a : 0
+a 不等于 b
+[root@centos6-1 ~]# </code></pre><blockquote>
+<p>注意：</p>
+<p> 1.乘号(*)前边必须加反斜杠()<br> 2.条件表达式要放在方括号之间，并且要有空格</p>
+</blockquote>
+<h5 id="2-关系运算符"><a href="#2-关系运算符" class="headerlink" title="2.关系运算符"></a>2.关系运算符</h5><blockquote>
+<p>关系运算符只支持数字，不支持字符串，除非字符串的值是数字</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-eq</td>
+<td>EQUAL 等于</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>NOT EQUAL 不等于</td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>GREATER THAN 大于</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>LESS THAN 小于</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>GREATER THAN OR EQUAL 大于等于</td>
+</tr>
+<tr>
+<td>-le</td>
+<td>LESS THAN OR EQUAL 小于等</td>
+</tr>
+<tr>
+<td>下面是详细例子</td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code>#!/bin/bash
+
+a=10
+b=20
+
+if [ $a -eq $b ]
+then
+   echo &quot;$a -eq $b : a 等于 b&quot;
+else
+   echo &quot;$a -eq $b: a 不等于 b&quot;
+fi
+if [ $a -ne $b ]
+then
+   echo &quot;$a -ne $b: a 不等于 b&quot;
+else
+   echo &quot;$a -ne $b : a 等于 b&quot;
+fi
+if [ $a -gt $b ]
+then
+   echo &quot;$a -gt $b: a 大于 b&quot;
+else
+   echo &quot;$a -gt $b: a 不大于 b&quot;
+fi
+if [ $a -lt $b ]
+then
+   echo &quot;$a -lt $b: a 小于 b&quot;
+else
+   echo &quot;$a -lt $b: a 不小于 b&quot;
+fi
+if [ $a -ge $b ]
+then
+   echo &quot;$a -ge $b: a 大于或等于 b&quot;
+else
+   echo &quot;$a -ge $b: a 小于 b&quot;
+fi
+if [ $a -le $b ]
+then
+   echo &quot;$a -le $b: a 小于或等于 b&quot;
+else
+   echo &quot;$a -le $b: a 大于 b&quot;
+fi</code></pre><p>执行</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh  
+10 -eq 20: a 不等于 b
+10 -ne 20: a 不等于 b
+10 -gt 20: a 不大于 b
+10 -lt 20: a 小于 b
+10 -ge 20: a 小于 b
+10 -le 20: a 小于或等于 b
+[root@centos6-1 ~]# </code></pre><h5 id="3-布尔运算符"><a href="#3-布尔运算符" class="headerlink" title="3.布尔运算符"></a>3.布尔运算符</h5><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;&amp;</td>
+<td>与</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或</td>
+</tr>
+<tr>
+<td>下面是详细例子</td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code>#!/bin/bash
+
+a=10
+b=20
+
+if [[ $a -lt 100 &amp;&amp; $b -gt 100 ]]
+then
+   echo &quot;返回 true&quot;
+else
+   echo &quot;返回 false&quot;
+fi
+
+if [[ $a -lt 100 || $b -gt 100 ]]
+then
+   echo &quot;返回 true&quot;
+else
+   echo &quot;返回 false&quot;
+fi</code></pre><p>执行</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+返回 false
+返回 true
+[root@centos6-1 ~]# </code></pre><h5 id="4-字符串运算符"><a href="#4-字符串运算符" class="headerlink" title="4.字符串运算符"></a>4.字符串运算符</h5><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-z</td>
+<td>字符串长度是否为0，为0返回 true</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>字符串长度是否为0，不为0返回 true</td>
+</tr>
+<tr>
+<td>str</td>
+<td>字符串是否为空，不为空返回 true</td>
+</tr>
+<tr>
+<td>下面是详细例子</td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code>#!/bin/bash
+
+a=&quot;abc&quot;
+b=&quot;efg&quot;
+
+if [ $a = $b ]
+then
+   echo &quot;$a = $b : a 等于 b&quot;
+else
+   echo &quot;$a = $b: a 不等于 b&quot;
+fi
+if [ $a != $b ]
+then
+   echo &quot;$a != $b : a 不等于 b&quot;
+else
+   echo &quot;$a != $b: a 等于 b&quot;
+fi
+if [ -z $a ]
+then
+   echo &quot;-z $a : 字符串长度为 0&quot;
+else
+   echo &quot;-z $a : 字符串长度不为 0&quot;
+fi
+if [ -n $a ]
+then
+   echo &quot;-n $a : 字符串长度不为 0&quot;
+else
+   echo &quot;-n $a : 字符串长度为 0&quot;
+fi
+if [ $a ]
+then
+   echo &quot;$a : 字符串不为空&quot;
+else
+   echo &quot;$a : 字符串为空&quot;
+fi</code></pre><p>执行</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+abc = efg: a 不等于 b
+abc != efg : a 不等于 b
+-z abc : 字符串长度不为 0
+-n abc : 字符串长度不为 0
+abc : 字符串不为空
+[root@centos6-1 ~]# </code></pre><h5 id="5-文件测试运算符"><a href="#5-文件测试运算符" class="headerlink" title="5.文件测试运算符"></a>5.文件测试运算符</h5><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-b file</td>
+<td>文件是否是块设备文件，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-c file</td>
+<td>文件是否是字符设备文件，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-d file</td>
+<td>是否是目录，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-f file</td>
+<td>文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。</td>
+</tr>
+<tr>
+<td>-g file</td>
+<td>文件是否设置了 SGID 位，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-k file</td>
+<td>文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-p file</td>
+<td>文件是否是具名管道，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-u file</td>
+<td>文件是否设置了 SUID 位，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-r file</td>
+<td>文件是否可读，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-w file</td>
+<td>文件是否可写，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-x file</td>
+<td>文件是否可执行，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>-s file</td>
+<td>文件是否为空（文件大小是否大于0），不为空返回 true</td>
+</tr>
+<tr>
+<td>-e file</td>
+<td>文件（包括目录）是否存在，如果是，则返回 true</td>
+</tr>
+<tr>
+<td>下面是详细例子</td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code>#!/bin/bash
+
+file=&quot;/com/zaomianbao&quot;
+if [ -r $file ]
+then
+   echo &quot;文件可读&quot;
+else
+   echo &quot;文件不可读&quot;
+fi
+if [ -w $file ]
+then
+   echo &quot;文件可写&quot;
+else
+   echo &quot;文件不可写&quot;
+fi
+if [ -x $file ]
+then
+   echo &quot;文件可执行&quot;
+else
+   echo &quot;文件不可执行&quot;
+fi
+if [ -f $file ]
+then
+   echo &quot;文件为普通文件&quot;
+else
+   echo &quot;文件为特殊文件&quot;
+fi
+if [ -d $file ]
+then
+   echo &quot;文件是个目录&quot;
+else
+   echo &quot;文件不是个目录&quot;
+fi
+if [ -s $file ]
+then
+   echo &quot;文件不为空&quot;
+else
+   echo &quot;文件为空&quot;
+fi
+if [ -e $file ]
+then
+   echo &quot;文件存在&quot;
+else
+   echo &quot;文件不存在&quot;
+fi</code></pre><p>执行</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+文件不可读
+文件不可写
+文件不可执行
+文件为特殊文件
+文件不是个目录
+文件为空
+文件不存在
+[root@centos6-1 ~]# </code></pre><h4 id="十一-流程控制"><a href="#十一-流程控制" class="headerlink" title="十一.流程控制"></a>十一.流程控制</h4><h5 id="1-if-else"><a href="#1-if-else" class="headerlink" title="1.if-else"></a>1.if-else</h5><pre><code>if condition
+then
+    //做你想做的事
+else
+    //做你想做的事
+fi
+
+
+if condition1
+then
+    //做你想做的事
+elif condition2 
+then 
+    //做你想做的事
+else
+    //做你想做的事
+fi</code></pre><h5 id="2-case"><a href="#2-case" class="headerlink" title="2.case"></a>2.case</h5><p>case 语句匹配一个值或一个模式，如果匹配成功，执行相匹配的命令</p>
+<pre><code>case 值 in
+模式1)
+    //做你想做的事
+    ;;
+模式2）
+    //做你想做的事
+    ;;
+*)
+    //做你想做的事
+    ;;
+esac</code></pre><p>取值后面必须为关键字 in，每一模式必须以右括号结束。取值可以为变量或常数。匹配发现取值符合某一模式后，其间所有命令开始执行直至 ;;。;; 与其他语言中的 break 类似，意思是跳到整个 case 语句的最后。取值将检测匹配的每一个模式。一旦模式匹配，则执行完匹配模式相应命令后不再继续其他模式。如果无一匹配模式，使用星号 * 捕获该值，再执行后面的命令。</p>
+<h5 id="3-for"><a href="#3-for" class="headerlink" title="3.for"></a>3.for</h5><pre><code>for 变量 in 列表
+do
+    //做你想做的事
+done</code></pre><h5 id="4-while"><a href="#4-while" class="headerlink" title="4.while"></a>4.while</h5><pre><code>while command
+do
+   //做你想做的是
+done</code></pre><h5 id="5-until"><a href="#5-until" class="headerlink" title="5.until"></a>5.until</h5><p>until 循环执行一系列命令直至条件为 true 时停止。until 循环与 while 循环在处理方式上刚好相反。一般while循环优于until循环，但在某些时候，也只是极少数情况下，until 循环更加有用。</p>
+<pre><code>until command
+do
+   //做你想做的事
+done</code></pre><blockquote>
+<p>command 一般为条件表达式，如果返回值为 false，则继续执行循环体内的语句，否则跳出循环。</p>
+</blockquote>
+<h4 id="十二-函数"><a href="#十二-函数" class="headerlink" title="十二.函数"></a>十二.函数</h4><p>函数可以让我们将一个复杂功能划分成若干模块，让程序结构更加清晰，代码重复利用率更高。像其他编程语言一样，Shell 也支持函数。Shell 函数必须先定义后使用。</p>
+<pre><code>#!/bin/bash
+
+demoFun(){
+    echo &quot;这是我的第一个 shell 函数!&quot;
 }
-void Union(int x,int y){
-    int fx=find(x);
-    int fy=find(y);
-    if(fx&lt;fy) root[fy]=fx;
-    else root[fx]=fy;
-}
+echo &quot;-----函数开始执行-----&quot;
+demoFun 
+echo &quot;-----函数执行完毕-----&quot;</code></pre><p>执行</p>
+<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+-----函数开始执行-----
+这是我的第一个 shell 函数!
+-----函数执行完毕-----
+[root@centos6-1 ~]# </code></pre><blockquote>
+<p>如果函数有返回值，则函数返回值可以在调用该函数后通过 $? 来获得。</p>
+</blockquote>
+<blockquote>
+<p>参考资料：<br> <a href="https://baike.baidu.com/item/shell/99702?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/shell/99702?fr=aladdin</a><br><a href="http://www.runoob.com/linux/linux-shell.html" target="_blank" rel="noopener">http://www.runoob.com/linux/linux-shell.html</a><br><a href="https://www.cnblogs.com/maybe2030/p/5022595.html" target="_blank" rel="noopener">https://www.cnblogs.com/maybe2030/p/5022595.html</a><br><a href="https://baike.baidu.com/item/POSIX/3792413?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/POSIX/3792413?fr=aladdin</a></p>
+</blockquote>
 
-int main(){
-    int t;
-    scanf(&quot;%d&quot;,&amp;t);
-    while(t--){
-        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt;q;
-//      while(!q.empty()) q.pop();
-        int n,m;
-        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-        for(int i=0;i&lt;=n;i++){  //初始化工作 
-            root[i]=i;
-            vis[i]=0;
-            p[i].clear();
-        } 
-        int x,y;
-        for(int i=1;i&lt;=m;i++){
-            scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
-            Union(x,y);         //并查集只是为了找出每个集合最小的点作为根节点 
-            p[x].push_back(y);  //此处要注意编号大的人可以拥有编号小的作为朋友 
-            p[y].push_back(x);  //编号小的也可以拥有编号大的作为朋友 
-        }
-        int cnt=0;
-        for(int i=1;i&lt;=n;i++){
-            if(root[i]==i){
-                q.push(i);      //将每个集合编号最小的根放入队列 
-                cnt++;          //这些人包括那些没有任何朋友的人 
-            } 
-        }   
-        int point=0;
-        while(!q.empty()){
-            int x=q.top();
-            q.pop();
-            if(vis[x]==0){//防止重复加点 
-                vis[x]=1;
-                arr[++point]=x;
-                for(int i=0;i&lt;p[x].size();i++){//遍历下标为x的每一个元素          
-                    if(vis[p[x][i]]==0) q.push(p[x][i]);   
-                    //如果这个朋友没有在之前就被排入队列则将它放入优先队列 
-                } 
-            }   
-        }
-        printf(&quot;%d\n&quot;,cnt);
-        for(int i=1;i&lt;=point;i++){
-            if(i!=1) printf(&quot; &quot;);
-            printf(&quot;%d&quot;,arr[i]);
-        }
-        printf(&quot;\n&quot;);
-    }
-    return 0;
-}</code></pre>
             </div>
             <hr />
 
@@ -735,9 +1212,9 @@ int main(){
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Welcome Party》
+                    《Shell脚本编程》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/16/welcome-party/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/22/shell-jiao-ben-bian-cheng/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蒋曾辉
             </a> 采用
@@ -778,7 +1255,7 @@ int main(){
         repo: 'JiangZengHui.github.io',
         owner: 'JiangZengHui',
         admin: "JiangZengHui",
-        id: '2019/08/16/welcome-party/',
+        id: '2019/10/22/shell-jiao-ben-bian-cheng/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1061,54 +1538,48 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/17/chao-shi/">
+                <a href="/2019/10/22/shell-jiao-ben-bian-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="超市">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Shell脚本编程">
                         
-                        <span class="card-title">超市</span>
+                        <span class="card-title">Shell脚本编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            求合理安排每天卖的商品的情况下，可以得到的最大收益是多少。
+                            Shell脚本编程的相关知识
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/贪心/" target="_blank">
-                        <span class="chip bg-color">贪心</span>
-                    </a>
-                    
-                    <a href="/tags/并查集/" target="_blank">
-                        <span class="chip bg-color">并查集</span>
-                    </a>
-                    
-                    <a href="/tags/优先队列/" target="_blank">
-                        <span class="chip bg-color">优先队列</span>
+                    <a href="/tags/Linux网络运维/" target="_blank">
+                        <span class="chip bg-color">Linux网络运维</span>
                     </a>
                     
                 </div>
@@ -1122,24 +1593,24 @@ int main(){
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/15/hui-wen-zi-chuan-de-zui-da-chang-du/">
+                <a href="/2019/08/30/shu-xing-di-tie-xi-tong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="回文子串的最大长度">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="树形地铁系统">
                         
-                        <span class="card-title">回文子串的最大长度</span>
+                        <span class="card-title">树形地铁系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            如果一个字符串正着读和倒着读是一样的，则称它是回文的。
+                            一些主要城市拥有树形的地铁系统，即在任何一对车站之间，有且只有一种方式可以乘坐地铁。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-15
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
                             </span>
                         <span class="publish-author">
                             
@@ -1156,12 +1627,8 @@ int main(){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/二分/" target="_blank">
-                        <span class="chip bg-color">二分</span>
-                    </a>
-                    
-                    <a href="/tags/Hash/" target="_blank">
-                        <span class="chip bg-color">Hash</span>
+                    <a href="/tags/树的最小表示/" target="_blank">
+                        <span class="chip bg-color">树的最小表示</span>
                     </a>
                     
                 </div>
