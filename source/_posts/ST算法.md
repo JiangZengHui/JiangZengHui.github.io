@@ -27,6 +27,7 @@ void ST_prework(int n){
 	}
 } 
 ```
+
 #### ST取值
 
  - 取出L到R的最值。
