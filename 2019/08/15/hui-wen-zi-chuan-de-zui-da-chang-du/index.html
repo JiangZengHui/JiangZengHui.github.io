@@ -293,7 +293,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -488,9 +488,9 @@ Case 2: 6</code></pre><h4 id="分析："><a href="#分析：" class="headerlink"
 <li>对于这个题我们可以尝试用Hash前缀的方式，先用O(n)的时间，求出他的前缀和后缀的Hash值，Hash的方式我们可以用常用的BKDRhash方法，不会的可以看下这里：<a href="https://blog.csdn.net/qq_41934571/article/details/98103193。" target="_blank" rel="noopener">https://blog.csdn.net/qq_41934571/article/details/98103193。</a></li>
 <li>然后我们可以枚举每一个下标，然后对以他中心二分他的最长回文长度，用前后hash值来判断他们的值是否相等，但是我们需要分情况考虑，就是如果回文长度为偶数的话，那我二分的话还要考虑他是中间的左边还是右边就会很复杂，长度为奇数的话，那么二分就会很简单，我们只需要判断左右相同长度是不是一样就可以。</li>
 <li>为了解决奇偶问题，我们可以在每个字符之间都加一个其他字符，这样的话，偶数个就会变成奇数个，奇数个还是奇数个，问题就迎刃而解。</li>
-<li>具体实现看代码：<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
+<li>具体实现看代码：</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
 #include &lt;string.h&gt;
 using namespace std;
 typedef unsigned long long ULL;
@@ -1028,7 +1028,7 @@ int main(){
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Welcome Party">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Welcome Party">
                         
                         <span class="card-title">Welcome Party</span>
                     </div>
@@ -1085,7 +1085,7 @@ int main(){
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="后缀数组">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="后缀数组">
                         
                         <span class="card-title">后缀数组</span>
                     </div>

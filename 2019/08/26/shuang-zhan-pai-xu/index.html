@@ -291,7 +291,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    826
+                    837
                 </div>
                 
 
@@ -480,88 +480,97 @@
 <h4 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h4><pre><code>1
 3
 2 3 1</code></pre><h4 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h4><pre><code>a c a b b d </code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
-<li><p>模拟进栈出栈顺序，我们发现， 假如存在<code>a[k]&lt;a[i]&lt;a[j]  (i&lt;j&lt;k);</code> </p>
-</li>
-<li><p>那么i和j肯定不能进同一个栈，而且不满足这个条件的一定可以放入同一个栈。</p>
-</li>
-<li><p>所以，我们要将这样i和j分别分进两个，所以就成了二分图的问题，先将二分图，染成两种颜色，然后模拟进栈顺序，相同颜色的放同一个栈即可。</p>
-</li>
-<li><p>如果不能染成两种颜色，即无解。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p> #include <iostream><br> #include <cstring><br> #include <stack><br> using namespace std;<br> const int N=1e3+5;</stack></cstring></iostream></p>
-<p> int n,a[N],f[N];<br> bool g[N][N];<br> int color[N];</p>
-<p> bool dfs(int x,int c){//染色</p>
-<pre><code> color[x]=c;
- for(int i=1;i&lt;=n;i++){
-     if(g[x][i]){
-         if(color[i]==c) return false;
-         if(!color[i]&amp;&amp;!dfs(i,-c)) return false;
-     }
- }
- return true;</code></pre><p> }</p>
-<p> int main()<br> {</p>
-<pre><code> int t;
- cin&gt;&gt;t;
- while(t--){
-     memset(g,0,sizeof(g));
-     memset(f,0,sizeof(f));
-     cin&gt;&gt;n;
-     f[n+1]=n+1;
-     for(int i=1;i&lt;=n;i++) cin&gt;&gt;a[i];
-     for(int i=n;i&gt;=1;i--) f[i]=min(f[i+1],a[i]);
-
-     for(int i=1;i&lt;=n;i++){ // a[k]&lt;a[i]&lt;a[j]  i&lt;j&lt;k 
-         for(int j=i+1;j&lt;=n;j++){ //那么ij肯定不能在同一个栈中 
-             if(a[i]&lt;a[j]&amp;&amp;f[j+1]&lt;a[i]){
-                 g[i][j]=g[j][i]=true;
-             }
-         }
-     }
-
-     bool flag=true;
-     memset(color,0,sizeof(color));
-     for(int i=1;i&lt;=n;i++){//染色，并将相邻顶点染成不同颜色
-         if(!color[i]&amp;&amp;!dfs(i,1)){
-             flag=false;
-             break;
-         }
-     }
-     if(!flag){
-         cout&lt;&lt;0&lt;&lt;endl;
-         continue;
-     }</code></pre><p> //        for(int i=1;i&lt;=n;i++) cout&lt;&lt;color[i]&lt;&lt;” “;</p>
-<pre><code>     int now=1;
-     stack&lt;int&gt; s1,s2;
-     for(int i=1;i&lt;=n;i++){ //模拟进栈
-
-         if(color[i]==1){
-             s1.push(a[i]);
-             cout&lt;&lt;&quot;a &quot;;
-         }else{
-             s2.push(a[i]);
-             cout&lt;&lt;&quot;c &quot;;
-         }
-
-         while(true){
-             if(!s1.empty()&amp;&amp;s1.top()==now){
-                 s1.pop();
-                 now++;
-                 cout&lt;&lt;&quot;b &quot;;
-             }else if(!s2.empty()&amp;&amp;s2.top()==now){
-                 s2.pop();
-                 now++;
-                 cout&lt;&lt;&quot;d &quot;;
-             }else{
-                 break;
-             }
-
-         } 
-     }
-     cout&lt;&lt;endl;
- }
- return 0;</code></pre><p> }</p>
-</li>
+<li>模拟进栈出栈顺序，我们发现， 假如存在<code>a[k]&lt;a[i]&lt;a[j]  (i&lt;j&lt;k);</code> </li>
+<li>那么i和j肯定不能进同一个栈，而且不满足这个条件的一定可以放入同一个栈。</li>
+<li>所以，我们要将这样i和j分别分进两个，所以就成了二分图的问题，先将二分图，染成两种颜色，然后模拟进栈顺序，相同颜色的放同一个栈即可。</li>
+<li>如果不能染成两种颜色，即无解。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;stack&gt;
+using namespace std;
+const int N=1e3+5;
 
+int n,a[N],f[N];
+bool g[N][N];
+int color[N];
+
+bool dfs(int x,int c){//染色
+    color[x]=c;
+    for(int i=1;i&lt;=n;i++){
+        if(g[x][i]){
+            if(color[i]==c) return false;
+            if(!color[i]&amp;&amp;!dfs(i,-c)) return false;
+        }
+    }
+    return true;
+}
+
+int main()
+{
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        memset(g,0,sizeof(g));
+        memset(f,0,sizeof(f));
+        cin&gt;&gt;n;
+        f[n+1]=n+1;
+        for(int i=1;i&lt;=n;i++) cin&gt;&gt;a[i];
+        for(int i=n;i&gt;=1;i--) f[i]=min(f[i+1],a[i]);
+
+        for(int i=1;i&lt;=n;i++){ // a[k]&lt;a[i]&lt;a[j]  i&lt;j&lt;k 
+            for(int j=i+1;j&lt;=n;j++){ //那么ij肯定不能在同一个栈中 
+                if(a[i]&lt;a[j]&amp;&amp;f[j+1]&lt;a[i]){
+                    g[i][j]=g[j][i]=true;
+                }
+            }
+        }
+
+        bool flag=true;
+        memset(color,0,sizeof(color));
+        for(int i=1;i&lt;=n;i++){//染色，并将相邻顶点染成不同颜色
+            if(!color[i]&amp;&amp;!dfs(i,1)){
+                flag=false;
+                break;
+            }
+        }
+        if(!flag){
+            cout&lt;&lt;0&lt;&lt;endl;
+            continue;
+        }
+//        for(int i=1;i&lt;=n;i++) cout&lt;&lt;color[i]&lt;&lt;&quot; &quot;;
+
+        int now=1;
+        stack&lt;int&gt; s1,s2;
+        for(int i=1;i&lt;=n;i++){ //模拟进栈
+
+            if(color[i]==1){
+                s1.push(a[i]);
+                cout&lt;&lt;&quot;a &quot;;
+            }else{
+                s2.push(a[i]);
+                cout&lt;&lt;&quot;c &quot;;
+            }
+
+            while(true){
+                if(!s1.empty()&amp;&amp;s1.top()==now){
+                    s1.pop();
+                    now++;
+                    cout&lt;&lt;&quot;b &quot;;
+                }else if(!s2.empty()&amp;&amp;s2.top()==now){
+                    s2.pop();
+                    now++;
+                    cout&lt;&lt;&quot;d &quot;;
+                }else{
+                    break;
+                }
+
+            } 
+        }
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}</code></pre>
             </div>
             <hr />
 
@@ -1053,7 +1062,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="城市游戏">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="城市游戏">
                         
                         <span class="card-title">城市游戏</span>
                     </div>
@@ -1102,7 +1111,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="矩阵">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="矩阵">
                         
                         <span class="card-title">矩阵</span>
                     </div>

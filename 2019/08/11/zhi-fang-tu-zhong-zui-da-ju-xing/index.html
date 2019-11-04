@@ -292,7 +292,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -494,9 +494,9 @@
 <li>那么这个区域内的可以形成一个(r-l+1)这么宽，当前枚举位置这么高的矩形，并且这个矩形是以当前枚举这个位置区域以他的高度为高最大的矩形。所以当我们枚举完所有位置时，并每次更新最大值，答案就出来了。</li>
 <li>但是如果暴力向前寻找第一个小于他的位置，这样时间会很大，所以我们要找下规律，我们发现，当假设i&lt;j,如果有h[i]&gt;h[j],那么后面枚举每个位置的时候，找到的第一个小于他的都不会是h[i]，因为对于h[j]他不是最小的，而且比j靠前。所以我们h[i]对于后面的查找没有用。所以有一点单调递增的性质，我们可以用单调栈来处理。</li>
 <li>对于每个当前值，假如栈顶的值大于当前值，那么就弹出，知道小于当前值，那么这个就是我们要找的值，更新结果以后，将当前值加入栈。</li>
-<li>具体实现见代码。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
+<li>具体实现见代码。</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 #include &lt;stack&gt;
 using namespace std;
@@ -1034,7 +1034,7 @@ int main()
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="火车进出栈问题">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="火车进出栈问题">
                         
                         <span class="card-title">火车进出栈问题</span>
                     </div>
@@ -1083,7 +1083,7 @@ int main()
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="最大子序和">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="最大子序和">
                         
                         <span class="card-title">最大子序和</span>
                     </div>

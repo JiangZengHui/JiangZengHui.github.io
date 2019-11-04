@@ -294,7 +294,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -491,9 +491,9 @@
 <li>因此对于每一段区间，我们可以枚举右端点，然后要值想最大，那么肯定要找到他前m个数中前缀和最小的，即sum[l-1]最小，这时sum[r-l]才最大。</li>
 <li>我们还发现一件事，那就是对于前m个sum[l-1]中，假设l-1&lt;i&lt;j&lt;r,如果有sum[i]&gt;=sum[j],那么后面枚举每个r的时候，都不会用的sum[i]，因为对于sum[j]他不是最小的，而且比j靠前，因此每次枚举的时候，我们都发现，要用的的sum[l]肯定是成递增趋势的,所以这时候我们局可以用单调队列来解决了。</li>
 <li>单调队列里面存当前枚举到的r的前m个sum，并且是成单调上升趋势的，队首是最小的，并且后面每个都比前一个大。</li>
-<li>具体实现看代码。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
+<li>具体实现看代码。</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 #include &lt;limits.h&gt;
 #include &lt;deque&gt;
@@ -1022,7 +1022,7 @@ int main()
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="直方图中最大矩形">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="直方图中最大矩形">
                         
                         <span class="card-title">直方图中最大矩形</span>
                     </div>
@@ -1071,7 +1071,7 @@ int main()
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="兔子与兔子">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="兔子与兔子">
                         
                         <span class="card-title">兔子与兔子</span>
                     </div>

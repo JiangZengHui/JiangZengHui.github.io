@@ -294,7 +294,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -500,11 +500,11 @@
 <pre><code>maxdis=sqrt(2/3*r^2+1/2*r^2)&lt;ans;     (r==ans)</code></pre><ul>
 <li>所以与前面矛盾(不可能左边的最小值大于这两点的距离);</li>
 <li>因此，对于某一边的每个点最多与另一边的六个点计算距离，这样就不需要与右边每个点计算，这样将大大降低时间。</li>
-<li>因为我们每次都二分了，当合并的时候我们可以用归并排序的思想，顺便将区间mid-ans至mid+ans的点按照y轴排序，这样对于每个点我们只需要计算他下面的点，或者上面的点，也将大大减少时间。<h5 id="例题可见：https-jzenghui-top-2019-09-05-xi-ji"><a href="#例题可见：https-jzenghui-top-2019-09-05-xi-ji" class="headerlink" title="例题可见：https://jzenghui.top/2019/09/05/xi-ji/"></a>例题可见：<a href="https://jzenghui.top/2019/09/05/xi-ji/">https://jzenghui.top/2019/09/05/xi-ji/</a></h5><h5 id="具体函数代码如下-内含注释-："><a href="#具体函数代码如下-内含注释-：" class="headerlink" title="具体函数代码如下(内含注释)："></a>具体函数代码如下(内含注释)：</h5><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>double dis(node a,node b){//返回两点之间的距离 
- return sqrt(pow(abs(a.x-b.x),2)+pow(abs(a.y-b.y),2));
-}</code></pre></li>
+<li>因为我们每次都二分了，当合并的时候我们可以用归并排序的思想，顺便将区间mid-ans至mid+ans的点按照y轴排序，这样对于每个点我们只需要计算他下面的点，或者上面的点，也将大大减少时间。<h5 id="例题可见：https-jzenghui-top-2019-09-05-xi-ji"><a href="#例题可见：https-jzenghui-top-2019-09-05-xi-ji" class="headerlink" title="例题可见：https://jzenghui.top/2019/09/05/xi-ji/"></a>例题可见：<a href="https://jzenghui.top/2019/09/05/xi-ji/">https://jzenghui.top/2019/09/05/xi-ji/</a></h5><h5 id="具体函数代码如下-内含注释-："><a href="#具体函数代码如下-内含注释-：" class="headerlink" title="具体函数代码如下(内含注释)："></a>具体函数代码如下(内含注释)：</h5></li>
 </ul>
-<pre><code>double solve(int l,int r){// 返回排序后下标l到r这个区间中最小点距
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>double dis(node a,node b){//返回两点之间的距离 
+    return sqrt(pow(abs(a.x-b.x),2)+pow(abs(a.y-b.y),2));
+}</code></pre><pre><code>double solve(int l,int r){// 返回排序后下标l到r这个区间中最小点距
     //如果下标区间只有这一个点 返回最大值  
     if(l&gt;=r) return INF;
 
@@ -1036,7 +1036,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="最大的和">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="最大的和">
                         
                         <span class="card-title">最大的和</span>
                     </div>
@@ -1089,7 +1089,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="赶牛入圈">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="赶牛入圈">
                         
                         <span class="card-title">赶牛入圈</span>
                     </div>

@@ -291,7 +291,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -496,9 +496,9 @@
 <li>初看这个题，校检值可以排序后枚举最前最后来计算，但是怎么知道应该计算的范围呢？即每段区间。</li>
 <li>我们可以用二分来解决，二分枚举区间范围，然后计算。但是二分每次计算的都是大范围的一半，然后每次都要重复排序，所以时间会超限。</li>
 <li>我们就想到，可以倒着来，用倍增，每次枚举一，排好序计算如果满足条件就递增距离就乘以二，然后区间长度加上他，直到k+1是枚举的递增的长度为len时，刚好不满足校检值小于t，那么就从k开始枚举递增len的一半直到不能枚举。</li>
-<li>这样的话，还有一个好处，就是每次枚举递增的一段，我们排好序以后，再枚举递增的下一段的时候，我们可以用归并排序的思想，只要把后面的刚加入的一段用快排排好，然后两端合并即可，这样会大大减少时间复杂度。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
+<li>这样的话，还有一个好处，就是每次枚举递增的一段，我们排好序以后，再枚举递增的下一段的时候，我们可以用归并排序的思想，只要把后面的刚加入的一段用快排排好，然后两端合并即可，这样会大大减少时间复杂度。</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
 #include &lt;cmath&gt;
 #include &lt;algorithm&gt;
 using namespace std;
@@ -1057,7 +1057,7 @@ int main()
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ST算法">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="ST算法">
                         
                         <span class="card-title">ST算法</span>
                     </div>
@@ -1106,7 +1106,7 @@ int main()
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="超快速排序">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="超快速排序">
                         
                         <span class="card-title">超快速排序</span>
                     </div>
