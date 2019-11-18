@@ -741,12 +741,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
-            <a href="/tags/Linux网络运维/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">Linux网络运维</span>
-            </a>
-            
-            
-            
             <a href="/tags/贪心/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">贪心</span>
             </a>
@@ -795,6 +789,12 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
+            <a href="/tags/Linux网络运维/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">Linux网络运维</span>
+            </a>
+            
+            
+            
             <a href="/tags/Tire树/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">Tire树</span>
             </a>
@@ -803,12 +803,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/对顶堆/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">对顶堆</span>
-            </a>
-            
-            
-            
-            <a href="/tags/二分图/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">二分图</span>
             </a>
             
             
@@ -831,8 +825,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
-            <a href="/tags/单调堆/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">单调堆</span>
+            <a href="/tags/二分图/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">二分图</span>
             </a>
             
             
@@ -855,6 +849,18 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
+            <a href="/tags/单调堆/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">单调堆</span>
+            </a>
+            
+            
+            
+            <a href="/tags/最近点对/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">最近点对</span>
+            </a>
+            
+            
+            
             <a href="/tags/差分/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">差分</span>
             </a>
@@ -867,8 +873,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
-            <a href="/tags/最近点对/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">最近点对</span>
+            <a href="/tags/卡特兰数/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">卡特兰数</span>
             </a>
             
             
@@ -879,20 +885,14 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
-            <a href="/tags/卡特兰数/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">卡特兰数</span>
+            <a href="/tags/逆序对/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">逆序对</span>
             </a>
             
             
             
             <a href="/tags/离散化/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">离散化</span>
-            </a>
-            
-            
-            
-            <a href="/tags/逆序对/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">逆序对</span>
             </a>
             
             
@@ -1011,8 +1011,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     $(document).ready(function () {
 
         var int = setInterval(fixCount, 50);
-        var pvcountOffset = 80000;
-        var uvcountOffset = 20000;
+        var pvcountOffset = 120;
+        var uvcountOffset = 80;
 
         function fixCount() {
             if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
@@ -1050,7 +1050,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2019, 10, 22, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t1 = Date.UTC(2019, 06, 22, 00, 00, 00); //北京时间2018-2-13 00:00:00
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);
