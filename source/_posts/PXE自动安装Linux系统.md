@@ -48,7 +48,7 @@ ONBOOT=yes
 > 地址可以随意分配，但确保此处地址是上一步分配的地址的网关。如果在虚拟机中可以ping通网关则说明配置没有问题。
 
 
-#### 三、检查防火墙和SELinux的设置
+#### 三、防火墙和SELinux的设置
 
 
 > 确保SELinux和防火墙处于关闭状态。
@@ -69,7 +69,7 @@ systemctl disable firewalld
 ```
 
 
-以上是Cent7，如果是6的话
+以上是CentOS 7，如果是CentOS 6的话
 
 
 ```
@@ -77,7 +77,7 @@ service iptables stop
 chkconfig iptables off
 ```
 
-#### 四、安装所需软件包并开启服务
+#### 四、安装软件包并开启服务
 
 > 出于方便，软件安装全部使用yum进行安装，如果没有yum源的请自行配置。
 
@@ -99,8 +99,7 @@ systemctl enable dhcpd tftp.socket httpd
 具体实现：
 1. 使用mkdir -p /var/www/html/Centos/7创建文件夹
 2. 将光盘挂载到/var/www/html/Centos/7目录下
-3. 在/etc/fstab文件中添加自动挂载信息，通常为
-/etc/sr0 /var/www/html/Centos/7 iso9660 default 0 0
+3. 在/etc/fstab文件中添加自动挂载信息，通常为 /etc/sr0 /var/www/html/Centos/7 iso9660 default 0 0
 4. 使用df -h确认挂载信息
 5. 在主机使用浏览器访问http://192.168.11.2/Centos/7 确认可以看到挂载的安装文件
 
@@ -119,13 +118,13 @@ systemctl enable dhcpd tftp.socket httpd
 #version=DEVEL
 # System authorization information
 auth --useshadow  --passalgo=sha512
-# Install OS instead of upgrade#选择升级还是安装，install是安装，upgrade是升级
+# Install OS instead of upgrade#install是安装，upgrade是升级
 install
-# Use CDROM installation media#安装介质，这里是需要修改的地方
+# Use CDROM installation media#安装介质
 cdrom
-# Use text mode install#使用图形安装还是文字界面，通常自动安装我们不需要图形
+# Use text mode install#使用图形安装还是文字界面
 text
-# Firewall configuration#防火墙选项，通常选择关闭
+# Firewall configuration#防火墙选项选择关闭
 firewall --disabled
 firstboot --disable
 ignoredisk --only-use=sda
@@ -136,12 +135,13 @@ keyboard --vckeymap=us --xlayouts=''
 # System language
 lang en_US.UTF-8
 
-# Network information#安装后网络配置信息，可以将onboot改为on，也可以顺便指定一个hostname
-network  --bootproto=dhcp --device=ens33 --onboot=off --ipv6=auto --no-activate
+# Network information#安装后网络配置信息，可以将onboot改为on
+network --bootproto=dhcp --device=ens33 --onboot=off 
+        --ipv6=auto --no-activate
 network  --hostname=localhost.localdomain
 # Reboot after installation#安装之后重启
 reboot
-# Root password# root账号密码，此处的密码是加密后的密码
+# Root password# root账号密码
 rootpw --iscrypted $1$HwDDpzbI$JcacPj2.QTbRQgNWUP8hr1
 # SELinux configuration#SELinux选项
 selinux --disabled
@@ -158,7 +158,7 @@ bootloader --append=" crashkernel=auto" --location=mbr --boot-drive=sda
 # Partition clearing information
 #clearpart --all --initlabel # 清空磁盘
 # Disk partitioning information
-#以下三行是分区信息，注意根据自己的情况进行修改。size单位是MB
+#以下三行是分区信息
 #part swap --fstype="swap" --size=2048
 #part / --fstype="xfs" --size=20480
 #part /boot --fstype="xfs" --size=1024
@@ -225,7 +225,7 @@ subnet 192.168.11.0 netmask 255.255.255.0
     # 使用range指定IP地址池
     range 192.168.11.3 192.168.11.124;
 }
-对于一个DHCP服务器以上内容足够了，不过对于PXE还少了两个重要的选项，
+对于一个DHCP服务器以上内容足够了
 next-server 192.168.11.2
 filename "pxelinux.0"
 next-server用来指定TFTP服务器的位置
@@ -245,7 +245,7 @@ subnet 192.168.11.0 netmask 255.255.255.0
 
 接下来使用systemctl start dhcpd启动dhcp服务，使用ss -unl查看67端口是会否已经开启。
 
-#### 八、必要的文件复制到相关目录
+#### 八、必要文件复制到相关目录
 
 将相关文件复制到TFTP共享目录。
 
@@ -294,7 +294,7 @@ label linux
   append initrd=7/initrd.img ks=http://192.168.11.2/anaconda-ks.cfg
 
 # 本地硬盘启动
-# menu default表示此项菜单为默认菜单，由于自动安装的风险，建议将本地启动作为默认启动
+# menu default表示此项菜单为默认菜单，建议将本地启动作为默认启动
 label local
   menu default
   menu label Boot from ^local drive
@@ -303,7 +303,7 @@ label local
 menu end
 ```
 
-#### 十、启动测试
+#### 十、测试
 
 - 将另一台虚拟机网卡同样配置为仅主机，网卡使用自动获取IP。
 - 确认安装源，以及应答文件可以访问，且default文件中路径配置正确。
