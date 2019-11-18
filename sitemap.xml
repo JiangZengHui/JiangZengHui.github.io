@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jzenghui.top/2019/10/19/pxe-zi-dong-an-zhuang-linux-xi-tong/</loc>
+    
+    <lastmod>2019-11-18T13:22:04.470Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jzenghui.top/2019/10/12/shell-jiao-ben-bian-cheng/</loc>
+    
+    <lastmod>2019-11-18T12:38:47.403Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jzenghui.top/2019/08/05/xi-ji/</loc>
     
     <lastmod>2019-11-04T13:33:30.852Z</lastmod>
@@ -205,13 +219,6 @@
   </url>
   
   <url>
-    <loc>https://jzenghui.top/2019/10/22/shell-jiao-ben-bian-cheng/</loc>
-    
-    <lastmod>2019-11-01T14:54:30.852Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jzenghui.top/2019/08/28/he-ma-shi-shi/</loc>
     
     <lastmod>2019-10-30T13:41:41.987Z</lastmod>
@@ -268,14 +275,14 @@
   </url>
   
   <url>
-    <loc>https://jzenghui.top/categories/index.html</loc>
+    <loc>https://jzenghui.top/archives/index.html</loc>
     
     <lastmod>2019-09-26T05:13:10.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jzenghui.top/archives/index.html</loc>
+    <loc>https://jzenghui.top/categories/index.html</loc>
     
     <lastmod>2019-09-26T05:13:10.000Z</lastmod>
     

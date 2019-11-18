@@ -4,12 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="动态中位数, 蒋曾辉 网络工程 网络安全">
+    <meta name="keywords" content="PXE自动安装Linux系统, 蒋曾辉 网络工程 网络安全">
     <meta name="baidu-site-verification" content="RFKXEadp8E">
     <meta name="google-site-verification" content="RFKXEadp8E">
     <meta name="360-site-verification" content>
-    <meta name="description" content="题目依次读入一个整数序列，每当已经读入的整数个数为奇数时，输出已读入的整数构成的序列的中位数。
-输入格式第一行输入一个整数P，代表后面数据集的个数，接下来若干行输入各个数据集。每个数据集的第一行首先输入一个代表数据集的编号的整数。然后输入一">
+    <meta name="description" content="一、PXE简介预启动执行环境（Preboot eXecution Environment，PXE，也被称为预执行环境)提供了一种使用网络接口（Network Interface）启动计算机的机制。
+
+这种机制让计算机的启动可以不依赖本地数据">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>动态中位数 | 蒋曾辉的博客</title>
+    <title>PXE自动安装Linux系统 | 蒋曾辉的博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +292,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        动态中位数
+                        PXE自动安装Linux系统
                     </div>
                 </div>
             </div>
@@ -408,8 +409,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/对顶堆/" target="_blank">
-                            <span class="chip bg-color">对顶堆</span>
+                        <a href="/tags/Linux网络运维/" target="_blank">
+                            <span class="chip bg-color">Linux网络运维</span>
                         </a>
                         
                     </div>
@@ -420,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/算法/" class="post-category" target="_blank">
-                            算法
+                        <a href="/categories/Linux/" class="post-category" target="_blank">
+                            Linux
                         </a>
                         
                     </div>
@@ -432,7 +433,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-30
+                    2019-10-19
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -446,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    806
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    10 分
                 </div>
                 
                 
@@ -469,64 +470,240 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>依次读入一个整数序列，每当已经读入的整数个数为奇数时，输出已读入的整数构成的序列的中位数。</p>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行输入一个整数P，代表后面数据集的个数，接下来若干行输入各个数据集。<br>每个数据集的第一行首先输入一个代表数据集的编号的整数。<br>然后输入一个整数M，代表数据集中包含数据的个数，M一定为奇数，数据之间用空格隔开。<br>数据集的剩余行由数据集的数据构成，每行包含10个数据，最后一行数据量可能少于10个，数据之间用空格隔开。</p>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对于每个数据集，第一行输出两个整数，分别代表数据集的编号以及输出中位数的个数（应为数据个数加一的二分之一），数据之间用空格隔开。<br>数据集的剩余行由输出的中位数构成，每行包含10个数据，最后一行数据量可能少于10个，数据之间用空格隔开。</p>
-<p>输出中不应该存在空行。</p>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤P≤1000.<br>1≤M≤9999.</p>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><pre><code>3 
-1 9 
-1 2 3 4 5 6 7 8 9 
-2 9 
-9 8 7 6 5 4 3 2 1 
-3 23 
-23 41 13 22 -3 24 -31 -11 -8 -7 
-3 5 103 211 -311 -45 -67 -73 -81 -99 
--33 24 56</code></pre><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><pre><code>1 5
-1 2 3 4 5
-2 5
-9 8 7 6 5
-3 12
-23 23 22 22 13 3 5 5 3 -3 
--7 -3</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
-<li>这个题我们可以用对顶堆来处理，即一个小根堆和一个大根堆来处理，大根堆存排序后的前1…i/2个，小根堆存排序后的后i/2+1…n个，这样的话小根堆的第一个一定是中位数。</li>
-<li>具体实现过程是读入第一个数假如小根堆，然后每读入一个数都跟小根堆的第一个数比较，大于等于的就加入小根堆，否则假如大根堆。</li>
-<li>每加入一个数后还要比较小根堆和大根堆的数目，小根堆的数目大于大根堆就将小根堆的第一个数移进大根堆，然后比较如果大根堆的数目大于小根堆，就将大根堆的第一个数移进小根堆，用这种办法来维护，大根堆存排序后的前1…i/2个，小根堆存排序后的后i/2+1…n个。<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4></li>
+                <h4 id="一、PXE简介"><a href="#一、PXE简介" class="headerlink" title="一、PXE简介"></a>一、PXE简介</h4><p>预启动执行环境（Preboot eXecution Environment，PXE，也被称为预执行环境)提供了一种使用网络接口（Network Interface）启动计算机的机制。</p>
+<blockquote>
+<p>这种机制让计算机的启动可以不依赖本地数据存储设备（如硬盘）或本地已安装的操作系统。</p>
+</blockquote>
+<p>PXE当初是作为Intel的有线管理体系的一部分，Intel 和 Systemsoft于1999年9月20日公布其规格(版本2.1)。</p>
+<blockquote>
+<p>通过使用像网际协议(IP)、用户数据报协议(UDP)、动态主机设定协定(DHCP)、小型文件传输协议(TFTP)等几种网络协议和全局唯一标识符(GUID)、通用网络驱动接口(UNDI)、通用唯一识别码(UUID)的概念并通过对客户机(通过PXE自检的电脑)固件扩展预设的API来实现目的。</p>
+</blockquote>
+<p>因此它可以用来通过网络从远端服务器下载映像，并由此引导和安装Windows,linux等多种操作系统。</p>
+<h4 id="二、环境准备"><a href="#二、环境准备" class="headerlink" title="二、环境准备"></a>二、环境准备</h4><p>首先准备至少两台虚拟机，其中一台作为服务器使用。(基本所有配置操作都是在服务器上客户端机器不需要配置。）还需要至少一个安装源（系统安装镜像文件）</p>
+<ol>
+<li>将两台虚拟机网卡配置为仅主机模式（主要是和外网隔离，以面影响实体机的DHCP服务）</li>
+<li>关闭VMware的DHCP服务</li>
+<li>给服务器分配一个IP地址，地址建议为静态地址。配置文件如下：</li>
+</ol>
+<pre><code>TYPE=Ethernet
+BOOTPROTO=static
+IPADDR=192.168.11.2
+PREFIX=24
+GATEWAY=192.168.11.1
+NAME=ens33
+DEVICE=ens33
+ONBOOT=yes</code></pre><ol start="4">
+<li>编辑Win下的虚拟网卡配置以便和虚拟机可以通信<br>打开控制面板→网络和共享中心→更改适配器设置<br>通常仅主机的连接名称为VMnet1<blockquote>
+<p>地址可以随意分配，但确保此处地址是上一步分配的地址的网关。如果在虚拟机中可以ping通网关则说明配置没有问题。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="三、检查防火墙和SELinux的设置"><a href="#三、检查防火墙和SELinux的设置" class="headerlink" title="三、检查防火墙和SELinux的设置"></a>三、检查防火墙和SELinux的设置</h4><blockquote>
+<p>确保SELinux和防火墙处于关闭状态。</p>
+</blockquote>
+<p>将/etc/selinux/config文件中的SELINUX=xxx改为SELINUX=disabled并重启。</p>
+<blockquote>
+<p>可以通过命令getenforce查看，如果是disabled或permissive即为关闭状态</p>
+</blockquote>
+<p>执行以下两条命令确保关闭防火墙</p>
+<pre><code>systemctl stop firewalld
+systemctl disable firewalld</code></pre><p>以上是Cent7，如果是6的话</p>
+<pre><code>service iptables stop
+chkconfig iptables off</code></pre><h4 id="四、安装所需软件包并开启服务"><a href="#四、安装所需软件包并开启服务" class="headerlink" title="四、安装所需软件包并开启服务"></a>四、安装所需软件包并开启服务</h4><blockquote>
+<p>出于方便，软件安装全部使用yum进行安装，如果没有yum源的请自行配置。</p>
+</blockquote>
+<p>执行以下命令安装相关软件并启动服务，DHCP由于需要另外修改配置文件先跳过</p>
+<pre><code>yum install httpd dhcp syslinux tftp-server
+systemctl start httpd tftp.socket
+systemctl enable dhcpd tftp.socket httpd</code></pre><ul>
+<li>使用ss -tan 确认TCP80端口已开启</li>
+<li>使用ss -unl 确认UDP69端口已开启</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;queue&gt;
-using namespace std;
-int p,m,x,arr[10000],ans[10000];
-int main()
+<h4 id="五、准备安装源"><a href="#五、准备安装源" class="headerlink" title="五、准备安装源"></a>五、准备安装源</h4><p>此次实验我们通过HTTP作为安装源，所以，只要将我们准备好的安装镜像挂载到HTTP目录下可以访问即可。具体目录是/var/www/html/ 为了方便扩展还可以在此目录下建立几个文件夹，以存放不同版本的系统文件。</p>
+<p>具体实现：</p>
+<ol>
+<li>使用mkdir -p /var/www/html/Centos/7创建文件夹</li>
+<li>将光盘挂载到/var/www/html/Centos/7目录下</li>
+<li>在/etc/fstab文件中添加自动挂载信息，通常为<br>/etc/sr0 /var/www/html/Centos/7 iso9660 default 0 0</li>
+<li>使用df -h确认挂载信息</li>
+<li>在主机使用浏览器访问<a href="http://192.168.11.2/Centos/7" target="_blank" rel="noopener">http://192.168.11.2/Centos/7</a> 确认可以看到挂载的安装文件</li>
+</ol>
+<h4 id="六、准备自动应答文件"><a href="#六、准备自动应答文件" class="headerlink" title="六、准备自动应答文件"></a>六、准备自动应答文件</h4><blockquote>
+<p>自动应答文件是整个环节相当重要的部分（其实每一部分都很很重要）自动应答文件的生成可以通过在图形界面下安装system-config-kickstart包使用这个工具在图形界面下生成，或者系统安装完成后默认在root家目录有一个叫anaconda-ks.cfg的文件，也可以直接修改这个文件。</p>
+</blockquote>
+<p>由于图形界面比较简单，这里直接修改anaconda-ks.cfg文件。</p>
+<p>其中以#开头的行表示注释，如果你没有修改过此文件中的内容，那么应该内容如下（中文为后加）：</p>
+<blockquote>
+<p>注：此为最小化安装文件内容，如果是图形界面，内容会有些许不同</p>
+</blockquote>
+<pre><code>#platform=86, AMD64, or Intel EM64T
+#version=DEVEL
+# System authorization information
+auth --useshadow  --passalgo=sha512
+# Install OS instead of upgrade#选择升级还是安装，install是安装，upgrade是升级
+install
+# Use CDROM installation media#安装介质，这里是需要修改的地方
+cdrom
+# Use text mode install#使用图形安装还是文字界面，通常自动安装我们不需要图形
+text
+# Firewall configuration#防火墙选项，通常选择关闭
+firewall --disabled
+firstboot --disable
+ignoredisk --only-use=sda
+# Keyboard layouts
+# old format: keyboard us
+# new format:
+keyboard --vckeymap=us --xlayouts=&#39;&#39;
+# System language
+lang en_US.UTF-8
+
+# Network information#安装后网络配置信息，可以将onboot改为on，也可以顺便指定一个hostname
+network  --bootproto=dhcp --device=ens33 --onboot=off --ipv6=auto --no-activate
+network  --hostname=localhost.localdomain
+# Reboot after installation#安装之后重启
+reboot
+# Root password# root账号密码，此处的密码是加密后的密码
+rootpw --iscrypted $1$HwDDpzbI$JcacPj2.QTbRQgNWUP8hr1
+# SELinux configuration#SELinux选项
+selinux --disabled
+# System services
+services --enabled=&quot;chronyd&quot;
+# Do not configure the X Window System
+skipx
+# System timezone# 时区
+timezone Asia/Shanghai
+# System bootloader configuration
+bootloader --append=&quot; crashkernel=auto&quot; --location=mbr --boot-drive=sda
+#Clear the Master Boot Record
+#zerombr #清除MBR
+# Partition clearing information
+#clearpart --all --initlabel # 清空磁盘
+# Disk partitioning information
+#以下三行是分区信息，注意根据自己的情况进行修改。size单位是MB
+#part swap --fstype=&quot;swap&quot; --size=2048
+#part / --fstype=&quot;xfs&quot; --size=20480
+#part /boot --fstype=&quot;xfs&quot; --size=1024
+
+#要安装的包@开头的是包组，没有@的是单独的包
+%packages
+@core
+zsh
+
+%end
+
+%addon com_redhat_kdump --enable --reserve-mb=&#39;auto&#39;
+
+%end</code></pre><p>看起来很多内容，也有可能有很多不一样，不过没有关系，许多内容并不需要理解，需要改的地方并不多<br>大概以下几项修改就可以了：</p>
+<ol>
+<li>安装介质即把cdrom改为以下内容</li>
+</ol>
+<pre><code>url --url=&quot;http://192.168.11.2/centos/7/&quot;</code></pre><ol start="2">
+<li>防火墙和SELinux根据自己的需要选择开启或关闭。</li>
+<li>如果没有zerombr和clearpart –all –initlabel，手动添加如果前面有#，则去掉。</li>
+<li>去掉分区信息前的#。</li>
+<li>根据自己的需要选择需要安装的包，最小化只有一个core即可。</li>
+<li>将文件保存之后放到可以被HTTP访问到的地方。</li>
+</ol>
+<blockquote>
+<p>如/var/www/html/，确保文件权限为644</p>
+</blockquote>
+<ol start="7">
+<li>在主机访问<a href="http://192.168.11.2/anaconda-ks.cfg" target="_blank" rel="noopener">http://192.168.11.2/anaconda-ks.cfg</a> 如果可以成功访问，说明此步骤OK</li>
+</ol>
+<p>手动修改应答文件有时候可能并不是一个明智的选择，如果没有把握，使用图形工具是更好的选择</p>
+<blockquote>
+<p>需要注意的是，注意应答文件和要安装系统的对应，比如安装6的系统请使用6生成应答文件</p>
+</blockquote>
+<h4 id="七、配置DHCP服务并启动"><a href="#七、配置DHCP服务并启动" class="headerlink" title="七、配置DHCP服务并启动"></a>七、配置DHCP服务并启动</h4><p>默认情况下DHCP服务在安装完成之后配置文件是空的，也因此DHCP服务必须进行一定的配置才可以启动。</p>
+<blockquote>
+<p>DHCP的服务配置文件路径是:/etc/dhcp/dhcpd.conf。</p>
+</blockquote>
+<ul>
+<li>网段：服务器可以分配的地址的网段，可以指定多个</li>
+<li>掩码：网段对应的掩码</li>
+<li>默认租期：以秒为单位默认的IP地址的租期</li>
+<li>最长租期：客户端可以请求一个租期，此项设定用于对此进行限制以秒为单位</li>
+<li>地址池：服务器在可分配网段中可以分配的IP地址的范围</li>
+<li>DNS：用于客户机从DHCP服务器获取的DNS地址<br>如下一个示例：</li>
+</ul>
+<pre><code># 指定从DHCP服务器获取的DNS地址
+option domain-name-servers 114.114.114.114
+# 默认IP地址的租期
+default-lease-time 600；
+# 最长租期
+max-lease-time 7200；
+# subnet用来指定网段，netmask是掩码
+subnet 192.168.11.0 netmask 255.255.255.0
 {
-    cin&gt;&gt;p;
-    while(p--){    
-        priority_queue&lt;int&gt; qued;
-        priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; quer;
-        cin&gt;&gt;x&gt;&gt;m;
-        cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;(m+1)/2&lt;&lt;endl;
-        cin&gt;&gt;x;
-        cout&lt;&lt;x&lt;&lt;&quot; &quot;;
-        quer.push(x);
-        for(int i=2;i&lt;=m;i++){
-            cin&gt;&gt;x;
-            if(x&gt;=quer.top()) quer.push(x);
-            else qued.push(x);
-            if(quer.size()&gt;qued.size()){
-                qued.push(quer.top());
-                quer.pop();
-            }
-            if(qued.size()&gt;quer.size()){
-                quer.push(qued.top());
-                qued.pop();
-            }
-            if(i&amp;1) cout&lt;&lt;quer.top()&lt;&lt;&quot; &quot;;
-            if(i%20==0) cout&lt;&lt;endl;
-        }
-        cout&lt;&lt;endl;
-    }
-    return 0;
-} </code></pre>
+    # 使用range指定IP地址池
+    range 192.168.11.3 192.168.11.124;
+}
+对于一个DHCP服务器以上内容足够了，不过对于PXE还少了两个重要的选项，
+next-server 192.168.11.2
+filename &quot;pxelinux.0&quot;
+next-server用来指定TFTP服务器的位置
+filename用来指定要访问TFTP服务器上的哪个文件
+也就是说在这里我们的DHCP服务器的配置文件是这样的
+
+option domain-name-servers 114.114.114.114
+default-lease-time 600；
+max-lease-time 7200；
+subnet 192.168.11.0 netmask 255.255.255.0
+{
+    next-server 192.168.11.2;
+    filename &quot;pxelinux.0&quot;;
+    range 192.168.11.3 192.168.11.124;
+}</code></pre><p>接下来使用systemctl start dhcpd启动dhcp服务，使用ss -unl查看67端口是会否已经开启。</p>
+<h4 id="八、必要的文件复制到相关目录"><a href="#八、必要的文件复制到相关目录" class="headerlink" title="八、必要的文件复制到相关目录"></a>八、必要的文件复制到相关目录</h4><p>将相关文件复制到TFTP共享目录。</p>
+<blockquote>
+<p>TFTP的共享目录在/var/lib/tftpboot/下，考虑到灵活性依旧可以给不同版本的系统单独的目录</p>
+</blockquote>
+<ul>
+<li>这里创建一个7的目录<br>复制光盘目录中isolinux下的initrd.img和vmlinuz到/var/lib/tftpboot/7目录下</li>
+<li>在共享目录下创建一个名为pxelinux.cfg的文件夹并将光盘目录中isolinux下的isolinux.cfg复制到pxelinux.cfg目录下并且命名为default<br>将/usr/share/syslinux/menu.c32复制到/var/lib/tftpboot目录下，此文件是菜单背景文件</li>
+<li>将/usr/share/syslinux/pxelinux.0复制到/var/lib/tftpboot目录下</li>
+</ul>
+<p>如果只有一个系统，应该有5个文件两个目录，结构如下</p>
+<pre><code>[root@DHCP_Svr]/var/lib/tftpboot# tree
+.
+├── 7
+│   ├── initrd.img
+│   └── vmlinuz
+├── menu.c32
+├── pxelinux.0
+└── pxelinux.cfg
+    └── default</code></pre><h4 id="九、修改启动菜单以及配置文件"><a href="#九、修改启动菜单以及配置文件" class="headerlink" title="九、修改启动菜单以及配置文件"></a>九、修改启动菜单以及配置文件</h4><p>修改default文件,从光盘复制过来的文件有很多内容，不够大部分我们并不需要，参考下面的内容就可以了。</p>
+<pre><code>#就是刚才复制到菜单文件
+default menu.c32
+#超时时间，就是菜单倒计时
+timeout 600
+display boot.msg
+
+# 启动菜单的具体配置
+# menu label 用来指定菜单名称，可以自定义，^符号用来确定光标位置，
+# 同时其后的字母也是调到对应菜单的快捷键
+# kernel指定内核文件路径，由于我们放在了文件夹中所以路径是7/vmlinuz
+# 指定initrd的路径，以及ks应答文件文件的路径
+# 务必确保应答文件可以访问
+label linux
+  menu label ^Install CentOS 7
+  kernel 7/vmlinuz
+  append initrd=7/initrd.img ks=http://192.168.11.2/anaconda-ks.cfg
+
+# 本地硬盘启动
+# menu default表示此项菜单为默认菜单，由于自动安装的风险，建议将本地启动作为默认启动
+label local
+  menu default
+  menu label Boot from ^local drive
+  localboot 0xffff
+
+menu end</code></pre><h4 id="十、启动测试"><a href="#十、启动测试" class="headerlink" title="十、启动测试"></a>十、启动测试</h4><ul>
+<li>将另一台虚拟机网卡同样配置为仅主机，网卡使用自动获取IP。</li>
+<li>确认安装源，以及应答文件可以访问，且default文件中路径配置正确。</li>
+<li>确认防火墙以及SELinux处于关闭状态。</li>
+</ul>
+<p>确认无误的话就可以开机进行测试了。</p>
+
             </div>
             <hr />
 
@@ -684,9 +861,9 @@ int main()
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《动态中位数》
+                    《PXE自动安装Linux系统》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/30/dong-tai-zhong-wei-shu/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/19/pxe-zi-dong-an-zhuang-linux-xi-tong/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蒋曾辉
             </a> 采用
@@ -727,7 +904,7 @@ int main()
         repo: 'JiangZengHui.github.io',
         owner: 'JiangZengHui',
         admin: "JiangZengHui",
-        id: '2019/07/30/dong-tai-zhong-wei-shu/',
+        id: '2019/10/19/pxe-zi-dong-an-zhuang-linux-xi-tong/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1010,50 +1187,48 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/01/chao-kuai-su-pai-xu/">
+                <a href="/2019/10/19/pxe-zi-dong-an-zhuang-linux-xi-tong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="超快速排序">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="PXE自动安装Linux系统">
                         
-                        <span class="card-title">超快速排序</span>
+                        <span class="card-title">PXE自动安装Linux系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在这个问题中，您必须分析特定的排序算法----超快速排序
+                            PXE全称是：Preboot Excution Environment(预启动执行环境)是由Intel公司研发的基于Client/Server的网络模式。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/归并/" target="_blank">
-                        <span class="chip bg-color">归并</span>
-                    </a>
-                    
-                    <a href="/tags/逆序对/" target="_blank">
-                        <span class="chip bg-color">逆序对</span>
+                    <a href="/tags/Linux网络运维/" target="_blank">
+                        <span class="chip bg-color">Linux网络运维</span>
                     </a>
                     
                 </div>
@@ -1067,31 +1242,31 @@ int main()
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/30/qi-xi-ji/">
+                <a href="/2019/10/12/shell-jiao-ben-bian-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="七夕祭">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Shell脚本编程">
                         
-                        <span class="card-title">七夕祭</span>
+                        <span class="card-title">Shell脚本编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            七夕节因牛郎织女的传说而被扣上了「情人节」的帽子。 于是TYVJ今年举办了一次线下七夕祭。
+                            Shell脚本编程的相关知识
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-30
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
@@ -1101,20 +1276,8 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/贪心/" target="_blank">
-                        <span class="chip bg-color">贪心</span>
-                    </a>
-                    
-                    <a href="/tags/前缀和/" target="_blank">
-                        <span class="chip bg-color">前缀和</span>
-                    </a>
-                    
-                    <a href="/tags/中位数/" target="_blank">
-                        <span class="chip bg-color">中位数</span>
-                    </a>
-                    
-                    <a href="/tags/排序/" target="_blank">
-                        <span class="chip bg-color">排序</span>
+                    <a href="/tags/Linux网络运维/" target="_blank">
+                        <span class="chip bg-color">Linux网络运维</span>
                     </a>
                     
                 </div>
