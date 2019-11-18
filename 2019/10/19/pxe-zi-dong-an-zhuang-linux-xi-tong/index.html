@@ -447,7 +447,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    2.7k
                 </div>
                 
 
@@ -498,7 +498,7 @@ ONBOOT=yes</code></pre><ol start="4">
 </blockquote>
 </li>
 </ol>
-<h4 id="三、检查防火墙和SELinux的设置"><a href="#三、检查防火墙和SELinux的设置" class="headerlink" title="三、检查防火墙和SELinux的设置"></a>三、检查防火墙和SELinux的设置</h4><blockquote>
+<h4 id="三、防火墙和SELinux的设置"><a href="#三、防火墙和SELinux的设置" class="headerlink" title="三、防火墙和SELinux的设置"></a>三、防火墙和SELinux的设置</h4><blockquote>
 <p>确保SELinux和防火墙处于关闭状态。</p>
 </blockquote>
 <p>将/etc/selinux/config文件中的SELINUX=xxx改为SELINUX=disabled并重启。</p>
@@ -507,9 +507,9 @@ ONBOOT=yes</code></pre><ol start="4">
 </blockquote>
 <p>执行以下两条命令确保关闭防火墙</p>
 <pre><code>systemctl stop firewalld
-systemctl disable firewalld</code></pre><p>以上是Cent7，如果是6的话</p>
+systemctl disable firewalld</code></pre><p>以上是CentOS 7，如果是CentOS 6的话</p>
 <pre><code>service iptables stop
-chkconfig iptables off</code></pre><h4 id="四、安装所需软件包并开启服务"><a href="#四、安装所需软件包并开启服务" class="headerlink" title="四、安装所需软件包并开启服务"></a>四、安装所需软件包并开启服务</h4><blockquote>
+chkconfig iptables off</code></pre><h4 id="四、安装软件包并开启服务"><a href="#四、安装软件包并开启服务" class="headerlink" title="四、安装软件包并开启服务"></a>四、安装软件包并开启服务</h4><blockquote>
 <p>出于方便，软件安装全部使用yum进行安装，如果没有yum源的请自行配置。</p>
 </blockquote>
 <p>执行以下命令安装相关软件并启动服务，DHCP由于需要另外修改配置文件先跳过</p>
@@ -524,7 +524,7 @@ systemctl enable dhcpd tftp.socket httpd</code></pre><ul>
 <ol>
 <li>使用mkdir -p /var/www/html/Centos/7创建文件夹</li>
 <li>将光盘挂载到/var/www/html/Centos/7目录下</li>
-<li>在/etc/fstab文件中添加自动挂载信息，通常为<br>/etc/sr0 /var/www/html/Centos/7 iso9660 default 0 0</li>
+<li>在/etc/fstab文件中添加自动挂载信息，通常为 /etc/sr0 /var/www/html/Centos/7 iso9660 default 0 0</li>
 <li>使用df -h确认挂载信息</li>
 <li>在主机使用浏览器访问<a href="http://192.168.11.2/Centos/7" target="_blank" rel="noopener">http://192.168.11.2/Centos/7</a> 确认可以看到挂载的安装文件</li>
 </ol>
@@ -540,13 +540,13 @@ systemctl enable dhcpd tftp.socket httpd</code></pre><ul>
 #version=DEVEL
 # System authorization information
 auth --useshadow  --passalgo=sha512
-# Install OS instead of upgrade#选择升级还是安装，install是安装，upgrade是升级
+# Install OS instead of upgrade#install是安装，upgrade是升级
 install
-# Use CDROM installation media#安装介质，这里是需要修改的地方
+# Use CDROM installation media#安装介质
 cdrom
-# Use text mode install#使用图形安装还是文字界面，通常自动安装我们不需要图形
+# Use text mode install#使用图形安装还是文字界面
 text
-# Firewall configuration#防火墙选项，通常选择关闭
+# Firewall configuration#防火墙选项选择关闭
 firewall --disabled
 firstboot --disable
 ignoredisk --only-use=sda
@@ -557,12 +557,13 @@ keyboard --vckeymap=us --xlayouts=&#39;&#39;
 # System language
 lang en_US.UTF-8
 
-# Network information#安装后网络配置信息，可以将onboot改为on，也可以顺便指定一个hostname
-network  --bootproto=dhcp --device=ens33 --onboot=off --ipv6=auto --no-activate
+# Network information#安装后网络配置信息，可以将onboot改为on
+network --bootproto=dhcp --device=ens33 --onboot=off 
+        --ipv6=auto --no-activate
 network  --hostname=localhost.localdomain
 # Reboot after installation#安装之后重启
 reboot
-# Root password# root账号密码，此处的密码是加密后的密码
+# Root password# root账号密码
 rootpw --iscrypted $1$HwDDpzbI$JcacPj2.QTbRQgNWUP8hr1
 # SELinux configuration#SELinux选项
 selinux --disabled
@@ -579,7 +580,7 @@ bootloader --append=&quot; crashkernel=auto&quot; --location=mbr --boot-drive=sd
 # Partition clearing information
 #clearpart --all --initlabel # 清空磁盘
 # Disk partitioning information
-#以下三行是分区信息，注意根据自己的情况进行修改。size单位是MB
+#以下三行是分区信息
 #part swap --fstype=&quot;swap&quot; --size=2048
 #part / --fstype=&quot;xfs&quot; --size=20480
 #part /boot --fstype=&quot;xfs&quot; --size=1024
@@ -638,7 +639,7 @@ subnet 192.168.11.0 netmask 255.255.255.0
     # 使用range指定IP地址池
     range 192.168.11.3 192.168.11.124;
 }
-对于一个DHCP服务器以上内容足够了，不过对于PXE还少了两个重要的选项，
+对于一个DHCP服务器以上内容足够了
 next-server 192.168.11.2
 filename &quot;pxelinux.0&quot;
 next-server用来指定TFTP服务器的位置
@@ -654,7 +655,7 @@ subnet 192.168.11.0 netmask 255.255.255.0
     filename &quot;pxelinux.0&quot;;
     range 192.168.11.3 192.168.11.124;
 }</code></pre><p>接下来使用systemctl start dhcpd启动dhcp服务，使用ss -unl查看67端口是会否已经开启。</p>
-<h4 id="八、必要的文件复制到相关目录"><a href="#八、必要的文件复制到相关目录" class="headerlink" title="八、必要的文件复制到相关目录"></a>八、必要的文件复制到相关目录</h4><p>将相关文件复制到TFTP共享目录。</p>
+<h4 id="八、必要文件复制到相关目录"><a href="#八、必要文件复制到相关目录" class="headerlink" title="八、必要文件复制到相关目录"></a>八、必要文件复制到相关目录</h4><p>将相关文件复制到TFTP共享目录。</p>
 <blockquote>
 <p>TFTP的共享目录在/var/lib/tftpboot/下，考虑到灵活性依旧可以给不同版本的系统单独的目录</p>
 </blockquote>
@@ -691,13 +692,13 @@ label linux
   append initrd=7/initrd.img ks=http://192.168.11.2/anaconda-ks.cfg
 
 # 本地硬盘启动
-# menu default表示此项菜单为默认菜单，由于自动安装的风险，建议将本地启动作为默认启动
+# menu default表示此项菜单为默认菜单，建议将本地启动作为默认启动
 label local
   menu default
   menu label Boot from ^local drive
   localboot 0xffff
 
-menu end</code></pre><h4 id="十、启动测试"><a href="#十、启动测试" class="headerlink" title="十、启动测试"></a>十、启动测试</h4><ul>
+menu end</code></pre><h4 id="十、测试"><a href="#十、测试" class="headerlink" title="十、测试"></a>十、测试</h4><ul>
 <li>将另一台虚拟机网卡同样配置为仅主机，网卡使用自动获取IP。</li>
 <li>确认安装源，以及应答文件可以访问，且default文件中路径配置正确。</li>
 <li>确认防火墙以及SELinux处于关闭状态。</li>
@@ -1439,7 +1440,7 @@ menu end</code></pre><h4 id="十、启动测试"><a href="#十、启动测试" c
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">31.9k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>
