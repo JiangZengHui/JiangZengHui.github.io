@@ -497,54 +497,57 @@
 <li><p>对于那个点，只有矩形中的点跟他才有可能有小于ans的最近距离，我们将矩形均分为6部分，我们发现，对于那个点最多只有6个点可能在这个大矩形中，因为如果有7个点的话，那么肯定有两个点在同小矩形区域内(只有六个小矩形，有七个点，那么根据鸽笼定理，肯定会有两个点在同一个小矩形)，如果他们在同一个，那么他们最远距离肯定为小矩形的对角线：</p>
 </li>
 </ul>
-<pre><code>maxdis=sqrt(2/3*r^2+1/2*r^2)&lt;ans;     (r==ans)</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">maxdis<span class="token operator">=</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">/</span><span class="token number">3</span><span class="token operator">*</span>r<span class="token operator">^</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token operator">*</span>r<span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>ans<span class="token punctuation">;</span>     <span class="token punctuation">(</span>r<span class="token operator">==</span>ans<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
 <li>所以与前面矛盾(不可能左边的最小值大于这两点的距离);</li>
 <li>因此，对于某一边的每个点最多与另一边的六个点计算距离，这样就不需要与右边每个点计算，这样将大大降低时间。</li>
 <li>因为我们每次都二分了，当合并的时候我们可以用归并排序的思想，顺便将区间mid-ans至mid+ans的点按照y轴排序，这样对于每个点我们只需要计算他下面的点，或者上面的点，也将大大减少时间。<h5 id="例题可见：https-jzenghui-top-2019-09-05-xi-ji"><a href="#例题可见：https-jzenghui-top-2019-09-05-xi-ji" class="headerlink" title="例题可见：https://jzenghui.top/2019/09/05/xi-ji/"></a>例题可见：<a href="https://jzenghui.top/2019/09/05/xi-ji/">https://jzenghui.top/2019/09/05/xi-ji/</a></h5><h5 id="具体函数代码如下-内含注释-："><a href="#具体函数代码如下-内含注释-：" class="headerlink" title="具体函数代码如下(内含注释)："></a>具体函数代码如下(内含注释)：</h5></li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>double dis(node a,node b){//返回两点之间的距离 
-    return sqrt(pow(abs(a.x-b.x),2)+pow(abs(a.y-b.y),2));
-}</code></pre><pre><code>double solve(int l,int r){// 返回排序后下标l到r这个区间中最小点距
-    //如果下标区间只有这一个点 返回最大值  
-    if(l&gt;=r) return INF;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">double</span> <span class="token function">dis</span><span class="token punctuation">(</span>node a<span class="token punctuation">,</span>node b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//返回两点之间的距离 </span>
+    <span class="token keyword">return</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>x<span class="token operator">-</span>b<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>y<span class="token operator">-</span>b<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">double</span> <span class="token function">solve</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 返回排序后下标l到r这个区间中最小点距</span>
+    <span class="token comment" spellcheck="true">//如果下标区间只有这一个点 返回最大值  </span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>l<span class="token operator">>=</span>r<span class="token punctuation">)</span> <span class="token keyword">return</span> INF<span class="token punctuation">;</span>
 
-    //递归二分，求两个左右区间的最小点距，并且将小的赋给ans存储 
-    int mid=(l+r)&gt;&gt;1;
-    double mid_x=opt[mid].x;
-    double ans=min(solve(l,mid),solve(mid+1,r));
+    <span class="token comment" spellcheck="true">//递归二分，求两个左右区间的最小点距，并且将小的赋给ans存储 </span>
+    <span class="token keyword">int</span> mid<span class="token operator">=</span><span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> mid_x<span class="token operator">=</span>opt<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+    <span class="token keyword">double</span> ans<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">solve</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span>mid<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">solve</span><span class="token punctuation">(</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //二分排序的合并过程  
-    int left=l,right=mid+1,t=l;
-    while(left&lt;=mid &amp;&amp; right&lt;=r){
-        if(opt[left].y&lt;=opt[right].y) temp[t++]=opt[left++];
-        else temp[t++]=opt[right++];
-    }
-    while(left&lt;=mid) temp[t++]=opt[left++];
-    while(right&lt;=r) temp[t++]=opt[right++];
-    for(int i=l;i&lt;=r;i++){
-        opt[i]=temp[i];
-    }
+    <span class="token comment" spellcheck="true">//二分排序的合并过程  </span>
+    <span class="token keyword">int</span> left<span class="token operator">=</span>l<span class="token punctuation">,</span>right<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>t<span class="token operator">=</span>l<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;=</span>mid <span class="token operator">&amp;&amp;</span> right<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>opt<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token operator">&lt;=</span>opt<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">)</span> temp<span class="token punctuation">[</span>t<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>opt<span class="token punctuation">[</span>left<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> temp<span class="token punctuation">[</span>t<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>opt<span class="token punctuation">[</span>right<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;=</span>mid<span class="token punctuation">)</span> temp<span class="token punctuation">[</span>t<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>opt<span class="token punctuation">[</span>left<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>right<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span> temp<span class="token punctuation">[</span>t<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>opt<span class="token punctuation">[</span>right<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>l<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>r<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //从左到右将opt中的在mid_x-ans至mid_x+ans的点存进temp
-    //这样temp中的点既是按y排序的，又是在mid_x-ans至mid_x+ans区间里的 
-    int k=0;
-    for(int i=l;i&lt;=r;i++){
-        if(opt[i].x&gt;=mid_x-ans&amp;&amp;opt[i].x&lt;=mid_x+ans){
-            temp[k++]=opt[i];
-        }
-    }
+    <span class="token comment" spellcheck="true">//从左到右将opt中的在mid_x-ans至mid_x+ans的点存进temp</span>
+    <span class="token comment" spellcheck="true">//这样temp中的点既是按y排序的，又是在mid_x-ans至mid_x+ans区间里的 </span>
+    <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>l<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>r<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token operator">>=</span>mid_x<span class="token operator">-</span>ans<span class="token operator">&amp;&amp;</span>opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token operator">&lt;=</span>mid_x<span class="token operator">+</span>ans<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            temp<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    //从有序的temp数组中 找到每个点y坐标上面不超过ans的点的点距离求出
-    //并且更新答案  
-    for(int i=0;i&lt;k;i++){
-        for(int j=i-1;j&gt;=0&amp;&amp;temp[i].y-temp[j].y&lt;=ans;j--){
-            ans=min(ans,dis(temp[i],temp[j]));
-        }
-    }
+    <span class="token comment" spellcheck="true">//从有序的temp数组中 找到每个点y坐标上面不超过ans的点的点距离求出</span>
+    <span class="token comment" spellcheck="true">//并且更新答案  </span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>k<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token number">-1</span><span class="token punctuation">;</span>j<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token operator">-</span>temp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token operator">&lt;=</span>ans<span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            ans<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span><span class="token function">dis</span><span class="token punctuation">(</span>temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>temp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    //返回这个l到r下标的最小点距 
-    return ans;
-}</code></pre>
+    <span class="token comment" spellcheck="true">//返回这个l到r下标的最小点距 </span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1290,7 +1293,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

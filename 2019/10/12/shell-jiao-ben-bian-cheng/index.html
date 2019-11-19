@@ -445,14 +445,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.8k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    14 分
                 </div>
                 
                 
@@ -487,42 +487,49 @@
 </tr>
 </tbody></table>
 <h4 id="三、Shell脚本解释器"><a href="#三、Shell脚本解释器" class="headerlink" title="三、Shell脚本解释器"></a>三、Shell脚本解释器</h4><p>Linux的Shell脚本解释器种类众多，一个系统可以存在多个shell脚本解释器，可以通过cat /etc/shells 命令查看系统中安装的shell脚本解释器。</p>
-<pre><code>[root@centos6-1 ~]# cat /etc/shells 
-/bin/sh
-/bin/bash
-/sbin/nologin
-/bin/dash
-/bin/tcsh
-/bin/csh
-[root@centos6-1 ~]# </code></pre><p>bash由于易用和免费，在日常工作中被广泛使用。同时，Bash也是大多数Linux系统默认的Shell脚本解释器。</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># cat <span class="token operator">/</span>etc<span class="token operator">/</span>shells 
+<span class="token operator">/</span>bin<span class="token operator">/</span>sh
+<span class="token operator">/</span>bin<span class="token operator">/</span>bash
+<span class="token operator">/</span>sbin<span class="token operator">/</span>nologin
+<span class="token operator">/</span>bin<span class="token operator">/</span>dash
+<span class="token operator">/</span>bin<span class="token operator">/</span>tcsh
+<span class="token operator">/</span>bin<span class="token operator">/</span>csh
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>bash由于易用和免费，在日常工作中被广泛使用。同时，Bash也是大多数Linux系统默认的Shell脚本解释器。</p>
 <h4 id="四、Hello-World"><a href="#四、Hello-World" class="headerlink" title="四、Hello World"></a>四、Hello World</h4><p>新建helloworld.sh</p>
-<pre><code>[root@centos6-1 ~]# touch helloworld.sh</code></pre><p>编辑helloworld.sh文件，添入一下内容</p>
-<pre><code>#!/bin/bash
-echo &quot;helloworld&quot;</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># touch helloworld<span class="token punctuation">.</span>sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>编辑helloworld.sh文件，添入一下内容</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
+echo <span class="token string">"helloworld"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
 <li>#! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种Shell，这里指定bash</li>
 <li>echo 是Shell的一个内部指令，用于在屏幕上打印出指定的字符串<br>赋予当前用户helloworld.sh的执行权限(刚创建的文件没有执行权限)</li>
 </ul>
-<pre><code>[root@centos6-1 ~]# chmod u+x helloworld.sh</code></pre><p>执行hellowo.sh脚本方式一</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># chmod u<span class="token operator">+</span>x helloworld<span class="token punctuation">.</span>sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>执行hellowo.sh脚本方式一</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh 
 helloworld
-[root@centos6-1 ~]# </code></pre><blockquote>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>注意，一定要写成./helloworld.sh，而不是helloworld.sh，linux系统会去PATH里寻找有没有叫helloworld.sh的，而helloworld.sh不在PATH里，所以写成helloworld.sh是会找不到命令的，要用./helloworld.sh告诉系统说，就在当前目录找。</p>
 </blockquote>
 <p>执行hellowo.sh脚本方式二</p>
-<pre><code>[root@centos6-1 ~]# /bin/sh helloworld.sh 
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token operator">/</span>bin<span class="token operator">/</span>sh helloworld<span class="token punctuation">.</span>sh 
 helloworld
-[root@centos6-1 ~]# </code></pre><blockquote>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>这种运行方式是，直接运行解释器，其参数就是shell脚本的文件名，当使用这种方式时，脚本中的#!/bin/bash指定的解释器是不生效的，当前使用什么解释器就是什么解释器</p>
 </blockquote>
 <h4 id="五、变量"><a href="#五、变量" class="headerlink" title="五、变量"></a>五、变量</h4><ul>
 <li>语法格式：变量名=变量值</li>
 </ul>
 <p>shell变量定义的严格语法限制：</p>
-<pre><code>1.变量名和等号之间不能有空格
-2.变量名首个字符必须为英文字母
-3.不能包含标点符号但能够使用下划线(_)
-4.不能使用空格
-5.不能使用 bash 里的关键字</code></pre><h5 id="1-变量类型"><a href="#1-变量类型" class="headerlink" title="1.变量类型"></a>1.变量类型</h5><table>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token number">1</span><span class="token punctuation">.</span>变量名和等号之间不能有空格
+<span class="token number">2</span><span class="token punctuation">.</span>变量名首个字符必须为英文字母
+<span class="token number">3</span><span class="token punctuation">.</span>不能包含标点符号但能够使用下划线<span class="token punctuation">(</span>_<span class="token punctuation">)</span>
+<span class="token number">4</span><span class="token punctuation">.</span>不能使用空格
+<span class="token number">5</span><span class="token punctuation">.</span>不能使用 bash 里的关键字<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="1-变量类型"><a href="#1-变量类型" class="headerlink" title="1.变量类型"></a>1.变量类型</h5><table>
 <thead>
 <tr>
 <th>类型</th>
@@ -542,83 +549,95 @@ helloworld
 <td>由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell 的正常运行</td>
 </tr>
 </tbody></table>
-<h5 id="2-定义变量"><a href="#2-定义变量" class="headerlink" title="2.定义变量"></a>2.定义变量</h5><pre><code>name=&quot;zaomianbao&quot;</code></pre><h5 id="3-引用变量"><a href="#3-引用变量" class="headerlink" title="3.引用变量"></a>3.引用变量</h5><pre><code>name=&quot;zaomianbao&quot;
-echo ${name}
-echo $name</code></pre><p>引用一个定义过的变量，只要在变量名前面加$即可，变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界。</p>
+<h5 id="2-定义变量"><a href="#2-定义变量" class="headerlink" title="2.定义变量"></a>2.定义变量</h5><pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">"zaomianbao"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="3-引用变量"><a href="#3-引用变量" class="headerlink" title="3.引用变量"></a>3.引用变量</h5><pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">"zaomianbao"</span>
+echo $<span class="token punctuation">{</span>name<span class="token punctuation">}</span>
+echo $name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>引用一个定义过的变量，只要在变量名前面加$即可，变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界。</p>
 <h5 id="4-重新定义变量"><a href="#4-重新定义变量" class="headerlink" title="4.重新定义变量"></a>4.重新定义变量</h5><blockquote>
 <p>已定义的变量，可以被重新定义</p>
 </blockquote>
-<pre><code>name=&quot;zaomianbao&quot;
-echo ${name}
-name=&quot;tiechui&quot;
-echo ${name}</code></pre><h5 id="5-只读变量"><a href="#5-只读变量" class="headerlink" title="5.只读变量"></a>5.只读变量</h5><blockquote>
+<pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">"zaomianbao"</span>
+echo $<span class="token punctuation">{</span>name<span class="token punctuation">}</span>
+name<span class="token operator">=</span><span class="token string">"tiechui"</span>
+echo $<span class="token punctuation">{</span>name<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="5-只读变量"><a href="#5-只读变量" class="headerlink" title="5.只读变量"></a>5.只读变量</h5><blockquote>
 <p>使用readonly命令可以将变量定义为只读变量，只读变量的值不能被改变</p>
 </blockquote>
-<pre><code>name=&quot;zaomianbao&quot;
+<pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">"zaomianbao"</span>
 readonly name
-name=&quot;tiechui&quot;</code></pre><h5 id="6-删除变量"><a href="#6-删除变量" class="headerlink" title="6.删除变量"></a>6.删除变量</h5><pre><code>name=&quot;zaomianbao&quot;
+name<span class="token operator">=</span><span class="token string">"tiechui"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h5 id="6-删除变量"><a href="#6-删除变量" class="headerlink" title="6.删除变量"></a>6.删除变量</h5><pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">"zaomianbao"</span>
 unset name
-echo $name</code></pre><p>使用unset命令可以删除变量，变量被删除后不能再次使用，同时unset命令不能删除只读变量。</p>
+echo $name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>使用unset命令可以删除变量，变量被删除后不能再次使用，同时unset命令不能删除只读变量。</p>
 <h4 id="六、参数传递"><a href="#六、参数传递" class="headerlink" title="六、参数传递"></a>六、参数传递</h4><blockquote>
 <p>在执行Shell脚本时，可以向脚本传递参数。脚本内获取参数的格式为:$n。n代表一个数字，1为执行脚本的第一个参数，2为执行脚本的第二个参数，以此类推…<br>$0 表示当前脚本名称。</p>
 </blockquote>
 <p>1.修改helloworld.sh为</p>
-<pre><code>#!/bin/bash
-echo $1
-echo $2
-echo $3</code></pre><p>2.执行携带参数</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh haha wowow nini
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
+echo $<span class="token number">1</span>
+echo $<span class="token number">2</span>
+echo $<span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2.执行携带参数</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh haha wowow nini
 haha
 wowow
 nini
-[root@centos6-1 ~]#</code></pre><h4 id="七、Shell字符串"><a href="#七、Shell字符串" class="headerlink" title="七、Shell字符串"></a>七、Shell字符串</h4><blockquote>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span>#<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="七、Shell字符串"><a href="#七、Shell字符串" class="headerlink" title="七、Shell字符串"></a>七、Shell字符串</h4><blockquote>
 <p>shell字符串可以用单引号，也可以用双引号，也可以不用引号</p>
 </blockquote>
 <p>单引号</p>
-<pre><code>name=&#39;my name is zaomianbao&#39;</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">'my name is zaomianbao'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
 <li>单引号字符串中不支持引用变量，任何字符都会原样输出</li>
 <li>单引号字串中不能出现单引号（对单引号使用转义符后也不行）<br>双引号</li>
 </ul>
-<pre><code>name=&#39;my name is zaomianbao&#39;
-name_again=&quot;\&quot;${name}\&quot;&quot;</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">'my name is zaomianbao'</span>
+name_again<span class="token operator">=</span><span class="token string">"\"${name}\""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
 <li>双引号里可以引有变量</li>
 <li>双引号里支持转义字符</li>
 </ul>
 <p>字符串长度</p>
-<pre><code>name=&#39;my name is zaomianbao&#39;
-echo ${#name}   //执行输出为21</code></pre><p>截取字符串</p>
-<pre><code>name=&#39;my name is zaomianbao&#39;
-echo ${name:11:20}   //执行输出zaomianbao</code></pre><h4 id="八、shell数组"><a href="#八、shell数组" class="headerlink" title="八、shell数组"></a>八、shell数组</h4><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">'my name is zaomianbao'</span>
+echo $<span class="token punctuation">{</span>#name<span class="token punctuation">}</span>   <span class="token comment" spellcheck="true">//执行输出为21</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>截取字符串</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">name<span class="token operator">=</span><span class="token string">'my name is zaomianbao'</span>
+echo $<span class="token punctuation">{</span>name<span class="token operator">:</span><span class="token number">11</span><span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">}</span>   <span class="token comment" spellcheck="true">//执行输出zaomianbao</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="八、shell数组"><a href="#八、shell数组" class="headerlink" title="八、shell数组"></a>八、shell数组</h4><ul>
 <li>bash支持一维数组（不支持多维数组），并且没有限定数组的大小。在Shell中，用括号来表示数组，数组元素用“空格”符号分割开。定义数组的一般形式为：<br>　　array_name=(value1 … valuen)
 　　</li>
 </ul>
 <blockquote>
 <p>下面的例子将展示shell数组常见的所有操作</p>
 </blockquote>
-<pre><code>//第一数组
-[root@centos6-1 ~]# usernames=(1 2 33 44 adsd1)
-//默认读取第一个
-[root@centos6-1 ~]# echo ${usernames}
-1
-//读取下标为0的
-[root@centos6-1 ~]# echo ${usernames[0]}
-1
-//读取下标为1的
-[root@centos6-1 ~]# echo ${usernames[1]}
-2
-//读取所有
-[root@centos6-1 ~]# echo ${usernames[*]}
-1 2 33 44 adsd1
-//同样是读取所有
-[root@centos6-1 ~]# echo ${usernames[@]}
-1 2 33 44 adsd1
-//获取数组长度
-[root@centos6-1 ~]# echo ${#usernames[@]}
-5
-//同样可以获取数组长度
-[root@centos6-1 ~]# echo ${#usernames[*]}
-5
-[root@centos6-1 ~]# </code></pre><h4 id="九、shell运算符"><a href="#九、shell运算符" class="headerlink" title="九、shell运算符"></a>九、shell运算符</h4><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//第一数组</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># usernames<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">33</span> <span class="token number">44</span> adsd1<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//默认读取第一个</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># echo $<span class="token punctuation">{</span>usernames<span class="token punctuation">}</span>
+<span class="token number">1</span>
+<span class="token comment" spellcheck="true">//读取下标为0的</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># echo $<span class="token punctuation">{</span>usernames<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token number">1</span>
+<span class="token comment" spellcheck="true">//读取下标为1的</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># echo $<span class="token punctuation">{</span>usernames<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token number">2</span>
+<span class="token comment" spellcheck="true">//读取所有</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># echo $<span class="token punctuation">{</span>usernames<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token number">1</span> <span class="token number">2</span> <span class="token number">33</span> <span class="token number">44</span> adsd1
+<span class="token comment" spellcheck="true">//同样是读取所有</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># echo $<span class="token punctuation">{</span>usernames<span class="token punctuation">[</span>@<span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token number">1</span> <span class="token number">2</span> <span class="token number">33</span> <span class="token number">44</span> adsd1
+<span class="token comment" spellcheck="true">//获取数组长度</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># echo $<span class="token punctuation">{</span>#usernames<span class="token punctuation">[</span>@<span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token number">5</span>
+<span class="token comment" spellcheck="true">//同样可以获取数组长度</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># echo $<span class="token punctuation">{</span>#usernames<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token number">5</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="九、shell运算符"><a href="#九、shell运算符" class="headerlink" title="九、shell运算符"></a>九、shell运算符</h4><ul>
 <li>Shell和其他编程语音一样，支持包括:算术、关系、布尔、字符串等运算符。</li>
 <li>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。expr 是一款表达式计算工具，使用它能完成表达式的求值操作。</li>
 </ul>
@@ -651,42 +670,44 @@ echo ${name:11:20}   //执行输出zaomianbao</code></pre><h4 id="八、shell数
 </tr>
 </tbody></table>
 <p>下面是详细例子</p>
-<pre><code>#!/bin/bash
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
 
-a=10
-b=20
+a<span class="token operator">=</span><span class="token number">10</span>
+b<span class="token operator">=</span><span class="token number">20</span>
 
-val=`expr $a + $b`
-echo &quot;a + b : $val&quot;
+val<span class="token operator">=</span>`expr $a <span class="token operator">+</span> $b`
+echo <span class="token string">"a + b : $val"</span>
 
-val=`expr $a - $b`
-echo &quot;a - b : $val&quot;
+val<span class="token operator">=</span>`expr $a <span class="token operator">-</span> $b`
+echo <span class="token string">"a - b : $val"</span>
 
-val=`expr $a \* $b`
-echo &quot;a * b : $val&quot;
+val<span class="token operator">=</span>`expr $a \<span class="token operator">*</span> $b`
+echo <span class="token string">"a * b : $val"</span>
 
-val=`expr $b / $a`
-echo &quot;b / a : $val&quot;
+val<span class="token operator">=</span>`expr $b <span class="token operator">/</span> $a`
+echo <span class="token string">"b / a : $val"</span>
 
-val=`expr $b % $a`
-echo &quot;b % a : $val&quot;
+val<span class="token operator">=</span>`expr $b <span class="token operator">%</span> $a`
+echo <span class="token string">"b % a : $val"</span>
 
-if [ $a == $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">==</span> $b <span class="token punctuation">]</span>
 then
-   echo &quot;a 等于 b&quot;
+   echo <span class="token string">"a 等于 b"</span>
 fi
-if [ $a != $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">!=</span> $b <span class="token punctuation">]</span>
 then
-   echo &quot;a 不等于 b&quot;
-fi</code></pre><p>执行</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
-a + b : 30
-a - b : -10
-a * b : 200
-b / a : 2
-b % a : 0
+   echo <span class="token string">"a 不等于 b"</span>
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh 
+a <span class="token operator">+</span> b <span class="token operator">:</span> <span class="token number">30</span>
+a <span class="token operator">-</span> b <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">10</span>
+a <span class="token operator">*</span> b <span class="token operator">:</span> <span class="token number">200</span>
+b <span class="token operator">/</span> a <span class="token operator">:</span> <span class="token number">2</span>
+b <span class="token operator">%</span> a <span class="token operator">:</span> <span class="token number">0</span>
 a 不等于 b
-[root@centos6-1 ~]# </code></pre><blockquote>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>注意：</p>
 <p> 1.乘号(*)前边必须加反斜杠()<br> 2.条件表达式要放在方括号之间，并且要有空格</p>
 </blockquote>
@@ -726,55 +747,57 @@ a 不等于 b
 </tr>
 </tbody></table>
 <p>下面是详细例子</p>
-<pre><code>#!/bin/bash
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
 
-a=10
-b=20
+a<span class="token operator">=</span><span class="token number">10</span>
+b<span class="token operator">=</span><span class="token number">20</span>
 
-if [ $a -eq $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">-</span>eq $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a -eq $b : a 等于 b&quot;
-else
-   echo &quot;$a -eq $b: a 不等于 b&quot;
+   echo <span class="token string">"$a -eq $b : a 等于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a -eq $b: a 不等于 b"</span>
 fi
-if [ $a -ne $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">-</span>ne $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a -ne $b: a 不等于 b&quot;
-else
-   echo &quot;$a -ne $b : a 等于 b&quot;
+   echo <span class="token string">"$a -ne $b: a 不等于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a -ne $b : a 等于 b"</span>
 fi
-if [ $a -gt $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">-</span>gt $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a -gt $b: a 大于 b&quot;
-else
-   echo &quot;$a -gt $b: a 不大于 b&quot;
+   echo <span class="token string">"$a -gt $b: a 大于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a -gt $b: a 不大于 b"</span>
 fi
-if [ $a -lt $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">-</span>lt $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a -lt $b: a 小于 b&quot;
-else
-   echo &quot;$a -lt $b: a 不小于 b&quot;
+   echo <span class="token string">"$a -lt $b: a 小于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a -lt $b: a 不小于 b"</span>
 fi
-if [ $a -ge $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">-</span>ge $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a -ge $b: a 大于或等于 b&quot;
-else
-   echo &quot;$a -ge $b: a 小于 b&quot;
+   echo <span class="token string">"$a -ge $b: a 大于或等于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a -ge $b: a 小于 b"</span>
 fi
-if [ $a -le $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">-</span>le $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a -le $b: a 小于或等于 b&quot;
-else
-   echo &quot;$a -le $b: a 大于 b&quot;
-fi</code></pre><p>执行</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh  
-10 -eq 20: a 不等于 b
-10 -ne 20: a 不等于 b
-10 -gt 20: a 不大于 b
-10 -lt 20: a 小于 b
-10 -ge 20: a 小于 b
-10 -le 20: a 小于或等于 b
-[root@centos6-1 ~]# </code></pre><h5 id="3-布尔运算符"><a href="#3-布尔运算符" class="headerlink" title="3.布尔运算符"></a>3.布尔运算符</h5><table>
+   echo <span class="token string">"$a -le $b: a 小于或等于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a -le $b: a 大于 b"</span>
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh  
+<span class="token number">10</span> <span class="token operator">-</span>eq <span class="token number">20</span><span class="token operator">:</span> a 不等于 b
+<span class="token number">10</span> <span class="token operator">-</span>ne <span class="token number">20</span><span class="token operator">:</span> a 不等于 b
+<span class="token number">10</span> <span class="token operator">-</span>gt <span class="token number">20</span><span class="token operator">:</span> a 不大于 b
+<span class="token number">10</span> <span class="token operator">-</span>lt <span class="token number">20</span><span class="token operator">:</span> a 小于 b
+<span class="token number">10</span> <span class="token operator">-</span>ge <span class="token number">20</span><span class="token operator">:</span> a 小于 b
+<span class="token number">10</span> <span class="token operator">-</span>le <span class="token number">20</span><span class="token operator">:</span> a 小于或等于 b
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="3-布尔运算符"><a href="#3-布尔运算符" class="headerlink" title="3.布尔运算符"></a>3.布尔运算符</h5><table>
 <thead>
 <tr>
 <th>运算符</th>
@@ -791,28 +814,30 @@ fi</code></pre><p>执行</p>
 </tr>
 </tbody></table>
 <p>下面是详细例子</p>
-<pre><code>#!/bin/bash
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
 
-a=10
-b=20
+a<span class="token operator">=</span><span class="token number">10</span>
+b<span class="token operator">=</span><span class="token number">20</span>
 
-if [[ $a -lt 100 &amp;&amp; $b -gt 100 ]]
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> $a <span class="token operator">-</span>lt <span class="token number">100</span> <span class="token operator">&amp;&amp;</span> $b <span class="token operator">-</span>gt <span class="token number">100</span> <span class="token punctuation">]</span><span class="token punctuation">]</span>
 then
-   echo &quot;返回 true&quot;
-else
-   echo &quot;返回 false&quot;
+   echo <span class="token string">"返回 true"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"返回 false"</span>
 fi
 
-if [[ $a -lt 100 || $b -gt 100 ]]
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> $a <span class="token operator">-</span>lt <span class="token number">100</span> <span class="token operator">||</span> $b <span class="token operator">-</span>gt <span class="token number">100</span> <span class="token punctuation">]</span><span class="token punctuation">]</span>
 then
-   echo &quot;返回 true&quot;
-else
-   echo &quot;返回 false&quot;
-fi</code></pre><p>执行</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
-返回 false
-返回 true
-[root@centos6-1 ~]# </code></pre><h5 id="4-字符串运算符"><a href="#4-字符串运算符" class="headerlink" title="4.字符串运算符"></a>4.字符串运算符</h5><table>
+   echo <span class="token string">"返回 true"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"返回 false"</span>
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh 
+返回 <span class="token boolean">false</span>
+返回 <span class="token boolean">true</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="4-字符串运算符"><a href="#4-字符串运算符" class="headerlink" title="4.字符串运算符"></a>4.字符串运算符</h5><table>
 <thead>
 <tr>
 <th>操作符</th>
@@ -833,48 +858,50 @@ fi</code></pre><p>执行</p>
 </tr>
 </tbody></table>
 <p>下面是详细例子</p>
-<pre><code>#!/bin/bash
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
 
-a=&quot;abc&quot;
-b=&quot;efg&quot;
+a<span class="token operator">=</span><span class="token string">"abc"</span>
+b<span class="token operator">=</span><span class="token string">"efg"</span>
 
-if [ $a = $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">=</span> $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a = $b : a 等于 b&quot;
-else
-   echo &quot;$a = $b: a 不等于 b&quot;
+   echo <span class="token string">"$a = $b : a 等于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a = $b: a 不等于 b"</span>
 fi
-if [ $a != $b ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token operator">!=</span> $b <span class="token punctuation">]</span>
 then
-   echo &quot;$a != $b : a 不等于 b&quot;
-else
-   echo &quot;$a != $b: a 等于 b&quot;
+   echo <span class="token string">"$a != $b : a 不等于 b"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a != $b: a 等于 b"</span>
 fi
-if [ -z $a ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>z $a <span class="token punctuation">]</span>
 then
-   echo &quot;-z $a : 字符串长度为 0&quot;
-else
-   echo &quot;-z $a : 字符串长度不为 0&quot;
+   echo <span class="token string">"-z $a : 字符串长度为 0"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"-z $a : 字符串长度不为 0"</span>
 fi
-if [ -n $a ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>n $a <span class="token punctuation">]</span>
 then
-   echo &quot;-n $a : 字符串长度不为 0&quot;
-else
-   echo &quot;-n $a : 字符串长度为 0&quot;
+   echo <span class="token string">"-n $a : 字符串长度不为 0"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"-n $a : 字符串长度为 0"</span>
 fi
-if [ $a ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $a <span class="token punctuation">]</span>
 then
-   echo &quot;$a : 字符串不为空&quot;
-else
-   echo &quot;$a : 字符串为空&quot;
-fi</code></pre><p>执行</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
-abc = efg: a 不等于 b
-abc != efg : a 不等于 b
--z abc : 字符串长度不为 0
--n abc : 字符串长度不为 0
-abc : 字符串不为空
-[root@centos6-1 ~]# </code></pre><h5 id="5-文件测试运算符"><a href="#5-文件测试运算符" class="headerlink" title="5.文件测试运算符"></a>5.文件测试运算符</h5><table>
+   echo <span class="token string">"$a : 字符串不为空"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"$a : 字符串为空"</span>
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh 
+abc <span class="token operator">=</span> efg<span class="token operator">:</span> a 不等于 b
+abc <span class="token operator">!=</span> efg <span class="token operator">:</span> a 不等于 b
+<span class="token operator">-</span>z abc <span class="token operator">:</span> 字符串长度不为 <span class="token number">0</span>
+<span class="token operator">-</span>n abc <span class="token operator">:</span> 字符串长度不为 <span class="token number">0</span>
+abc <span class="token operator">:</span> 字符串不为空
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="5-文件测试运算符"><a href="#5-文件测试运算符" class="headerlink" title="5.文件测试运算符"></a>5.文件测试运算符</h5><table>
 <thead>
 <tr>
 <th>操作符</th>
@@ -935,52 +962,53 @@ abc : 字符串不为空
 </tr>
 </tbody></table>
 <p>下面是详细例子</p>
-<pre><code>#!/bin/bash
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
 
-file=&quot;/com/zaomianbao&quot;
-if [ -r $file ]
+file<span class="token operator">=</span><span class="token string">"/com/zaomianbao"</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>r $file <span class="token punctuation">]</span>
 then
-   echo &quot;文件可读&quot;
-else
-   echo &quot;文件不可读&quot;
+   echo <span class="token string">"文件可读"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"文件不可读"</span>
 fi
-if [ -w $file ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>w $file <span class="token punctuation">]</span>
 then
-   echo &quot;文件可写&quot;
-else
-   echo &quot;文件不可写&quot;
+   echo <span class="token string">"文件可写"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"文件不可写"</span>
 fi
-if [ -x $file ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>x $file <span class="token punctuation">]</span>
 then
-   echo &quot;文件可执行&quot;
-else
-   echo &quot;文件不可执行&quot;
+   echo <span class="token string">"文件可执行"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"文件不可执行"</span>
 fi
-if [ -f $file ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>f $file <span class="token punctuation">]</span>
 then
-   echo &quot;文件为普通文件&quot;
-else
-   echo &quot;文件为特殊文件&quot;
+   echo <span class="token string">"文件为普通文件"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"文件为特殊文件"</span>
 fi
-if [ -d $file ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>d $file <span class="token punctuation">]</span>
 then
-   echo &quot;文件是个目录&quot;
-else
-   echo &quot;文件不是个目录&quot;
+   echo <span class="token string">"文件是个目录"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"文件不是个目录"</span>
 fi
-if [ -s $file ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>s $file <span class="token punctuation">]</span>
 then
-   echo &quot;文件不为空&quot;
-else
-   echo &quot;文件为空&quot;
+   echo <span class="token string">"文件不为空"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"文件为空"</span>
 fi
-if [ -e $file ]
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">-</span>e $file <span class="token punctuation">]</span>
 then
-   echo &quot;文件存在&quot;
-else
-   echo &quot;文件不存在&quot;
-fi</code></pre><p>执行</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
+   echo <span class="token string">"文件存在"</span>
+<span class="token keyword">else</span>
+   echo <span class="token string">"文件不存在"</span>
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh 
 文件不可读
 文件不可写
 文件不可执行
@@ -988,61 +1016,69 @@ fi</code></pre><p>执行</p>
 文件不是个目录
 文件为空
 文件不存在
-[root@centos6-1 ~]# </code></pre><h4 id="十、流程控制"><a href="#十、流程控制" class="headerlink" title="十、流程控制"></a>十、流程控制</h4><h5 id="1-if-else"><a href="#1-if-else" class="headerlink" title="1.if-else"></a>1.if-else</h5><pre><code>if condition
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="十、流程控制"><a href="#十、流程控制" class="headerlink" title="十、流程控制"></a>十、流程控制</h4><h5 id="1-if-else"><a href="#1-if-else" class="headerlink" title="1.if-else"></a>1.if-else</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">if</span> condition
 then
-    //做你想做的事
-else
-    //做你想做的事
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
+<span class="token keyword">else</span>
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
 fi
 
 
-if condition1
+<span class="token keyword">if</span> condition1
 then
-    //做你想做的事
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
 elif condition2 
 then 
-    //做你想做的事
-else
-    //做你想做的事
-fi</code></pre><h5 id="2-case"><a href="#2-case" class="headerlink" title="2.case"></a>2.case</h5><p>case 语句匹配一个值或一个模式，如果匹配成功，执行相匹配的命令</p>
-<pre><code>case 值 in
-模式1)
-    //做你想做的事
-    ;;
-模式2）
-    //做你想做的事
-    ;;
-*)
-    //做你想做的事
-    ;;
-esac</code></pre><p>取值后面必须为关键字 in，每一模式必须以右括号结束。取值可以为变量或常数。匹配发现取值符合某一模式后，其间所有命令开始执行直至 ;;。;; 与其他语言中的 break 类似，意思是跳到整个 case 语句的最后。取值将检测匹配的每一个模式。一旦模式匹配，则执行完匹配模式相应命令后不再继续其他模式。如果无一匹配模式，使用星号 * 捕获该值，再执行后面的命令。</p>
-<h5 id="3-for"><a href="#3-for" class="headerlink" title="3.for"></a>3.for</h5><pre><code>for 变量 in 列表
-do
-    //做你想做的事
-done</code></pre><h5 id="4-while"><a href="#4-while" class="headerlink" title="4.while"></a>4.while</h5><pre><code>while command
-do
-   //做你想做的是
-done</code></pre><h5 id="5-until"><a href="#5-until" class="headerlink" title="5.until"></a>5.until</h5><p>until 循环执行一系列命令直至条件为 true 时停止。until 循环与 while 循环在处理方式上刚好相反。一般while循环优于until循环，但在某些时候，也只是极少数情况下，until 循环更加有用。</p>
-<pre><code>until command
-do
-   //做你想做的事
-done</code></pre><blockquote>
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
+<span class="token keyword">else</span>
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="2-case"><a href="#2-case" class="headerlink" title="2.case"></a>2.case</h5><p>case 语句匹配一个值或一个模式，如果匹配成功，执行相匹配的命令</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">case</span> 值 in
+模式<span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+模式<span class="token number">2</span>）
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">*</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+esac<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>取值后面必须为关键字 in，每一模式必须以右括号结束。取值可以为变量或常数。匹配发现取值符合某一模式后，其间所有命令开始执行直至 ;;。;; 与其他语言中的 break 类似，意思是跳到整个 case 语句的最后。取值将检测匹配的每一个模式。一旦模式匹配，则执行完匹配模式相应命令后不再继续其他模式。如果无一匹配模式，使用星号 * 捕获该值，再执行后面的命令。</p>
+<h5 id="3-for"><a href="#3-for" class="headerlink" title="3.for"></a>3.for</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span> 变量 in 列表
+<span class="token keyword">do</span>
+    <span class="token comment" spellcheck="true">//做你想做的事</span>
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="4-while"><a href="#4-while" class="headerlink" title="4.while"></a>4.while</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">while</span> command
+<span class="token keyword">do</span>
+   <span class="token comment" spellcheck="true">//做你想做的是</span>
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="5-until"><a href="#5-until" class="headerlink" title="5.until"></a>5.until</h5><p>until 循环执行一系列命令直至条件为 true 时停止。until 循环与 while 循环在处理方式上刚好相反。一般while循环优于until循环，但在某些时候，也只是极少数情况下，until 循环更加有用。</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">until command
+<span class="token keyword">do</span>
+   <span class="token comment" spellcheck="true">//做你想做的事</span>
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>command 一般为条件表达式，如果返回值为 false，则继续执行循环体内的语句，否则跳出循环。</p>
 </blockquote>
 <h4 id="十一、函数"><a href="#十一、函数" class="headerlink" title="十一、函数"></a>十一、函数</h4><p>函数可以让我们将一个复杂功能划分成若干模块，让程序结构更加清晰，代码重复利用率更高。像其他编程语言一样，Shell 也支持函数。Shell 函数必须先定义后使用。</p>
-<pre><code>#!/bin/bash
+<pre class="line-numbers language-cpp"><code class="language-cpp">#<span class="token operator">!</span><span class="token operator">/</span>bin<span class="token operator">/</span>bash
 
-demoFun(){
-    echo &quot;这是我的第一个 shell 函数!&quot;
-}
-echo &quot;-----函数开始执行-----&quot;
+<span class="token function">demoFun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    echo <span class="token string">"这是我的第一个 shell 函数!"</span>
+<span class="token punctuation">}</span>
+echo <span class="token string">"-----函数开始执行-----"</span>
 demoFun 
-echo &quot;-----函数执行完毕-----&quot;</code></pre><p>执行</p>
-<pre><code>[root@centos6-1 ~]# ./helloworld.sh 
------函数开始执行-----
-这是我的第一个 shell 函数!
------函数执行完毕-----
-[root@centos6-1 ~]# </code></pre><blockquote>
+echo <span class="token string">"-----函数执行完毕-----"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>helloworld<span class="token punctuation">.</span>sh 
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>函数开始执行<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+这是我的第一个 shell 函数<span class="token operator">!</span>
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>函数执行完毕<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+<span class="token punctuation">[</span>root@centos6<span class="token number">-1</span> <span class="token operator">~</span><span class="token punctuation">]</span># <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>如果函数有返回值，则函数返回值可以在调用该函数后通过 $? 来获得。</p>
 </blockquote>
 <blockquote>
@@ -1782,7 +1818,7 @@ echo &quot;-----函数执行完毕-----&quot;</code></pre><p>执行</p>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

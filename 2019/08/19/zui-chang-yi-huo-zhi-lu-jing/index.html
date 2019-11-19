@@ -449,7 +449,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    749
+                    734
                 </div>
                 
 
@@ -490,88 +490,89 @@
 <li>那么我们发现对两个叶节点a[i]和a[j]异或的值，就是i到j的异或路径值。因为他们到根节点的那一段是相同的，或者他们的路径就是一起到根节点路径的和。那么相同的异或以后就会零，因此两个叶节点a[i]和a[j]异或的值，就是i到j的异或路径值。</li>
 <li>那么这个题就成功的转化为了求两个最大异或对的题。</li>
 </ul>
-<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code>#include &lt;iostream&gt;
-using namespace std;
-const int N=1e5+5,NN=2e5+5,M=3e6,bitsum=30;
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e5</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span>NN<span class="token operator">=</span><span class="token number">2e5</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span>M<span class="token operator">=</span><span class="token number">3e6</span><span class="token punctuation">,</span>bitsum<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">;</span>
 
-int head[N],tot;
-struct egde{
-    int to,w;
-    int next;
-}edge[NN];
+<span class="token keyword">int</span> head<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>tot<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> egde<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> to<span class="token punctuation">,</span>w<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>edge<span class="token punctuation">[</span>NN<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-//链式前向星 
-void add(int x,int y,int w){ 
-    edge[++tot].to=y;
-    edge[tot].w=w;
-    edge[tot].next=head[x];
-    head[x]=tot;
-}
+<span class="token comment" spellcheck="true">//链式前向星 </span>
+<span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">,</span><span class="token keyword">int</span> w<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+    edge<span class="token punctuation">[</span><span class="token operator">++</span>tot<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token operator">=</span>y<span class="token punctuation">;</span>
+    edge<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token punctuation">.</span>w<span class="token operator">=</span>w<span class="token punctuation">;</span>
+    edge<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token operator">=</span>head<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    head<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>tot<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int p[N],vis[N];
-int trie[M][2],idx;
-int n,m;
+<span class="token keyword">int</span> p<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>vis<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> trie<span class="token punctuation">[</span>M<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>idx<span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
 
-//深搜求所有节点到根节点的异或值 
-void dfs(int x,int sum){
-    vis[x]=1;
-    for(int i=head[x];i;i=edge[i].next){
-        int temp=edge[i].to,kk=edge[i].w;
-        if(!vis[temp]) {
-            p[temp]=sum^kk;
-            dfs(temp,sum^kk);
-        }
-    }
-}
+<span class="token comment" spellcheck="true">//深搜求所有节点到根节点的异或值 </span>
+<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> sum<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    vis<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>head<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">=</span>edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> temp<span class="token operator">=</span>edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">,</span>kk<span class="token operator">=</span>edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>vis<span class="token punctuation">[</span>temp<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            p<span class="token punctuation">[</span>temp<span class="token punctuation">]</span><span class="token operator">=</span>sum<span class="token operator">^</span>kk<span class="token punctuation">;</span>
+            <span class="token function">dfs</span><span class="token punctuation">(</span>temp<span class="token punctuation">,</span>sum<span class="token operator">^</span>kk<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-//trie树插入 
-void trie_insert(int x){
-    int p=0;
-    for(int i=bitsum;~i;i--){
-        int &amp;s=trie[p][x&gt;&gt;i&amp;1];
-        if(!s) s=++idx;
-        p=s;
-    }
-}
+<span class="token comment" spellcheck="true">//trie树插入 </span>
+<span class="token keyword">void</span> <span class="token function">trie_insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>bitsum<span class="token punctuation">;</span><span class="token operator">~</span>i<span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> <span class="token operator">&amp;</span>s<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>x<span class="token operator">>></span>i<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>s<span class="token punctuation">)</span> s<span class="token operator">=</span><span class="token operator">++</span>idx<span class="token punctuation">;</span>
+        p<span class="token operator">=</span>s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-//trie查询 
-int trie_search(int x){
-    int p=0;
-    int ans=0;
-    for(int i=bitsum;~i;i--){
-        int s=x&gt;&gt;i&amp;1;
-        if(trie[p][!s]){
-            ans+=1&lt;&lt;i;
-            p=trie[p][!s];
-        }else p=trie[p][s];
-    }
-    return ans;
-}
+<span class="token comment" spellcheck="true">//trie查询 </span>
+<span class="token keyword">int</span> <span class="token function">trie_search</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>bitsum<span class="token punctuation">;</span><span class="token operator">~</span>i<span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> s<span class="token operator">=</span>x<span class="token operator">>></span>i<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">!</span>s<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            ans<span class="token operator">+</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>i<span class="token punctuation">;</span>
+            p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">!</span>s<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    int x,y,w;
-    cin&gt;&gt;n;
-    for(int i=1;i&lt;n;i++){
-        cin&gt;&gt;x&gt;&gt;y&gt;&gt;w;
-        add(x,y,w);
-        add(y,x,w);
-    }
-    dfs(0,0);
-    int ans=0;
-//    for(int i=0;i&lt;n;i++){
-//        cout&lt;&lt;p[i]&lt;&lt;&quot; &quot;;
-//    }
-    for(int i=0;i&lt;n;i++){
-        trie_insert(p[i]);
-    }
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>w<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>x<span class="token operator">>></span>y<span class="token operator">>></span>w<span class="token punctuation">;</span>
+        <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">add</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>x<span class="token punctuation">,</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//    for(int i=0;i&lt;n;i++){</span>
+<span class="token comment" spellcheck="true">//        cout&lt;&lt;p[i]&lt;&lt;" ";</span>
+<span class="token comment" spellcheck="true">//    }</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">trie_insert</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    for(int i=0;i&lt;n;i++){
-        ans=max(ans,trie_search(p[i]));
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-    return 0;
-}</code></pre>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        ans<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span><span class="token function">trie_search</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1305,7 +1306,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

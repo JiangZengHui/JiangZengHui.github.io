@@ -448,7 +448,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    607
+                    578
                 </div>
                 
 
@@ -493,42 +493,43 @@
 different</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
 <li>树的最小表示裸题</li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-#include &lt;cstring&gt;
-using namespace std;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-string dfs(string a,int &amp;x){
-    vector&lt;string&gt; v;
-    x++;
-    while(a[x]==&#39;0&#39;) v.push_back(dfs(a,x));
-    x++;
-    sort(v.begin(),v.end());
-    string ans=&quot;0&quot;;
-    for(auto it:v) ans+=it;
-    ans+=&quot;1&quot;;
-    return ans;
-}
+string <span class="token function">dfs</span><span class="token punctuation">(</span>string a<span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    vector<span class="token operator">&lt;</span>string<span class="token operator">></span> v<span class="token punctuation">;</span>
+    x<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'0'</span><span class="token punctuation">)</span> v<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">dfs</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>v<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    string ans<span class="token operator">=</span><span class="token string">"0"</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> it<span class="token operator">:</span>v<span class="token punctuation">)</span> ans<span class="token operator">+</span><span class="token operator">=</span>it<span class="token punctuation">;</span>
+    ans<span class="token operator">+</span><span class="token operator">=</span><span class="token string">"1"</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    int t;
-    cin&gt;&gt;t;
-    while(t--){
-        string a,b;
-        cin&gt;&gt;a&gt;&gt;b;
-        a=&quot;0&quot;+a+&quot;1&quot;;
-        b=&quot;0&quot;+b+&quot;1&quot;;
-        int au=0,bu=0; 
-        if(dfs(a,au)==dfs(b,bu)){
-            cout&lt;&lt;&quot;same&quot;&lt;&lt;endl;
-        }else{
-            cout&lt;&lt;&quot;different&quot;&lt;&lt;endl;
-        }
-    }
-    return 0;
-}</code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> t<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>t<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>t<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        string a<span class="token punctuation">,</span>b<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>a<span class="token operator">>></span>b<span class="token punctuation">;</span>
+        a<span class="token operator">=</span><span class="token string">"0"</span><span class="token operator">+</span>a<span class="token operator">+</span><span class="token string">"1"</span><span class="token punctuation">;</span>
+        b<span class="token operator">=</span><span class="token string">"0"</span><span class="token operator">+</span>b<span class="token operator">+</span><span class="token string">"1"</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> au<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>bu<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> 
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">dfs</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>au<span class="token punctuation">)</span><span class="token operator">==</span><span class="token function">dfs</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span>bu<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            cout<span class="token operator">&lt;&lt;</span><span class="token string">"same"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            cout<span class="token operator">&lt;&lt;</span><span class="token string">"different"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1262,7 +1263,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

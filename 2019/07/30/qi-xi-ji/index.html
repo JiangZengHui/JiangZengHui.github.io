@@ -516,67 +516,72 @@ TYVJ七夕祭和11区的夏祭的形式很像。
 <p>均分纸牌的解法是：<br>将每个人的纸牌数都减去平均值，然后利用前缀和从第一个开始，如果他的前缀和等于0，答案数不变，否则加上他的前缀和的绝对值。因为第一个如果不够肯定只能问第二个拿，这样推理第二个也是一样，因此这种方案肯定是对的。<br>那么假设sum为前缀和。</p>
 </li>
 </ul>
-<pre><code>   ans = sum[1] + sum[2] + ... + sum[n];</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">   ans <span class="token operator">=</span> sum<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> sum<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token operator">+</span> sum<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
 <li><p>当不能平均分配时无解，即总和对n取余不等于0</p>
 </li>
 <li><p>环形均分纸牌指的是 第一个和最后一个也是相邻的，既形成一个圆。<br>环形均分纸牌的解法于它类似：<br>环形中肯定有一个k点，k于k+1点不会交换纸牌，然后把k它假设为1，k+1假设为n，然后利用均分纸牌的方案，求解即可。但是这样时间复杂度很高，k要从1遍历到n，那我们有没有什么可以迅速求解出k点的方法呢？<br>肯定是有的，假设sum[i]为以1为起点的前缀和，num[i]为以k点为起点的前缀和<br>我们分析k+1点可知k+1点的前缀和可以写成 num[k+1]=sum[k+1]-sum[k];<br>那么 </p>
 </li>
 </ul>
-<pre><code>   num[k+1]=sum[k+1]-sum[k];
-   num[k+2]=sum[k+2]-sum[k];
-   ......
-   num[1]=sum[1]+sum[n]-sum[k];
-   num[2]=sum[2]+sum[n]-sum[k];
-   ......</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">   num<span class="token punctuation">[</span>k<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>sum<span class="token punctuation">[</span>k<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   num<span class="token punctuation">[</span>k<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span>sum<span class="token punctuation">[</span>k<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+   num<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>sum<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">+</span>sum<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   num<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span>sum<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">+</span>sum<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>因为是均分，所以sum[n]肯定是等于0的，那么就变成了求解问题就变成了<br>求：</li>
 </ul>
-<pre><code>   ans = |sum[1]-sum[k]| + |sum[2]-sum[k]| + ... + |sum[n]-sum[k]|;</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">   ans <span class="token operator">=</span> <span class="token operator">|</span>sum<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">|</span> <span class="token operator">+</span> <span class="token operator">|</span>sum<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">|</span> <span class="token operator">+</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token operator">+</span> <span class="token operator">|</span>sum<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">|</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
 <li>很容易看出，我们把这个公式看成每一个点到k的点距离的和，那我们就用到了货仓选址问题，那么答案就是当sum数组排序后，他的中位数就是离所有点的距离之和最小的。<br>所以sum排序后。</li>
 </ul>
-<pre><code>   k=(n+1)&gt;&gt;1;</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">   k<span class="token operator">=</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
 <li><p>问题就解决了。</p>
 </li>
 <li><p>我们再回到这个问题。题目中要求每一行中或每一列中都包含相等数目的小摊，因为只能交换相邻的两个位置，交换行就不会影响列，交换列就不会影响行，所以我们可以将行列分开单独处理。分别都是一个环形的均分纸牌问题。<br>如果行列都有解就把步数相加。</p>
 </li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-typedef long long ll;
-#define filr(i,a,b) for(ll i=a;i&lt;=b;i++)
-#define fild(i,a,b) for(ll i=a;i&gt;=b;i--)
-const int N=1e5+5;
-ll r[N],c[N];
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> filr(i,a,b) for(ll i=a;i&lt;=b;i++)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> fild(i,a,b) for(ll i=a;i>=b;i--)</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e5</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
+ll r<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>c<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-ll calc(ll arr[],ll num,ll sum){
-    ll temp=sum/num,i;
-    filr(i,1,num) arr[i]+=arr[i-1]-temp;
-    sort(arr+1,arr+num+1);
-    ll ans=0,kk=arr[(num+1)/2];
-    filr(i,1,num) ans+=abs(arr[i]-kk);
-    return ans;
-}
+ll <span class="token function">calc</span><span class="token punctuation">(</span>ll arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>ll num<span class="token punctuation">,</span>ll sum<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    ll temp<span class="token operator">=</span>sum<span class="token operator">/</span>num<span class="token punctuation">,</span>i<span class="token punctuation">;</span>
+    <span class="token function">filr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span><span class="token operator">=</span>arr<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">-</span>temp<span class="token punctuation">;</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>arr<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>arr<span class="token operator">+</span>num<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ll ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>kk<span class="token operator">=</span>arr<span class="token punctuation">[</span><span class="token punctuation">(</span>num<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">filr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span> ans<span class="token operator">+</span><span class="token operator">=</span><span class="token function">abs</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>kk<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    ll n,m,t,x,y,sumx=0,sumy=0,i;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;t;
-    filr(i,1,t){
-        cin&gt;&gt;x&gt;&gt;y;
-        r[x]++;
-        c[y]++;
-    }
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    ll n<span class="token punctuation">,</span>m<span class="token punctuation">,</span>t<span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>sumx<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>sumy<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>i<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token operator">>></span>t<span class="token punctuation">;</span>
+    <span class="token function">filr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>t<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>x<span class="token operator">>></span>y<span class="token punctuation">;</span>
+        r<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+        c<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    filr(i,1,n) sumx+=r[i];
-    filr(i,1,m) sumy+=c[i];
+    <span class="token function">filr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span> sumx<span class="token operator">+</span><span class="token operator">=</span>r<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">filr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>m<span class="token punctuation">)</span> sumy<span class="token operator">+</span><span class="token operator">=</span>c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-    ll is_x=sumx%n,is_y=sumy%m;
-    if(!is_x&amp;&amp;!is_y) cout&lt;&lt;&quot;both &quot;&lt;&lt;calc(r,n,sumx)+calc(c,m,sumy)&lt;&lt;endl;
-    else if(!is_x&amp;&amp;is_y) cout&lt;&lt;&quot;row &quot;&lt;&lt;calc(r,n,sumx)&lt;&lt;endl;
-    else if(is_x&amp;&amp;!is_y) cout&lt;&lt;&quot;column &quot;&lt;&lt;calc(c,m,sumy)&lt;&lt;endl;
-    else cout&lt;&lt;&quot;impossible&quot;&lt;&lt;endl;
-    return 0;
-} </code></pre>
+    ll is_x<span class="token operator">=</span>sumx<span class="token operator">%</span>n<span class="token punctuation">,</span>is_y<span class="token operator">=</span>sumy<span class="token operator">%</span>m<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>is_x<span class="token operator">&amp;&amp;</span><span class="token operator">!</span>is_y<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"both "</span><span class="token operator">&lt;&lt;</span><span class="token function">calc</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span>n<span class="token punctuation">,</span>sumx<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">calc</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span>m<span class="token punctuation">,</span>sumy<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>is_x<span class="token operator">&amp;&amp;</span>is_y<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"row "</span><span class="token operator">&lt;&lt;</span><span class="token function">calc</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span>n<span class="token punctuation">,</span>sumx<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>is_x<span class="token operator">&amp;&amp;</span><span class="token operator">!</span>is_y<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"column "</span><span class="token operator">&lt;&lt;</span><span class="token function">calc</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span>m<span class="token punctuation">,</span>sumy<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"impossible"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1314,7 +1319,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

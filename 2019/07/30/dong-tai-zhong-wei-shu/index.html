@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    806
+                    781
                 </div>
                 
 
@@ -493,40 +493,41 @@
 <li>具体实现过程是读入第一个数假如小根堆，然后每读入一个数都跟小根堆的第一个数比较，大于等于的就加入小根堆，否则假如大根堆。</li>
 <li>每加入一个数后还要比较小根堆和大根堆的数目，小根堆的数目大于大根堆就将小根堆的第一个数移进大根堆，然后比较如果大根堆的数目大于小根堆，就将大根堆的第一个数移进小根堆，用这种办法来维护，大根堆存排序后的前1…i/2个，小根堆存排序后的后i/2+1…n个。<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4></li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;queue&gt;
-using namespace std;
-int p,m,x,arr[10000],ans[10000];
-int main()
-{
-    cin&gt;&gt;p;
-    while(p--){    
-        priority_queue&lt;int&gt; qued;
-        priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; quer;
-        cin&gt;&gt;x&gt;&gt;m;
-        cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;(m+1)/2&lt;&lt;endl;
-        cin&gt;&gt;x;
-        cout&lt;&lt;x&lt;&lt;&quot; &quot;;
-        quer.push(x);
-        for(int i=2;i&lt;=m;i++){
-            cin&gt;&gt;x;
-            if(x&gt;=quer.top()) quer.push(x);
-            else qued.push(x);
-            if(quer.size()&gt;qued.size()){
-                qued.push(quer.top());
-                quer.pop();
-            }
-            if(qued.size()&gt;quer.size()){
-                quer.push(qued.top());
-                qued.pop();
-            }
-            if(i&amp;1) cout&lt;&lt;quer.top()&lt;&lt;&quot; &quot;;
-            if(i%20==0) cout&lt;&lt;endl;
-        }
-        cout&lt;&lt;endl;
-    }
-    return 0;
-} </code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> p<span class="token punctuation">,</span>m<span class="token punctuation">,</span>x<span class="token punctuation">,</span>arr<span class="token punctuation">[</span><span class="token number">10000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>ans<span class="token punctuation">[</span><span class="token number">10000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    cin<span class="token operator">>></span>p<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    
+        priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> qued<span class="token punctuation">;</span>
+        priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">,</span>greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">></span> quer<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>x<span class="token operator">>></span>m<span class="token punctuation">;</span>
+        cout<span class="token operator">&lt;&lt;</span>x<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span>m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>x<span class="token punctuation">;</span>
+        cout<span class="token operator">&lt;&lt;</span>x<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+        quer<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            cin<span class="token operator">>></span>x<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">>=</span>quer<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> quer<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> qued<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>quer<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span>qued<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                qued<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>quer<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                quer<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>qued<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span>quer<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                quer<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>qued<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                qued<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>quer<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">20</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1276,7 +1277,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

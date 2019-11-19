@@ -448,14 +448,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    612
+                    565
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
                 
@@ -491,135 +491,137 @@ efg</code></pre><h4 id="输出样例："><a href="#输出样例：" class="heade
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><ul>
 <li>trie树</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-const int N=1e6+5,English=26;
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e6</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span>English<span class="token operator">=</span><span class="token number">26</span><span class="token punctuation">;</span>
 
-typedef struct trie{
-    int count;
-    struct trie *children[English];
-}trie;
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> trie<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> count<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> trie <span class="token operator">*</span>children<span class="token punctuation">[</span>English<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>trie<span class="token punctuation">;</span>
 
-char s[N];
-int n,m;
+<span class="token keyword">char</span> s<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
 
-//创建trie树节点 
-trie* creat_trie_node(){ 
-    trie *pnode=new trie();
-    pnode-&gt;count=0;
-    for(int i=0;i&lt;English;i++){
-        pnode-&gt;children[i]=NULL;
-    }
-    return pnode; 
-}
+<span class="token comment" spellcheck="true">//创建trie树节点 </span>
+trie<span class="token operator">*</span> <span class="token function">creat_trie_node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+    trie <span class="token operator">*</span>pnode<span class="token operator">=</span><span class="token keyword">new</span> <span class="token function">trie</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pnode<span class="token operator">-</span><span class="token operator">></span>count<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>English<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        pnode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> pnode<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
 
-//将key插入trie树 
-void trie_insert(trie *root,char *key){
-    trie *node=root;
-    char *p=key;
-    while(*p){
-        if(node-&gt;children[*p-&#39;a&#39;]==NULL){
-            node-&gt;children[*p-&#39;a&#39;]=creat_trie_node();
-        }
-        node=node-&gt;children[*p-&#39;a&#39;];
-        p++;
-    }
-    node-&gt;count++; 
-}
+<span class="token comment" spellcheck="true">//将key插入trie树 </span>
+<span class="token keyword">void</span> <span class="token function">trie_insert</span><span class="token punctuation">(</span>trie <span class="token operator">*</span>root<span class="token punctuation">,</span><span class="token keyword">char</span> <span class="token operator">*</span>key<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    trie <span class="token operator">*</span>node<span class="token operator">=</span>root<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>p<span class="token operator">=</span>key<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span><span class="token operator">*</span>p<span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            node<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span><span class="token operator">*</span>p<span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">creat_trie_node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        node<span class="token operator">=</span>node<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span><span class="token operator">*</span>p<span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        p<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    node<span class="token operator">-</span><span class="token operator">></span>count<span class="token operator">++</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
 
-//前序输出trie树 
-void show_trie(trie *root){
-    trie *node=root;
-    if(node!=NULL){
-        for(int i=0;i&lt;English;i++){
-            if(node-&gt;children[i]) {
-                printf(&quot;%c &quot;,i+&#39;a&#39;);
-                show_trie(node-&gt;children[i]);
-            }
-        }
-    } 
-}
+<span class="token comment" spellcheck="true">//前序输出trie树 </span>
+<span class="token keyword">void</span> <span class="token function">show_trie</span><span class="token punctuation">(</span>trie <span class="token operator">*</span>root<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    trie <span class="token operator">*</span>node<span class="token operator">=</span>root<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>English<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c "</span><span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">show_trie</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
 
-//从trie树种查询结果 
-int trie_search(trie *root,char *key){
-    trie *node=root;
-    char *p=key;
-    int ans=0;
-    while(*p&amp;&amp;node!=NULL){
-        ans+=node-&gt;count;
-        node=node-&gt;children[*p-&#39;a&#39;];
-        p++;
-    }
-    if(node!=NULL) ans+=node-&gt;count;
-    return ans;
-}
+<span class="token comment" spellcheck="true">//从trie树种查询结果 </span>
+<span class="token keyword">int</span> <span class="token function">trie_search</span><span class="token punctuation">(</span>trie <span class="token operator">*</span>root<span class="token punctuation">,</span><span class="token keyword">char</span> <span class="token operator">*</span>key<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    trie <span class="token operator">*</span>node<span class="token operator">=</span>root<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>p<span class="token operator">=</span>key<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token operator">&amp;&amp;</span>node<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        ans<span class="token operator">+</span><span class="token operator">=</span>node<span class="token operator">-</span><span class="token operator">></span>count<span class="token punctuation">;</span>
+        node<span class="token operator">=</span>node<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span><span class="token operator">*</span>p<span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        p<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span> ans<span class="token operator">+</span><span class="token operator">=</span>node<span class="token operator">-</span><span class="token operator">></span>count<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 
-int main()
-{
-    cin&gt;&gt;n&gt;&gt;m;
-    trie *root=creat_trie_node();
-    for(int i=0;i&lt;n;i++){
-        cin&gt;&gt;s;
-        trie_insert(root,s);
-//        show_trie(root);cout&lt;&lt;endl;
-    }
-    int ans;
-    for(int i=0;i&lt;m;i++){
-        cin&gt;&gt;s;
-        ans=trie_search(root,s);
-        cout&lt;&lt;ans&lt;&lt;endl;
-    } 
-    return 0;
-}</code></pre><ul>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
+    trie <span class="token operator">*</span>root<span class="token operator">=</span><span class="token function">creat_trie_node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>s<span class="token punctuation">;</span>
+        <span class="token function">trie_insert</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//        show_trie(root);cout&lt;&lt;endl;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> ans<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>s<span class="token punctuation">;</span>
+        ans<span class="token operator">=</span><span class="token function">trie_search</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> 
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>数组模拟trie树</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-const int N=1e6+5,M=5e5+5,W=26;
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e6</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span>M<span class="token operator">=</span><span class="token number">5e5</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span>W<span class="token operator">=</span><span class="token number">26</span><span class="token punctuation">;</span>
 
-int trie[M][W],p[M],idx;
-char s[N]; 
-int n,m;
+<span class="token keyword">int</span> trie<span class="token punctuation">[</span>M<span class="token punctuation">]</span><span class="token punctuation">[</span>W<span class="token punctuation">]</span><span class="token punctuation">,</span>p<span class="token punctuation">[</span>M<span class="token punctuation">]</span><span class="token punctuation">,</span>idx<span class="token punctuation">;</span>
+<span class="token keyword">char</span> s<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
 
-//k插入trie树数组 
-void trie_insert(char *k){ 
-    int t=0;
-    for(int i=0;k[i];i++){
-        int &amp;x=trie[t][k[i]-&#39;a&#39;];
-        if(!x) x=++idx;
-        t=x;
-    }
-    p[t]++;
-}
+<span class="token comment" spellcheck="true">//k插入trie树数组 </span>
+<span class="token keyword">void</span> <span class="token function">trie_insert</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>k<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+    <span class="token keyword">int</span> t<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>trie<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>x<span class="token punctuation">)</span> x<span class="token operator">=</span><span class="token operator">++</span>idx<span class="token punctuation">;</span>
+        t<span class="token operator">=</span>x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    p<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-//从trie树数组查找k 
-int query(char *k){
-    int t=0,ans=0;
-    for(int i=0;k[i];i++){
-        int &amp;x=trie[t][k[i]-&#39;a&#39;];
-        if(!x) break;
-        t=x;
-        ans+=p[t];
-    }
-    return ans;
-}
+<span class="token comment" spellcheck="true">//从trie树数组查找k </span>
+<span class="token keyword">int</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>k<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> t<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>trie<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>x<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        t<span class="token operator">=</span>x<span class="token punctuation">;</span>
+        ans<span class="token operator">+</span><span class="token operator">=</span>p<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    cin&gt;&gt;n&gt;&gt;m;
-    for(int i=0;i&lt;n;i++){
-        cin&gt;&gt;s;
-        trie_insert(s);
-    }
-    for(int i=0;i&lt;m;i++){
-        cin&gt;&gt;s;
-        cout&lt;&lt;query(s)&lt;&lt;endl;
-    }
-    return 0;
-}</code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>s<span class="token punctuation">;</span>
+        <span class="token function">trie_insert</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>s<span class="token punctuation">;</span>
+        cout<span class="token operator">&lt;&lt;</span><span class="token function">query</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1190,16 +1192,16 @@ int main()
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/贪心/" target="_blank">
+                        <span class="chip bg-color">贪心</span>
+                    </a>
+                    
                     <a href="/tags/并查集/" target="_blank">
                         <span class="chip bg-color">并查集</span>
                     </a>
                     
                     <a href="/tags/优先队列/" target="_blank">
                         <span class="chip bg-color">优先队列</span>
-                    </a>
-                    
-                    <a href="/tags/贪心/" target="_blank">
-                        <span class="chip bg-color">贪心</span>
                     </a>
                     
                 </div>
@@ -1361,7 +1363,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

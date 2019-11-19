@@ -410,16 +410,16 @@
                     
                     <div class="article-tag">
                         
+                        <a href="/tags/贪心/" target="_blank">
+                            <span class="chip bg-color">贪心</span>
+                        </a>
+                        
                         <a href="/tags/并查集/" target="_blank">
                             <span class="chip bg-color">并查集</span>
                         </a>
                         
                         <a href="/tags/优先队列/" target="_blank">
                             <span class="chip bg-color">优先队列</span>
-                        </a>
-                        
-                        <a href="/tags/贪心/" target="_blank">
-                            <span class="chip bg-color">贪心</span>
                         </a>
                         
                     </div>
@@ -456,7 +456,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    898
+                    872
                 </div>
                 
 
@@ -497,82 +497,84 @@
 <li>优先队列解法和并查集解法</li>
 <li>第一种解法：按照天数来从小到大排序，用小顶堆优先队列来维护，当优先队列的元素个数小于当前遍历到的i商品的过期天数少数，就将它放入，如果元素个数等于现在的天数时，如果现在的商品的价值大于优先队列中队顶元素时，那么我们就将队顶元素出队，将该商品的加入队列，我们知道，因为去掉队顶以后队里元素是小于过期天数的，因此这个商品可以加入，贪心方案正确。</li>
 </ul>
-<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-#include &lt;vector&gt;
-#include &lt;limits.h&gt; 
-using namespace std;
-const int N=1e4+5;
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;limits.h></span> </span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e4</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
 
-priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; q;
-int n;
-pair&lt;int,int&gt; p[N];
+priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">,</span>greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">></span> q<span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">;</span>
+pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> p<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-int main()
-{
-    while(cin&gt;&gt;n){
-        int maxd=INT_MAX;
-        for(int i=0;i&lt;n;i++){
-            cin&gt;&gt;p[i].second&gt;&gt;p[i].first;
-        }
-        sort(p,p+n);
-        for(int i=0;i&lt;n;i++){
-            if(q.size()&lt;p[i].first) q.push(p[i].second);
-            else {
-                if(p[i].second&gt;q.top()){
-                    q.pop();
-                    q.push(p[i].second);
-                }
-            }
-        }
-        int ans=0;
-        while(!q.empty()){
-            ans+=q.top();
-            q.pop();
-        }
-        cout&lt;&lt;ans&lt;&lt;endl;                
-    }
-    return 0;
-}</code></pre><ul>
-<li>第二种做法，将商品按价值排序，每次将价值最多的试图加入他过期前某一天中，这个某一天用并查集来维护，i点代表第i天，即用并查集来标记这个当前点或者前面哪个点是空的。如果是零，那么就是当前点前面没有为空的点，代表全部已经装满，初始化的时候将每个点指向自己，代表前面第一个为空的点是自己，因为我们是从最大价值枚举的，因此后面不能装下的一定不是最优的。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>cin<span class="token operator">>></span>n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> maxd<span class="token operator">=</span>INT_MAX<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            cin<span class="token operator">>></span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token operator">>></span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span>p<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">)</span> q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token operator">></span>q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            ans<span class="token operator">+</span><span class="token operator">=</span>q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>                
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>第二种做法，将商品按价值排序，每次将价值最多的试图加入他过期前某一天中，这个某一天用并查集来维护，i点代表第i天，即用并查集来标记这个当前点或者前面哪个点是空的。如果是零，那么就是当前点前面没有为空的点，代表全部已经装满，初始化的时候将每个点指向自己，代表前面第一个为空的点是自己，因为我们是从最大价值枚举的，因此后面不能装下的一定不是最优的。</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-const int N=1e4+5,M=10000;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e4</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span>M<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">;</span>
 
-int pre[N];
-int find(int x){
-    if(pre[x]!=x) pre[x]=find(pre[x]);
-    return pre[x]; 
-}
+<span class="token keyword">int</span> pre<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pre<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">!=</span>x<span class="token punctuation">)</span> pre<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">find</span><span class="token punctuation">(</span>pre<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> pre<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
 
-int n;
-pair&lt;int,int&gt; p[N];
+<span class="token keyword">int</span> n<span class="token punctuation">;</span>
+pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> p<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-int main()
-{
-    ios::sync_with_stdio(false);
-    while(cin&gt;&gt;n){
-        for(int i=0;i&lt;n;i++){
-            cin&gt;&gt;p[i].first&gt;&gt;p[i].second;
-        }
-        sort(p,p+n);
-        int ans=0; 
-        for(int i=0;i&lt;=M;i++) pre[i]=i; 
-        for(int i=n-1;~i;i--){
-            int v=p[i].first,w=p[i].second;
-            int f=find(w);
-            if(f&gt;0){
-                ans+=v;
-                pre[f]=f-1;
-            }
-        }
-        cout&lt;&lt;ans&lt;&lt;endl;
-    }
-    return 0;
-}</code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>cin<span class="token operator">>></span>n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            cin<span class="token operator">>></span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token operator">>></span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span>p<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> 
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>M<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> pre<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span> 
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>n<span class="token number">-1</span><span class="token punctuation">;</span><span class="token operator">~</span>i<span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> v<span class="token operator">=</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">,</span>w<span class="token operator">=</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+            <span class="token keyword">int</span> f<span class="token operator">=</span><span class="token function">find</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>f<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                ans<span class="token operator">+</span><span class="token operator">=</span>v<span class="token punctuation">;</span>
+                pre<span class="token punctuation">[</span>f<span class="token punctuation">]</span><span class="token operator">=</span>f<span class="token number">-1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1314,7 +1316,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

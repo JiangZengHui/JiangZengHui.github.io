@@ -448,7 +448,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    857
+                    842
                 </div>
                 
 
@@ -498,42 +498,43 @@
 <li>模拟哈夫曼树的形成过程，每次选k个最小的结点合并即可。</li>
 <li>但是要注意一点，k结点的哈夫曼树中除了最下面一层结点，每个结点都有k个子节点，其中一个是空节点，所以就是如果<code>(n-1)%(k-1)!=0</code>,这样合并不会形成最优解，因为靠近根节点的时候，没有k个结点了，这样会造成将离根节点近的，即短的数量还少一些，所以我们可以加入值为零的结点，将它凑成(n-1)%(k-1)==0。这样每层都会铺满k个结点，并且零结点不会影响答案<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-#include &lt;vector&gt;
-using namespace std;
-typedef long long ll;
-typedef pair&lt;ll,ll&gt; PLL;
-ll n,k;
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> pair<span class="token operator">&lt;</span>ll<span class="token punctuation">,</span>ll<span class="token operator">></span> PLL<span class="token punctuation">;</span>
+ll n<span class="token punctuation">,</span>k<span class="token punctuation">;</span>
 
-int main()
-{
-    cin&gt;&gt;n&gt;&gt;k;
-    priority_queue&lt;PLL,vector&lt;PLL&gt;,greater&lt;PLL&gt;&gt; q;
-    for(int i=0;i&lt;n;i++){
-        ll x;
-        cin&gt;&gt;x;
-        q.push({x,0});
-    }
-    while((q.size()-1)%(k-1)!=0) q.push({0,0});
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>k<span class="token punctuation">;</span>
+    priority_queue<span class="token operator">&lt;</span>PLL<span class="token punctuation">,</span>vector<span class="token operator">&lt;</span>PLL<span class="token operator">></span><span class="token punctuation">,</span>greater<span class="token operator">&lt;</span>PLL<span class="token operator">>></span> q<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        ll x<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>x<span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token punctuation">(</span>k<span class="token number">-1</span><span class="token punctuation">)</span><span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">)</span> q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    ll ans=0;
-    while(q.size()&gt;1){
-        ll deep=-1,sum=0;
-        for(int i=0;i&lt;k;i++){
-            auto x=q.top();q.pop();
-            deep=max(deep,x.second); 
-            sum+=x.first;
-        }
-        ans+=sum;
-        q.push({sum,deep+1});
-    } 
+    ll ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        ll deep<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>k<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">auto</span> x<span class="token operator">=</span>q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            deep<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>deep<span class="token punctuation">,</span>x<span class="token punctuation">.</span>second<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            sum<span class="token operator">+</span><span class="token operator">=</span>x<span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        ans<span class="token operator">+</span><span class="token operator">=</span>sum<span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>sum<span class="token punctuation">,</span>deep<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> 
 
-    cout&lt;&lt;ans&lt;&lt;endl;
-    cout&lt;&lt;q.top().second&lt;&lt;endl;
-    return 0; 
-}</code></pre>
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1267,7 +1268,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

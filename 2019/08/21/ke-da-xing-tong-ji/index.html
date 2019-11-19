@@ -448,7 +448,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    549
+                    535
                 </div>
                 
 
@@ -498,69 +498,70 @@
 <li>这个题目比较简单，但是数据量大，普通的存图方法会存不下，因此我们要变换思路，直接求结果。</li>
 <li>我们可以根据拓扑排序来倒推结果，拓扑排序的最后一个点，把他的值设为1。用bitseet容器存每个点的下一个邻接点，是邻接的那一位即为1，否则为零，1的个数既是答案，将答案进行或操作可以得到上一个点的答案。</li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;bitset&gt;
-#include &lt;queue&gt;
-using namespace std;
-const int N=3e4+5;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bitset></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">3e4</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
 
-struct node{
-    int to,next; 
-}edge[N];
-int head[N],idx;
-void  addedge(int u,int v){ //链式前向星 
-    edge[++idx].to=v;
-    edge[idx].next=head[u];
-    head[u]=idx;
-}
+<span class="token keyword">struct</span> node<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> to<span class="token punctuation">,</span>next<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>edge<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> head<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>idx<span class="token punctuation">;</span>
+<span class="token keyword">void</span>  <span class="token function">addedge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span><span class="token keyword">int</span> v<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//链式前向星 </span>
+    edge<span class="token punctuation">[</span><span class="token operator">++</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token operator">=</span>v<span class="token punctuation">;</span>
+    edge<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token operator">=</span>head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span>idx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-bitset&lt;N&gt; f[N]; //bitset容器 
-int du[N],res[N],cnt;  
-int n,m;
+bitset<span class="token operator">&lt;</span>N<span class="token operator">></span> f<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//bitset容器 </span>
+<span class="token keyword">int</span> du<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>res<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>cnt<span class="token punctuation">;</span>  
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
 
-void topsort(){ // 拓扑排序 
-    queue&lt;int&gt; q;
-    for(int i=1;i&lt;=n;i++){ // 将度为零的点加入队列 
-        if(!du[i]){
-            q.push(i);
-        }
-    }
-    while(!q.empty()){
-        int u=q.front(); // 删除队首元素 
-        q.pop();
-        res[cnt++]=u;
-        for(int i=head[u];i;i=edge[i].next){
-            int v=edge[i].to; 
-            if(--du[v]==0){ // 删除队首元素相邻边 
-                q.push(v); // 度为零再加入队列 
-            }
-        }
-    }
-}
+<span class="token keyword">void</span> <span class="token function">topsort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 拓扑排序 </span>
+    queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> q<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 将度为零的点加入队列 </span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>du<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token operator">=</span>q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 删除队首元素 </span>
+        q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">[</span>cnt<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>u<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">=</span>edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> v<span class="token operator">=</span>edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">;</span> 
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">--</span>du<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 删除队首元素相邻边 </span>
+                q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 度为零再加入队列 </span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    int a,b;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(int i=0;i&lt;m;i++){
-        cin&gt;&gt;a&gt;&gt;b;
-        addedge(a,b);
-        du[b]++;
-    }
-    topsort();
-    for(int i=cnt;~i;i--){ //根据拓扑排序从后往前推 
-        int j=res[i];
-        f[j][j]=1;
-        for(int k=head[j];k;k=edge[k].next){
-            int v=edge[k].to;
-            f[j]|=f[v];
-        }
-    }
-    //每个bitset里1的个数就是答案 
-    for(int i=1;i&lt;=n;i++) cout&lt;&lt; f[i].count() &lt;&lt;endl;
-    return 0;
-}</code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token punctuation">,</span>b<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>a<span class="token operator">>></span>b<span class="token punctuation">;</span>
+        <span class="token function">addedge</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        du<span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">topsort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>cnt<span class="token punctuation">;</span><span class="token operator">~</span>i<span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//根据拓扑排序从后往前推 </span>
+        <span class="token keyword">int</span> j<span class="token operator">=</span>res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>head<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>k<span class="token punctuation">;</span>k<span class="token operator">=</span>edge<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> v<span class="token operator">=</span>edge<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">;</span>
+            f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">|</span><span class="token operator">=</span>f<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//每个bitset里1的个数就是答案 </span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span> f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1294,7 +1295,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

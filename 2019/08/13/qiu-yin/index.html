@@ -509,67 +509,68 @@
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
 <li>详细分析见代码</li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>/*
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">/*
 我们知道先切的蚯蚓是长度较长的,并且切掉的以后还会生长，
 并且生长速度全部度一样，因此先切掉的左右部分一定大于后
 切的左右部分,我们利用这个性质解题，用三个队列维护，
 q1存初始化的所有蚯蚓，q2存切的蚯蚓的左部分，q3存切的蚯蚓的右部分
 每次从这三个队首取值，取三个的最大值，一定是全部蚯蚓最大的。 
-*/
-#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-#include &lt;limits.h&gt;
-using namespace std;
-const int N=100005;
-queue&lt;int&gt; q1,q2,q3;
-//q1存初始化的所有蚯蚓，q2存切的蚯蚓的左部分，q3存切的蚯蚓的右部分
-int a[N]; 
+*/</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;limits.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">100005</span><span class="token punctuation">;</span>
+queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> q1<span class="token punctuation">,</span>q2<span class="token punctuation">,</span>q3<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//q1存初始化的所有蚯蚓，q2存切的蚯蚓的左部分，q3存切的蚯蚓的右部分</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span> 
 
-int get_max(){//获取q1,q2,q3中的最大的蚯蚓长度，并将它出队 
-    int ans=INT_MIN;
-    if(!q1.empty()) ans=max(ans,q1.front());
-    if(!q2.empty()) ans=max(ans,q2.front()); 
-    if(!q3.empty()) ans=max(ans,q3.front());
+<span class="token keyword">int</span> <span class="token function">get_max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//获取q1,q2,q3中的最大的蚯蚓长度，并将它出队 </span>
+    <span class="token keyword">int</span> ans<span class="token operator">=</span>INT_MIN<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>q1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> ans<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span>q1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>q2<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> ans<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span>q2<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>q3<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> ans<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span>q3<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    if(!q1.empty()&amp;&amp;ans==q1.front()) q1.pop();
-    else if(!q2.empty()&amp;&amp;ans==q2.front()) q2.pop();
-    else q3.pop();
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>q1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span>ans<span class="token operator">==</span>q1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> q1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>q2<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span>ans<span class="token operator">==</span>q2<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> q2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> q3<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return ans;
-}
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    int n,m,q,u,v,t;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;q&gt;&gt;u&gt;&gt;v&gt;&gt;t;
-    for(int i=0;i&lt;n;i++){
-        cin&gt;&gt;a[i];
-    }
-    sort(a,a+n);//排序，使得大的在队首那边 
-    reverse(a,a+n);
-    for(int i=0;i&lt;n;i++){
-        q1.push(a[i]);
-    }
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">,</span>q<span class="token punctuation">,</span>u<span class="token punctuation">,</span>v<span class="token punctuation">,</span>t<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token operator">>></span>q<span class="token operator">>></span>u<span class="token operator">>></span>v<span class="token operator">>></span>t<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//排序，使得大的在队首那边 </span>
+    <span class="token function">reverse</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        q1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    int date=0;
-    for(int i=1;i&lt;=m;i++){
-        int x=get_max();
-        x+=date;
-        int ft=x*1ll*u/v;
-        int rt=x-ft;
-        if(i%t==0) cout&lt;&lt;x&lt;&lt;&quot; &quot;;
-        date+=q;
-        q2.push(ft-date); // 减去date,是因为这个他之前没有生长 
-        q3.push(rt-date); // 后面加上全部的会错误
-    }
-    cout&lt;&lt;endl;
-    for(int i=1;i&lt;=n+m;i++){ //按长度输出 
-        int k=get_max(); 
-        if(i%t==0) cout&lt;&lt;k+date&lt;&lt;&quot; &quot;;
-    }
-    return 0;
-}</code></pre>
+    <span class="token keyword">int</span> date<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> x<span class="token operator">=</span><span class="token function">get_max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        x<span class="token operator">+</span><span class="token operator">=</span>date<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> ft<span class="token operator">=</span>x<span class="token operator">*</span><span class="token number">1ll</span><span class="token operator">*</span>u<span class="token operator">/</span>v<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> rt<span class="token operator">=</span>x<span class="token operator">-</span>ft<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span>t<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>x<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+        date<span class="token operator">+</span><span class="token operator">=</span>q<span class="token punctuation">;</span>
+        q2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>ft<span class="token operator">-</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 减去date,是因为这个他之前没有生长 </span>
+        q3<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>rt<span class="token operator">-</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 后面加上全部的会错误</span>
+    <span class="token punctuation">}</span>
+    cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token operator">+</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//按长度输出 </span>
+        <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token function">get_max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span>t<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>k<span class="token operator">+</span>date<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1311,7 +1312,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

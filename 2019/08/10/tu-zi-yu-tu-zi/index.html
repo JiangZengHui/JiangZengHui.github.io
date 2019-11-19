@@ -452,7 +452,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    788
+                    767
                 </div>
                 
 
@@ -497,57 +497,60 @@ Yes</code></pre><h4 id="分析："><a href="#分析：" class="headerlink" title
 <li>字符串哈希,最著名的就是BKDRHash,也就是将字符串变成数值,它是将一个字符串看成一个P进制的数值,然后将P进制转化为十进制,用这个十进制来代表这个字符串，一般来说P最好为素数.</li>
 <li>模板如下：</li>
 </ul>
-<pre><code>// BKDR Hash Function
-unsigned int BKDRHash(char *str)
-{
-    unsigned int seed = 131; // 31 131 1313 13131 131313 etc..
-    unsigned int hash = 0;
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// BKDR Hash Function</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token function">BKDRHash</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> seed <span class="token operator">=</span> <span class="token number">131</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 31 131 1313 13131 131313 etc..</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> hash <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-    while (*str)
-    {
-        hash = hash * seed + (*str++);
-    }
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">*</span>str<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        hash <span class="token operator">=</span> hash <span class="token operator">*</span> seed <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token operator">*</span>str<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    return (hash &amp; 0x7FFFFFFF);
-}</code></pre><ul>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>hash <span class="token operator">&amp;</span> <span class="token number">0x7FFFFFFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>这个题我们之所以需要前缀和,是因为我们这道题目是求一个区间的字符串,所以我们可以前缀和求O(n)预处理,来实现和哈希一般的O(1)常数级别查询.查询的时候，我们可以像整数数组一样，用</li>
 </ul>
-<pre><code>sum[r-l] = sum[r]-sum[l-1]*P^(r-l+1)</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">sum<span class="token punctuation">[</span>r<span class="token operator">-</span>l<span class="token punctuation">]</span> <span class="token operator">=</span> sum<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>l<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">*</span>P<span class="token operator">^</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
 <li>减去的值要乘以P^（r-l+1），是因为求sum[r] 每次是要乘以P得，l至一共乘了r-l+1次，所以减去sum[l-1]*P ^(r-l+1)的值才是sum[r-l]</li>
 <li>这种Hash常用,且冲突概率极低,offer必备,同时竞赛OI党必备,是优秀的算法,容易精简易理解.</li>
 </ul>
-<h4 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-const int N=1000005,seed=131;
-typedef unsigned long long ull;
+<h4 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1000005</span><span class="token punctuation">,</span>seed<span class="token operator">=</span><span class="token number">131</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ull<span class="token punctuation">;</span>
 
-char s[N];
-ull h[N],p[N];
+<span class="token keyword">char</span> s<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+ull h<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>p<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-int main()
-{
-    scanf(&quot;%s&quot;,s+1);
-    int m,l1,l2,r1,r2;
-    int len=strlen(s+1);
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span>s<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> m<span class="token punctuation">,</span>l1<span class="token punctuation">,</span>l2<span class="token punctuation">,</span>r1<span class="token punctuation">,</span>r2<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> len<span class="token operator">=</span><span class="token function">strlen</span><span class="token punctuation">(</span>s<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    p[0]=1;
-    for(int i=1;i&lt;=len;i++) {
-        h[i]=h[i-1]*seed+s[i]-&#39;a&#39;+1;//将字符串代表的P进制转化成十进制并求前缀 
-        p[i]=p[i-1]*seed;//存储p的i次方的值 
-    }
-    cin&gt;&gt;m;
-    for(int i=0;i&lt;m;i++){
-        cin&gt;&gt;l1&gt;&gt;r1&gt;&gt;l2&gt;&gt;r2;
+    p<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>len<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        h<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>h<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">*</span>seed<span class="token operator">+</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将字符串代表的P进制转化成十进制并求前缀 </span>
+        p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>p<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">*</span>seed<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//存储p的i次方的值 </span>
+    <span class="token punctuation">}</span>
+    cin<span class="token operator">>></span>m<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin<span class="token operator">>></span>l1<span class="token operator">>></span>r1<span class="token operator">>></span>l2<span class="token operator">>></span>r2<span class="token punctuation">;</span>
 
-        int d1=h[r1]-h[l1-1]*p[r1-l1+1];//求解l到r的哈希值 
-        int d2=h[r2]-h[l2-1]*p[r2-l2+1];
-        if(d1==d2) cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
-        else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-    }
-    return 0;
-}</code></pre>
+        <span class="token keyword">int</span> d1<span class="token operator">=</span>h<span class="token punctuation">[</span>r1<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>l1<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">*</span>p<span class="token punctuation">[</span>r1<span class="token operator">-</span>l1<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//求解l到r的哈希值 </span>
+        <span class="token keyword">int</span> d2<span class="token operator">=</span>h<span class="token punctuation">[</span>r2<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>l2<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">*</span>p<span class="token punctuation">[</span>r2<span class="token operator">-</span>l2<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>d1<span class="token operator">==</span>d2<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"Yes"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"No"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1289,7 +1292,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

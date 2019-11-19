@@ -449,7 +449,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    430
+                    418
                 </div>
                 
 
@@ -481,76 +481,77 @@
 <li>这个题目就是求卡特兰数，卡特兰数是一种用途非常广的递推数列。</li>
 <li>下面给出用组合数求卡特兰数的代码。</li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-typedef long long ll;
-const int N=120005;
-const ll mod=100000000;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">120005</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ll mod<span class="token operator">=</span><span class="token number">100000000</span><span class="token punctuation">;</span>
 
-int primes[N],cnt,opt[N];
-bool str[N];
+<span class="token keyword">int</span> primes<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>cnt<span class="token punctuation">,</span>opt<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">bool</span> str<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-void primesai(int r){//素数筛 
-    for(int i=2;i&lt;=r;i++){
-        if(!str[i]){
-            primes[cnt++]=i;
-            for(int j=i;j&lt;=r;j+=i){
-                str[j]=true;
-            }
-        }
-    }
-}
+<span class="token keyword">void</span> <span class="token function">primesai</span><span class="token punctuation">(</span><span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//素数筛 </span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>r<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            primes<span class="token punctuation">[</span>cnt<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>r<span class="token punctuation">;</span>j<span class="token operator">+</span><span class="token operator">=</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                str<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-int get(int n,int p){//获得n!中含有多少个p^1,p^2...这种质数 
-    int s=0;
-    while(n){
-        s+=n/p;
-        n/=p;
-    }
-    return s; 
-}
+<span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span><span class="token keyword">int</span> p<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//获得n!中含有多少个p^1,p^2...这种质数 </span>
+    <span class="token keyword">int</span> s<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s<span class="token operator">+</span><span class="token operator">=</span>n<span class="token operator">/</span>p<span class="token punctuation">;</span>
+        n<span class="token operator">/</span><span class="token operator">=</span>p<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> s<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
 
-void muilt(vector&lt;ll&gt; &amp;res,ll b){// 压位高精度乘法 
-    ll t=0;
-    for(int i=0;i&lt;res.size();i++){
-        res[i]=res[i]*b+t;
-        t=res[i]/mod;
-        res[i]%=mod;
-    }
-    while(t){
-        res.push_back(t%mod);
-        t/=mod;
-    }
-}
+<span class="token keyword">void</span> <span class="token function">muilt</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>ll<span class="token operator">></span> <span class="token operator">&amp;</span>res<span class="token punctuation">,</span>ll b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 压位高精度乘法 </span>
+    ll t<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>res<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span>b<span class="token operator">+</span>t<span class="token punctuation">;</span>
+        t<span class="token operator">=</span>res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">/</span>mod<span class="token punctuation">;</span>
+        res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">%</span><span class="token operator">=</span>mod<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>t<span class="token operator">%</span>mod<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token operator">/</span><span class="token operator">=</span>mod<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-void out(vector&lt;ll&gt; res){ // 输出高精度整数 
-    printf(&quot;%lld&quot;,res.back());
-    for(int i=res.size()-2;i&gt;=0;i--){
-        printf(&quot;%09lld&quot;,res[i]);
-    }
-}
+<span class="token keyword">void</span> <span class="token function">out</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>ll<span class="token operator">></span> res<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 输出高精度整数 </span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld"</span><span class="token punctuation">,</span>res<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>res<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%09lld"</span><span class="token punctuation">,</span>res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    primesai(n*2);
-    for(int i=0;i&lt;cnt;i++){ //质因数分解 求质因数个数 
-        int p=primes[i];
-        opt[p] = get(n*2,p)-get(n,p)-get(n+1,p);
-    }
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
+    <span class="token function">primesai</span><span class="token punctuation">(</span>n<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>cnt<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//质因数分解 求质因数个数 </span>
+        <span class="token keyword">int</span> p<span class="token operator">=</span>primes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        opt<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>n<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">,</span>p<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">get</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>p<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">get</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    vector&lt;ll&gt; res;
-    res.push_back(1);
-    for(ll i=2;i&lt;=2*n;i++){ 
-        for(ll j=0;j&lt;opt[i];j++){
-            muilt(res,i);
-        }
-    }
-    out(res);
-    return 0;
-}</code></pre>
+    vector<span class="token operator">&lt;</span>ll<span class="token operator">></span> res<span class="token punctuation">;</span>
+    res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>ll i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span><span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+        <span class="token keyword">for</span><span class="token punctuation">(</span>ll j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>opt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token function">muilt</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">out</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1284,7 +1285,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

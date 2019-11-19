@@ -456,7 +456,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    868
+                    846
                 </div>
                 
 
@@ -500,71 +500,72 @@
 <li>但是因为x，y的范围是1到10000，所以如果我们暴力枚举顶点的话复杂度会很高，我们发现n的范围只有500，因此假如每个三叶草的位置都不同，也只有1000个不同的x、y，因此我们可以将x，y离散化，排序后用下标代表它，这样我们就从枚举10000 <em> 10000降到了枚举1000 </em> 1000.</li>
 <li>具体实现看代码<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4></li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-const int N=505;
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">505</span><span class="token punctuation">;</span>
 
-int sum[N*2][N*2];
-vector&lt;int&gt; num;
-pair&lt;int,int&gt; p[N]; 
-int n,c;
+<span class="token keyword">int</span> sum<span class="token punctuation">[</span>N<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span>N<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> num<span class="token punctuation">;</span>
+pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> p<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>c<span class="token punctuation">;</span>
 
-int get(int x){ //获取离散化后x对应的值，即他的下标 
-    return lower_bound(num.begin(),num.end(),x)-num.begin();
-}
+<span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//获取离散化后x对应的值，即他的下标 </span>
+    <span class="token keyword">return</span> <span class="token function">lower_bound</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>num<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token operator">-</span>num<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-bool check(int x){ //判断边长为x是否满足条件 
-    for(int x2=1,x1=1;x2&lt;num.size();x2++){
-        while(num[x2]-num[x1]+1&gt;x) x1++;
-        for(int y2=1,y1=1;y2&lt;num.size();y2++){
-            while(num[y2]-num[y1]+1&gt;x) y1++;
-            if(sum[x2][y2]-sum[x1-1][y2]-sum[x2][y1-1]+sum[x1-1][y1-1]&gt;=c){
-                return true;
-            }
-        }
-    }
-    return false;
-}
+<span class="token keyword">bool</span> <span class="token function">check</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//判断边长为x是否满足条件 </span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x2<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>x1<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>x2<span class="token operator">&lt;</span>num<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>x2<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>num<span class="token punctuation">[</span>x2<span class="token punctuation">]</span><span class="token operator">-</span>num<span class="token punctuation">[</span>x1<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">></span>x<span class="token punctuation">)</span> x1<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> y2<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>y1<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>y2<span class="token operator">&lt;</span>num<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>y2<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>num<span class="token punctuation">[</span>y2<span class="token punctuation">]</span><span class="token operator">-</span>num<span class="token punctuation">[</span>y1<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">></span>x<span class="token punctuation">)</span> y1<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sum<span class="token punctuation">[</span>x2<span class="token punctuation">]</span><span class="token punctuation">[</span>y2<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>x1<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>y2<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>x2<span class="token punctuation">]</span><span class="token punctuation">[</span>y1<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">+</span>sum<span class="token punctuation">[</span>x1<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>y1<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">>=</span>c<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    cin&gt;&gt;c&gt;&gt;n;
-    num.push_back(0);
-    for(int i=0;i&lt;n;i++){
-        int x,y;
-        cin&gt;&gt;x&gt;&gt;y;
-        p[i]={x,y};
-        num.push_back(x);
-        num.push_back(y);
-    }
-    sort(num.begin(),num.end());
-    num.erase(unique(num.begin(),num.end()),num.end());//去除重复的x，y 
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    cin<span class="token operator">>></span>c<span class="token operator">>></span>n<span class="token punctuation">;</span>
+    num<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>x<span class="token operator">>></span>y<span class="token punctuation">;</span>
+        p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>x<span class="token punctuation">,</span>y<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        num<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        num<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>num<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    num<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>num<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>num<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//去除重复的x，y </span>
 
-    for(int i=0;i&lt;n;i++){
-        int x=get(p[i].first),y=get(p[i].second);//取得x、y离散化后的值 
-//        cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;endl;
-        sum[x][y]++;
-    }
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> x<span class="token operator">=</span><span class="token function">get</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">)</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token function">get</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//取得x、y离散化后的值 </span>
+<span class="token comment" spellcheck="true">//        cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;endl;</span>
+        sum<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    for(int i=1;i&lt;=num.size();i++){ //前缀和 
-        for(int j=1;j&lt;=num.size();j++){
-            sum[i][j]+=sum[i-1][j]+sum[i][j-1]-sum[i-1][j-1];
-//            cout&lt;&lt;sum[i][j]&lt;&lt;&quot; &quot;;
-        }
-//        cout&lt;&lt;endl;
-    }
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>num<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//前缀和 </span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>num<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token operator">=</span>sum<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//            cout&lt;&lt;sum[i][j]&lt;&lt;" ";</span>
+        <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//        cout&lt;&lt;endl;</span>
+    <span class="token punctuation">}</span>
 
-    int l=1,r=10000;
-    while(l&lt;r){//二分求边长 
-        int mid=(l+r)&gt;&gt;1;
-        if(check(mid)) r=mid;
-        else l=mid+1;
-    }
-    cout&lt;&lt;r&lt;&lt;endl;
-    return 0;
-}</code></pre>
+    <span class="token keyword">int</span> l<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>r<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//二分求边长 </span>
+        <span class="token keyword">int</span> mid<span class="token operator">=</span><span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">check</span><span class="token punctuation">(</span>mid<span class="token punctuation">)</span><span class="token punctuation">)</span> r<span class="token operator">=</span>mid<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> l<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout<span class="token operator">&lt;&lt;</span>r<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1302,7 +1303,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

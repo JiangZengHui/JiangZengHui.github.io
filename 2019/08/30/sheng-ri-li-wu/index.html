@@ -450,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    601
+                    584
                 </div>
                 
 
@@ -489,74 +489,75 @@
 <li>数据备份：<a href="https://blog.csdn.net/qq_41934571/article/details/98959372" target="_blank" rel="noopener">https://blog.csdn.net/qq_41934571/article/details/98959372</a></li>
 <li>那我们使用他的解法解决剩下的步骤即可。</li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-#include &lt;vector&gt;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
 
-using namespace std;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-typedef pair&lt;int, int&gt; PII;
+<span class="token keyword">typedef</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> PII<span class="token punctuation">;</span>
 
-const int N=100010;
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">100010</span><span class="token punctuation">;</span>
 
-int n, m;
-int a[N],l[N],r[N];
-bool st[N];
+<span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>l<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>r<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">bool</span> st<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-void remove(int p) {
-    // 从链表中删去
-    l[r[p]] = l[p];
-    r[l[p]] = r[p];
-    // 从heap里删去
-    st[p] = true;
-}
+<span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 从链表中删去</span>
+    l<span class="token punctuation">[</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> l<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    r<span class="token punctuation">[</span>l<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 从heap里删去</span>
+    st<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m<span class="token punctuation">;</span>
 
-    int k = 1;
-    for (int i = 0; i &lt; n; i ++ ) {
-        int x;
-        cin &gt;&gt; x;
-        if ((long long)a[k] * x &lt; 0) a[ ++ k] = x;
-        else a[k] += x;
-    }
+    <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i <span class="token operator">++</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> x<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span><span class="token punctuation">)</span>a<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">*</span> x <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span> <span class="token operator">++</span> k<span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> a<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    n = k;
-    int cnt = 0, res = 0;
-    for (int i = 1; i &lt;= n; i ++ )
-        if (a[i] &gt; 0) {
-            cnt ++ ;
-            res += a[i];
-        }
+    n <span class="token operator">=</span> k<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i <span class="token operator">++</span> <span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cnt <span class="token operator">++</span> <span class="token punctuation">;</span>
+            res <span class="token operator">+</span><span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-    priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap;
-    for (int i = 1; i &lt;= n; i ++ ) { //初始化链表
-        l[i] = i - 1;
-        r[i] = i + 1;
-        heap.push({abs(a[i]), i});
-    }
+    priority_queue<span class="token operator">&lt;</span>PII<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>PII<span class="token operator">></span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span>PII<span class="token operator">>></span> heap<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i <span class="token operator">++</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//初始化链表</span>
+        l<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        r<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token function">abs</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> i<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    while (cnt &gt; m) {
-        while (st[heap.top().second]) heap.pop();
-        auto t = heap.top();
-        heap.pop();
-        int v = t.first, p = t.second;
-        if (l[p] != 0 &amp;&amp; r[p] != n + 1 || a[p] &gt; 0) {//判断边界 
-            cnt -- ;
-            res -= v;
-            int left = l[p], right = r[p];
-            a[p] += a[left] + a[right];
-            heap.push({abs(a[p]), p});
-            remove(left);
-            remove(right);
-        }
-    }
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>cnt <span class="token operator">></span> m<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>st<span class="token punctuation">[</span>heap<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second<span class="token punctuation">]</span><span class="token punctuation">)</span> heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">auto</span> t <span class="token operator">=</span> heap<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> v <span class="token operator">=</span> t<span class="token punctuation">.</span>first<span class="token punctuation">,</span> p <span class="token operator">=</span> t<span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>l<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> r<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">!=</span> n <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">||</span> a<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//判断边界 </span>
+            cnt <span class="token operator">--</span> <span class="token punctuation">;</span>
+            res <span class="token operator">-</span><span class="token operator">=</span> v<span class="token punctuation">;</span>
+            <span class="token keyword">int</span> left <span class="token operator">=</span> l<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">,</span> right <span class="token operator">=</span> r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            a<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> a<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">+</span> a<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token function">abs</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> p<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">remove</span><span class="token punctuation">(</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">remove</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    cout &lt;&lt; res &lt;&lt; endl;
-    return 0;
-}</code></pre>
+    cout <span class="token operator">&lt;&lt;</span> res <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1290,7 +1291,7 @@ int main() {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

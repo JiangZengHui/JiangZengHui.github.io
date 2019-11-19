@@ -452,7 +452,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    661
+                    653
                 </div>
                 
 
@@ -496,39 +496,40 @@
 <pre><code>ans+=mid-l+1;</code></pre><p>具体实现如下。</p>
 </li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-using namespace std;
-typedef long long ll;
-#define filr(i,a,b) for(i=a;i&lt;=b;i++)
-ll n,arr[500005],temp[500005],i,ans;
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> filr(i,a,b) for(i=a;i&lt;=b;i++)</span>
+ll n<span class="token punctuation">,</span>arr<span class="token punctuation">[</span><span class="token number">500005</span><span class="token punctuation">]</span><span class="token punctuation">,</span>temp<span class="token punctuation">[</span><span class="token number">500005</span><span class="token punctuation">]</span><span class="token punctuation">,</span>i<span class="token punctuation">,</span>ans<span class="token punctuation">;</span>
 
-void merger_sort(ll l,ll r){
-    if(r&lt;=l) return ;
-    ll mid=(l+r)&gt;&gt;1;
-    merger_sort(l,mid);
-    merger_sort(mid+1,r);
-    ll k=mid+1,t=l,x=l;
-    while(x&lt;=mid||k&lt;=r){
-        if(k&gt;r||(x&lt;=mid&amp;&amp;arr[x]&lt;=arr[k])){
-            temp[t++]=arr[x++];
-        }else{
-            temp[t++]=arr[k++];
-            ans+=mid-x+1;
-        }
-    } 
-    filr(i,l,r) arr[i]=temp[i];
-}
+<span class="token keyword">void</span> <span class="token function">merger_sort</span><span class="token punctuation">(</span>ll l<span class="token punctuation">,</span>ll r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>r<span class="token operator">&lt;=</span>l<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">;</span>
+    ll mid<span class="token operator">=</span><span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">merger_sort</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span>mid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">merger_sort</span><span class="token punctuation">(</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ll k<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>t<span class="token operator">=</span>l<span class="token punctuation">,</span>x<span class="token operator">=</span>l<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">&lt;=</span>mid<span class="token operator">||</span>k<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>k<span class="token operator">></span>r<span class="token operator">||</span><span class="token punctuation">(</span>x<span class="token operator">&lt;=</span>mid<span class="token operator">&amp;&amp;</span>arr<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">&lt;=</span>arr<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            temp<span class="token punctuation">[</span>t<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>arr<span class="token punctuation">[</span>x<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            temp<span class="token punctuation">[</span>t<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            ans<span class="token operator">+</span><span class="token operator">=</span>mid<span class="token operator">-</span>x<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> 
+    <span class="token function">filr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>l<span class="token punctuation">,</span>r<span class="token punctuation">)</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-    while(cin&gt;&gt;n&amp;&amp;n){
-        ans=0;
-        filr(i,1,n) cin&gt;&gt;arr[i];
-        merger_sort(1,n);
-        cout&lt;&lt;ans&lt;&lt;endl;
-    }
-    return 0;
-} </code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>cin<span class="token operator">>></span>n<span class="token operator">&amp;&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token function">filr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span> cin<span class="token operator">>></span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">merger_sort</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr />
 
@@ -1270,7 +1271,7 @@ int main()
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>

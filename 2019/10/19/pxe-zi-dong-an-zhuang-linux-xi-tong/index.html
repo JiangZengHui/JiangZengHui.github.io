@@ -447,7 +447,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.6k
                 </div>
                 
 
@@ -485,14 +485,15 @@
 <li>关闭VMware的DHCP服务</li>
 <li>给服务器分配一个IP地址，地址建议为静态地址。配置文件如下：</li>
 </ol>
-<pre><code>TYPE=Ethernet
-BOOTPROTO=static
-IPADDR=192.168.11.2
-PREFIX=24
-GATEWAY=192.168.11.1
-NAME=ens33
-DEVICE=ens33
-ONBOOT=yes</code></pre><ol start="4">
+<pre class="line-numbers language-cpp"><code class="language-cpp">TYPE<span class="token operator">=</span>Ethernet
+BOOTPROTO<span class="token operator">=</span><span class="token keyword">static</span>
+IPADDR<span class="token operator">=</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.2</span>
+PREFIX<span class="token operator">=</span><span class="token number">24</span>
+GATEWAY<span class="token operator">=</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.1</span>
+NAME<span class="token operator">=</span>ens33
+DEVICE<span class="token operator">=</span>ens33
+ONBOOT<span class="token operator">=</span>yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="4">
 <li>编辑Win下的虚拟网卡配置以便和虚拟机可以通信<br>打开控制面板→网络和共享中心→更改适配器设置<br>通常仅主机的连接名称为VMnet1<blockquote>
 <p>地址可以随意分配，但确保此处地址是上一步分配的地址的网关。如果在虚拟机中可以ping通网关则说明配置没有问题。</p>
 </blockquote>
@@ -506,16 +507,19 @@ ONBOOT=yes</code></pre><ol start="4">
 <p>可以通过命令getenforce查看，如果是disabled或permissive即为关闭状态</p>
 </blockquote>
 <p>执行以下两条命令确保关闭防火墙</p>
-<pre><code>systemctl stop firewalld
-systemctl disable firewalld</code></pre><p>以上是CentOS 7，如果是CentOS 6的话</p>
-<pre><code>service iptables stop
-chkconfig iptables off</code></pre><h4 id="四、安装软件包并开启服务"><a href="#四、安装软件包并开启服务" class="headerlink" title="四、安装软件包并开启服务"></a>四、安装软件包并开启服务</h4><blockquote>
+<pre class="line-numbers language-cpp"><code class="language-cpp">systemctl stop firewalld
+systemctl disable firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>以上是CentOS 7，如果是CentOS 6的话</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">service iptables stop
+chkconfig iptables off<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="四、安装软件包并开启服务"><a href="#四、安装软件包并开启服务" class="headerlink" title="四、安装软件包并开启服务"></a>四、安装软件包并开启服务</h4><blockquote>
 <p>出于方便，软件安装全部使用yum进行安装，如果没有yum源的请自行配置。</p>
 </blockquote>
 <p>执行以下命令安装相关软件并启动服务，DHCP由于需要另外修改配置文件先跳过</p>
-<pre><code>yum install httpd dhcp syslinux tftp-server
-systemctl start httpd tftp.socket
-systemctl enable dhcpd tftp.socket httpd</code></pre><ul>
+<pre class="line-numbers language-cpp"><code class="language-cpp">yum install httpd dhcp syslinux tftp<span class="token operator">-</span>server
+systemctl start httpd tftp<span class="token punctuation">.</span>socket
+systemctl enable dhcpd tftp<span class="token punctuation">.</span>socket httpd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>使用ss -tan 确认TCP80端口已开启</li>
 <li>使用ss -unl 确认UDP69端口已开启</li>
 </ul>
@@ -536,69 +540,71 @@ systemctl enable dhcpd tftp.socket httpd</code></pre><ul>
 <blockquote>
 <p>注：此为最小化安装文件内容，如果是图形界面，内容会有些许不同</p>
 </blockquote>
-<pre><code>#platform=86, AMD64, or Intel EM64T
-#version=DEVEL
-# System authorization information
-auth --useshadow  --passalgo=sha512
-# Install OS instead of upgrade#install是安装，upgrade是升级
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#platform=86, AMD64, or Intel EM64T</span>
+<span class="token macro property">#version=DEVEL</span>
+<span class="token macro property"># System authorization information</span>
+auth <span class="token operator">--</span>useshadow  <span class="token operator">--</span>passalgo<span class="token operator">=</span>sha512
+<span class="token macro property"># Install OS instead of upgrade#install是安装，upgrade是升级</span>
 install
-# Use CDROM installation media#安装介质
+<span class="token macro property"># Use CDROM installation media#安装介质</span>
 cdrom
-# Use text mode install#使用图形安装还是文字界面
+<span class="token macro property"># Use text mode install#使用图形安装还是文字界面</span>
 text
-# Firewall configuration#防火墙选项选择关闭
-firewall --disabled
-firstboot --disable
-ignoredisk --only-use=sda
-# Keyboard layouts
-# old format: keyboard us
-# new format:
-keyboard --vckeymap=us --xlayouts=&#39;&#39;
-# System language
-lang en_US.UTF-8
+<span class="token macro property"># Firewall configuration#防火墙选项选择关闭</span>
+firewall <span class="token operator">--</span>disabled
+firstboot <span class="token operator">--</span>disable
+ignoredisk <span class="token operator">--</span>only<span class="token operator">-</span>use<span class="token operator">=</span>sda
+<span class="token macro property"># Keyboard layouts</span>
+<span class="token macro property"># old format: keyboard us</span>
+<span class="token macro property"># new format:</span>
+keyboard <span class="token operator">--</span>vckeymap<span class="token operator">=</span>us <span class="token operator">--</span>xlayouts<span class="token operator">=</span><span class="token string">''</span>
+<span class="token macro property"># System language</span>
+lang en_US<span class="token punctuation">.</span>UTF<span class="token number">-8</span>
 
-# Network information#安装后网络配置信息，可以将onboot改为on
-network --bootproto=dhcp --device=ens33 --onboot=off 
-        --ipv6=auto --no-activate
-network  --hostname=localhost.localdomain
-# Reboot after installation#安装之后重启
+<span class="token macro property"># Network information#安装后网络配置信息，可以将onboot改为on</span>
+network <span class="token operator">--</span>bootproto<span class="token operator">=</span>dhcp <span class="token operator">--</span>device<span class="token operator">=</span>ens33 <span class="token operator">--</span>onboot<span class="token operator">=</span>off 
+        <span class="token operator">--</span>ipv6<span class="token operator">=</span><span class="token keyword">auto</span> <span class="token operator">--</span>no<span class="token operator">-</span>activate
+network  <span class="token operator">--</span>hostname<span class="token operator">=</span>localhost<span class="token punctuation">.</span>localdomain
+<span class="token macro property"># Reboot after installation#安装之后重启</span>
 reboot
-# Root password# root账号密码
-rootpw --iscrypted $1$HwDDpzbI$JcacPj2.QTbRQgNWUP8hr1
-# SELinux configuration#SELinux选项
-selinux --disabled
-# System services
-services --enabled=&quot;chronyd&quot;
-# Do not configure the X Window System
+<span class="token macro property"># Root password# root账号密码</span>
+rootpw <span class="token operator">--</span>iscrypted $<span class="token number">1</span>$HwDDpzbI$JcacPj2<span class="token punctuation">.</span>QTbRQgNWUP8hr1
+<span class="token macro property"># SELinux configuration#SELinux选项</span>
+selinux <span class="token operator">--</span>disabled
+<span class="token macro property"># System services</span>
+services <span class="token operator">--</span>enabled<span class="token operator">=</span><span class="token string">"chronyd"</span>
+<span class="token macro property"># Do not configure the X Window System</span>
 skipx
-# System timezone# 时区
-timezone Asia/Shanghai
-# System bootloader configuration
-bootloader --append=&quot; crashkernel=auto&quot; --location=mbr --boot-drive=sda
-#Clear the Master Boot Record
-#zerombr #清除MBR
-# Partition clearing information
-#clearpart --all --initlabel # 清空磁盘
-# Disk partitioning information
+<span class="token macro property"># System timezone# 时区</span>
+timezone Asia<span class="token operator">/</span>Shanghai
+<span class="token macro property"># System bootloader configuration</span>
+bootloader <span class="token operator">--</span>append<span class="token operator">=</span><span class="token string">" crashkernel=auto"</span> <span class="token operator">--</span>location<span class="token operator">=</span>mbr <span class="token operator">--</span>boot<span class="token operator">-</span>drive<span class="token operator">=</span>sda
+<span class="token macro property">#Clear the Master Boot Record</span>
+<span class="token macro property">#zerombr #清除MBR</span>
+<span class="token macro property"># Partition clearing information</span>
+<span class="token macro property">#clearpart --all --initlabel # 清空磁盘</span>
+<span class="token macro property"># Disk partitioning information</span>
 #以下三行是分区信息
-#part swap --fstype=&quot;swap&quot; --size=2048
-#part / --fstype=&quot;xfs&quot; --size=20480
-#part /boot --fstype=&quot;xfs&quot; --size=1024
+<span class="token macro property">#part swap --fstype="swap" --size=2048</span>
+<span class="token macro property">#part / --fstype="xfs" --size=20480</span>
+<span class="token macro property">#part /boot --fstype="xfs" --size=1024</span>
 
 #要安装的包@开头的是包组，没有@的是单独的包
-%packages
+<span class="token operator">%</span>packages
 @core
 zsh
 
-%end
+<span class="token operator">%</span>end
 
-%addon com_redhat_kdump --enable --reserve-mb=&#39;auto&#39;
+<span class="token operator">%</span>addon com_redhat_kdump <span class="token operator">--</span>enable <span class="token operator">--</span>reserve<span class="token operator">-</span>mb<span class="token operator">=</span><span class="token string">'auto'</span>
 
-%end</code></pre><p>看起来很多内容，也有可能有很多不一样，不过没有关系，许多内容并不需要理解，需要改的地方并不多<br>大概以下几项修改就可以了：</p>
+<span class="token operator">%</span>end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看起来很多内容，也有可能有很多不一样，不过没有关系，许多内容并不需要理解，需要改的地方并不多<br>大概以下几项修改就可以了：</p>
 <ol>
 <li>安装介质即把cdrom改为以下内容</li>
 </ol>
-<pre><code>url --url=&quot;http://192.168.11.2/centos/7/&quot;</code></pre><ol start="2">
+<pre class="line-numbers language-cpp"><code class="language-cpp">url <span class="token operator">--</span>url<span class="token operator">=</span><span class="token string">"http://192.168.11.2/centos/7/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="2">
 <li>防火墙和SELinux根据自己的需要选择开启或关闭。</li>
 <li>如果没有zerombr和clearpart –all –initlabel，手动添加如果前面有#，则去掉。</li>
 <li>去掉分区信息前的#。</li>
@@ -627,34 +633,35 @@ zsh
 <li>地址池：服务器在可分配网段中可以分配的IP地址的范围</li>
 <li>DNS：用于客户机从DHCP服务器获取的DNS地址<br>如下一个示例：</li>
 </ul>
-<pre><code># 指定从DHCP服务器获取的DNS地址
-option domain-name-servers 114.114.114.114
+<pre class="line-numbers language-cpp"><code class="language-cpp"># 指定从DHCP服务器获取的DNS地址
+option domain<span class="token operator">-</span>name<span class="token operator">-</span>servers <span class="token number">114.114</span><span class="token punctuation">.</span><span class="token number">114.114</span>
 # 默认IP地址的租期
-default-lease-time 600；
+<span class="token keyword">default</span><span class="token operator">-</span>lease<span class="token operator">-</span>time <span class="token number">600</span>；
 # 最长租期
-max-lease-time 7200；
-# subnet用来指定网段，netmask是掩码
-subnet 192.168.11.0 netmask 255.255.255.0
-{
+max<span class="token operator">-</span>lease<span class="token operator">-</span>time <span class="token number">7200</span>；
+<span class="token macro property"># subnet用来指定网段，netmask是掩码</span>
+subnet <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.0</span> netmask <span class="token number">255.255</span><span class="token punctuation">.</span><span class="token number">255.0</span>
+<span class="token punctuation">{</span>
     # 使用range指定IP地址池
-    range 192.168.11.3 192.168.11.124;
-}
+    range <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.3</span> <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.124</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 对于一个DHCP服务器以上内容足够了
-next-server 192.168.11.2
-filename &quot;pxelinux.0&quot;
-next-server用来指定TFTP服务器的位置
+next<span class="token operator">-</span>server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.2</span>
+filename <span class="token string">"pxelinux.0"</span>
+next<span class="token operator">-</span>server用来指定TFTP服务器的位置
 filename用来指定要访问TFTP服务器上的哪个文件
 也就是说在这里我们的DHCP服务器的配置文件是这样的
 
-option domain-name-servers 114.114.114.114
-default-lease-time 600；
-max-lease-time 7200；
-subnet 192.168.11.0 netmask 255.255.255.0
-{
-    next-server 192.168.11.2;
-    filename &quot;pxelinux.0&quot;;
-    range 192.168.11.3 192.168.11.124;
-}</code></pre><p>接下来使用systemctl start dhcpd启动dhcp服务，使用ss -unl查看67端口是会否已经开启。</p>
+option domain<span class="token operator">-</span>name<span class="token operator">-</span>servers <span class="token number">114.114</span><span class="token punctuation">.</span><span class="token number">114.114</span>
+<span class="token keyword">default</span><span class="token operator">-</span>lease<span class="token operator">-</span>time <span class="token number">600</span>；
+max<span class="token operator">-</span>lease<span class="token operator">-</span>time <span class="token number">7200</span>；
+subnet <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.0</span> netmask <span class="token number">255.255</span><span class="token punctuation">.</span><span class="token number">255.0</span>
+<span class="token punctuation">{</span>
+    next<span class="token operator">-</span>server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.2</span><span class="token punctuation">;</span>
+    filename <span class="token string">"pxelinux.0"</span><span class="token punctuation">;</span>
+    range <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.3</span> <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.124</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>接下来使用systemctl start dhcpd启动dhcp服务，使用ss -unl查看67端口是会否已经开启。</p>
 <h4 id="八、必要文件复制到相关目录"><a href="#八、必要文件复制到相关目录" class="headerlink" title="八、必要文件复制到相关目录"></a>八、必要文件复制到相关目录</h4><p>将相关文件复制到TFTP共享目录。</p>
 <blockquote>
 <p>TFTP的共享目录在/var/lib/tftpboot/下，考虑到灵活性依旧可以给不同版本的系统单独的目录</p>
@@ -665,40 +672,42 @@ subnet 192.168.11.0 netmask 255.255.255.0
 <li>将/usr/share/syslinux/pxelinux.0复制到/var/lib/tftpboot目录下</li>
 </ul>
 <p>如果只有一个系统，应该有5个文件两个目录，结构如下</p>
-<pre><code>[root@DHCP_Svr]/var/lib/tftpboot# tree
-.
-├── 7
-│   ├── initrd.img
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@DHCP_Svr<span class="token punctuation">]</span><span class="token operator">/</span>var<span class="token operator">/</span>lib<span class="token operator">/</span>tftpboot# tree
+<span class="token punctuation">.</span>
+├── <span class="token number">7</span>
+│   ├── initrd<span class="token punctuation">.</span>img
 │   └── vmlinuz
-├── menu.c32
-├── pxelinux.0
-└── pxelinux.cfg
-    └── default</code></pre><h4 id="九、修改启动菜单以及配置文件"><a href="#九、修改启动菜单以及配置文件" class="headerlink" title="九、修改启动菜单以及配置文件"></a>九、修改启动菜单以及配置文件</h4><p>修改default文件,从光盘复制过来的文件有很多内容，不够大部分我们并不需要，参考下面的内容就可以了。</p>
-<pre><code>#就是刚才复制到菜单文件
-default menu.c32
+├── menu<span class="token punctuation">.</span>c32
+├── pxelinux<span class="token number">.0</span>
+└── pxelinux<span class="token punctuation">.</span>cfg
+    └── <span class="token keyword">default</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="九、修改启动菜单以及配置文件"><a href="#九、修改启动菜单以及配置文件" class="headerlink" title="九、修改启动菜单以及配置文件"></a>九、修改启动菜单以及配置文件</h4><p>修改default文件,从光盘复制过来的文件有很多内容，不够大部分我们并不需要，参考下面的内容就可以了。</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">#就是刚才复制到菜单文件
+<span class="token keyword">default</span> menu<span class="token punctuation">.</span>c32
 #超时时间，就是菜单倒计时
-timeout 600
-display boot.msg
+timeout <span class="token number">600</span>
+display boot<span class="token punctuation">.</span>msg
 
 # 启动菜单的具体配置
-# menu label 用来指定菜单名称，可以自定义，^符号用来确定光标位置，
+<span class="token macro property"># menu label 用来指定菜单名称，可以自定义，^符号用来确定光标位置，</span>
 # 同时其后的字母也是调到对应菜单的快捷键
-# kernel指定内核文件路径，由于我们放在了文件夹中所以路径是7/vmlinuz
+<span class="token macro property"># kernel指定内核文件路径，由于我们放在了文件夹中所以路径是7/vmlinuz</span>
 # 指定initrd的路径，以及ks应答文件文件的路径
 # 务必确保应答文件可以访问
 label linux
-  menu label ^Install CentOS 7
-  kernel 7/vmlinuz
-  append initrd=7/initrd.img ks=http://192.168.11.2/anaconda-ks.cfg
+  menu label <span class="token operator">^</span>Install CentOS <span class="token number">7</span>
+  kernel <span class="token number">7</span><span class="token operator">/</span>vmlinuz
+  append initrd<span class="token operator">=</span><span class="token number">7</span><span class="token operator">/</span>initrd<span class="token punctuation">.</span>img ks<span class="token operator">=</span>http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">11.2</span><span class="token operator">/</span>anaconda<span class="token operator">-</span>ks<span class="token punctuation">.</span>cfg
 
 # 本地硬盘启动
-# menu default表示此项菜单为默认菜单，建议将本地启动作为默认启动
+<span class="token macro property"># menu default表示此项菜单为默认菜单，建议将本地启动作为默认启动</span>
 label local
-  menu default
-  menu label Boot from ^local drive
-  localboot 0xffff
+  menu <span class="token keyword">default</span>
+  menu label Boot from <span class="token operator">^</span>local drive
+  localboot <span class="token number">0xffff</span>
 
-menu end</code></pre><h4 id="十、测试"><a href="#十、测试" class="headerlink" title="十、测试"></a>十、测试</h4><ul>
+menu end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="十、测试"><a href="#十、测试" class="headerlink" title="十、测试"></a>十、测试</h4><ul>
 <li>将另一台虚拟机网卡同样配置为仅主机，网卡使用自动获取IP。</li>
 <li>确认安装源，以及应答文件可以访问，且default文件中路径配置正确。</li>
 <li>确认防火墙以及SELinux处于关闭状态。</li>
@@ -1438,7 +1447,7 @@ menu end</code></pre><h4 id="十、测试"><a href="#十、测试" class="header
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>
