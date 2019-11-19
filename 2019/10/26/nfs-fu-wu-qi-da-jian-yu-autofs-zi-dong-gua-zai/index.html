@@ -4,15 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="火车进出栈问题, 蒋曾辉 网络工程 网络安全">
+    <meta name="keywords" content="NFS服务器搭建与autofs自动挂载, 蒋曾辉 网络工程 网络安全">
     <meta name="baidu-site-verification" content="RFKXEadp8E">
     <meta name="google-site-verification" content="RFKXEadp8E">
     <meta name="360-site-verification" content>
-    <meta name="description" content="题目一列火车n节车厢，依次编号为1,2,3,…,n。
-每节车厢有两种运动方式，进栈与出栈，问n节车厢出栈的可能排列方式有多少种。
-输入格式输入一个整数n，代表火车的车厢数。
-输出格式输出一个整数s表示n节车厢出栈的可能排列方式数量。
-数据范">
+    <meta name="description" content="一、NFS和autofs简介NFS（Network File System），网络文件系统是 Linux 系统支持的一种网络服务，通过 NFS ，网络中的计算机可以发布共享信息，让远程客户像使用本地文件一样访问该共享资源，若想使用远程计算机">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>火车进出栈问题 | 蒋曾辉的博客</title>
+    <title>NFS服务器搭建与autofs自动挂载 | 蒋曾辉的博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -294,13 +290,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        火车进出栈问题
+                        NFS服务器搭建与autofs自动挂载
                     </div>
                 </div>
             </div>
@@ -411,8 +407,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/卡特兰数/" target="_blank">
-                            <span class="chip bg-color">卡特兰数</span>
+                        <a href="/tags/Linux网络运维/" target="_blank">
+                            <span class="chip bg-color">Linux网络运维</span>
                         </a>
                         
                     </div>
@@ -423,8 +419,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/算法/" class="post-category" target="_blank">
-                            算法
+                        <a href="/categories/Linux/" class="post-category" target="_blank">
+                            Linux
                         </a>
                         
                     </div>
@@ -435,7 +431,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-12
+                    2019-10-26
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -449,7 +445,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    430
+                    649
                 </div>
                 
 
@@ -472,85 +468,35 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>一列火车n节车厢，依次编号为1,2,3,…,n。</p>
-<p>每节车厢有两种运动方式，进栈与出栈，问n节车厢出栈的可能排列方式有多少种。</p>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入一个整数n，代表火车的车厢数。</p>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数s表示n节车厢出栈的可能排列方式数量。</p>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n≤60000</p>
-<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>3</code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>5</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
-<li>这个题目就是求卡特兰数，卡特兰数是一种用途非常广的递推数列。</li>
-<li>下面给出用组合数求卡特兰数的代码。</li>
-</ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-typedef long long ll;
-const int N=120005;
-const ll mod=100000000;
+                <h4 id="一、NFS和autofs简介"><a href="#一、NFS和autofs简介" class="headerlink" title="一、NFS和autofs简介"></a>一、NFS和autofs简介</h4><p>NFS（Network File System），网络文件系统是 Linux 系统支持的一种网络服务，通过 NFS ，网络中的计算机可以发布共享信息，让远程客户像使用本地文件一样访问该共享资源，若想使用远程计算机上的文件，只要用 mount 命令将远程的目录挂载在本地文件系统下即可。<br>Autofs：mount是用来挂载文件系统的，可以在系统启动的时候挂载也可以在系统启动后挂载。对于本地固定设备，如硬盘可以使用mount挂载；而光盘、软盘、NFS、SMB等文件系统具有动态性，即需要的时候才有必要挂载。autofs服务就提供这种功能，好像windows中的光驱自动打开功能，能够及时挂载动态加载的文件系统，免去我们手动挂载的麻烦。</p>
+<h4 id="二、服务端NFS安装"><a href="#二、服务端NFS安装" class="headerlink" title="二、服务端NFS安装"></a>二、服务端NFS安装</h4><pre><code>yum install nfs-utils -y   #安装nfs
+systemctl start nfs   #开启nfs服务
+systemctl enable nfs   #开机自启动</code></pre><h4 id="三、配置NFS服务"><a href="#三、配置NFS服务" class="headerlink" title="三、配置NFS服务"></a>三、配置NFS服务</h4><pre><code>mkdir /westos
+echo &#39;hello,world&#39; &gt; /westos/hello  
+# 建立目录 /westos, 在其中创建测试文件hello</code></pre><blockquote>
+<p>NFS 的主配置文件为 /etc/exports，该文件中可以设置 NFS<br>的共享目录、访问权限和允许访问的主机等参数；默认情况下是空文件，不配置任何共享目录</p>
+</blockquote>
+<h4 id="四、服务端测试"><a href="#四、服务端测试" class="headerlink" title="四、服务端测试"></a>四、服务端测试</h4><p>showmount命令查看指定服务器的nfs共享文件信息，常用选项 -e：显示指定服务器输出的共享目录</p>
+<pre><code>showmount -e 192.168.1.152
+Export list for 192.168.1.152:
+/westos *  </code></pre><h4 id="五、挂载共享目录"><a href="#五、挂载共享目录" class="headerlink" title="五、挂载共享目录"></a>五、挂载共享目录</h4><pre><code>mount 服务器名或IP地址：共享目录 本地挂载目录
+# 将共享目录挂载到本地/mnt     ls /mnt/
+mount 192.168.1.152:/westos /mnt/ 
+hello   #有我们的测试文件，说明目录共享成功 
+vim /etc/fstab 
+# 让共享目录自动挂载
+192.168.1.152:/westos /mnt/ nfs defaults 0 0 </code></pre><h4 id="六、autofs的安装"><a href="#六、autofs的安装" class="headerlink" title="六、autofs的安装"></a>六、autofs的安装</h4><pre><code>yum install autofs -y
+systemctl start autofs.service</code></pre><h4 id="七、特殊映射-net"><a href="#七、特殊映射-net" class="headerlink" title="七、特殊映射/net"></a>七、特殊映射/net</h4><blockquote>
+<p>autofs服务开启之后，将自动生成/net目录，默认将共享目录挂载在该目录中，只要使用 cd 命令指定 NFS<br>服务器的IP地址，就可以直接挂载使用远程主机上的 NFS 共享</p>
+</blockquote>
+<pre><code># 使用cd命令时就会自动挂载共享目录
+cd /net/192.168.1.152/westos              
+ls
+hello</code></pre><h4 id="八、自定义卸载时间"><a href="#八、自定义卸载时间" class="headerlink" title="八、自定义卸载时间"></a>八、自定义卸载时间</h4><pre><code># 等待时间配置文件
+vim /etc/sysconfig/autofs      
+# 切出共享目录路径，5秒后就自动卸载
+timeout=5                         </code></pre><h4 id="九、测试"><a href="#九、测试" class="headerlink" title="九、测试"></a>九、测试</h4><p>重启测试是否完成挂载。</p>
 
-int primes[N],cnt,opt[N];
-bool str[N];
-
-void primesai(int r){//素数筛 
-    for(int i=2;i&lt;=r;i++){
-        if(!str[i]){
-            primes[cnt++]=i;
-            for(int j=i;j&lt;=r;j+=i){
-                str[j]=true;
-            }
-        }
-    }
-}
-
-int get(int n,int p){//获得n!中含有多少个p^1,p^2...这种质数 
-    int s=0;
-    while(n){
-        s+=n/p;
-        n/=p;
-    }
-    return s; 
-}
-
-void muilt(vector&lt;ll&gt; &amp;res,ll b){// 压位高精度乘法 
-    ll t=0;
-    for(int i=0;i&lt;res.size();i++){
-        res[i]=res[i]*b+t;
-        t=res[i]/mod;
-        res[i]%=mod;
-    }
-    while(t){
-        res.push_back(t%mod);
-        t/=mod;
-    }
-}
-
-void out(vector&lt;ll&gt; res){ // 输出高精度整数 
-    printf(&quot;%lld&quot;,res.back());
-    for(int i=res.size()-2;i&gt;=0;i--){
-        printf(&quot;%09lld&quot;,res[i]);
-    }
-}
-
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    primesai(n*2);
-    for(int i=0;i&lt;cnt;i++){ //质因数分解 求质因数个数 
-        int p=primes[i];
-        opt[p] = get(n*2,p)-get(n,p)-get(n+1,p);
-    }
-
-    vector&lt;ll&gt; res;
-    res.push_back(1);
-    for(ll i=2;i&lt;=2*n;i++){ 
-        for(ll j=0;j&lt;opt[i];j++){
-            muilt(res,i);
-        }
-    }
-    out(res);
-    return 0;
-}</code></pre>
             </div>
             <hr />
 
@@ -708,9 +654,9 @@ int main()
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《火车进出栈问题》
+                    《NFS服务器搭建与autofs自动挂载》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/12/huo-che-jin-chu-zhan-wen-ti/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蒋曾辉
             </a> 采用
@@ -751,7 +697,7 @@ int main()
         repo: 'JiangZengHui.github.io',
         owner: 'JiangZengHui',
         admin: "JiangZengHui",
-        id: '2019/08/12/huo-che-jin-chu-zhan-wen-ti/',
+        id: '2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1034,46 +980,48 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/13/qiu-yin/">
+                <a href="/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="蚯蚓">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="NFS服务器搭建与autofs自动挂载">
                         
-                        <span class="card-title">蚯蚓</span>
+                        <span class="card-title">NFS服务器搭建与autofs自动挂载</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            蛐蛐国最近蚯蚓成灾了！
+                            NFS服务器搭建与autofs自动挂载
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/单调堆/" target="_blank">
-                        <span class="chip bg-color">单调堆</span>
+                    <a href="/tags/Linux网络运维/" target="_blank">
+                        <span class="chip bg-color">Linux网络运维</span>
                     </a>
                     
                 </div>
@@ -1087,31 +1035,31 @@ int main()
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/11/zhi-fang-tu-zhong-zui-da-ju-xing/">
+                <a href="/2019/10/19/pxe-zi-dong-an-zhuang-linux-xi-tong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="直方图中最大矩形">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="PXE自动安装Linux系统">
                         
-                        <span class="card-title">直方图中最大矩形</span>
+                        <span class="card-title">PXE自动安装Linux系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            直方图是由在公共基线处对齐的一系列矩形组成的多边形。
+                            PXE全称是：Preboot Excution Environment(预启动执行环境)是由Intel公司研发的基于Client/Server的网络模式。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-11
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
@@ -1121,8 +1069,8 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/单调堆/" target="_blank">
-                        <span class="chip bg-color">单调堆</span>
+                    <a href="/tags/Linux网络运维/" target="_blank">
+                        <span class="chip bg-color">Linux网络运维</span>
                     </a>
                     
                 </div>

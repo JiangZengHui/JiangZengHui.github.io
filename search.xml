@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>NFS服务器搭建与autofs自动挂载</title>
+      <link href="/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/"/>
+      <url>/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/</url>
+      
+        <content type="html"><![CDATA[<h4 id="一、NFS和autofs简介"><a href="#一、NFS和autofs简介" class="headerlink" title="一、NFS和autofs简介"></a>一、NFS和autofs简介</h4><p>NFS（Network File System），网络文件系统是 Linux 系统支持的一种网络服务，通过 NFS ，网络中的计算机可以发布共享信息，让远程客户像使用本地文件一样访问该共享资源，若想使用远程计算机上的文件，只要用 mount 命令将远程的目录挂载在本地文件系统下即可。<br>Autofs：mount是用来挂载文件系统的，可以在系统启动的时候挂载也可以在系统启动后挂载。对于本地固定设备，如硬盘可以使用mount挂载；而光盘、软盘、NFS、SMB等文件系统具有动态性，即需要的时候才有必要挂载。autofs服务就提供这种功能，好像windows中的光驱自动打开功能，能够及时挂载动态加载的文件系统，免去我们手动挂载的麻烦。</p><h4 id="二、服务端NFS安装"><a href="#二、服务端NFS安装" class="headerlink" title="二、服务端NFS安装"></a>二、服务端NFS安装</h4><pre><code>yum install nfs-utils -y   #安装nfssystemctl start nfs   #开启nfs服务systemctl enable nfs   #开机自启动</code></pre><h4 id="三、配置NFS服务"><a href="#三、配置NFS服务" class="headerlink" title="三、配置NFS服务"></a>三、配置NFS服务</h4><pre><code>mkdir /westosecho &#39;hello,world&#39; &gt; /westos/hello  # 建立目录 /westos, 在其中创建测试文件hello</code></pre><blockquote><p>NFS 的主配置文件为 /etc/exports，该文件中可以设置 NFS<br>的共享目录、访问权限和允许访问的主机等参数；默认情况下是空文件，不配置任何共享目录</p></blockquote><h4 id="四、服务端测试"><a href="#四、服务端测试" class="headerlink" title="四、服务端测试"></a>四、服务端测试</h4><p>showmount命令查看指定服务器的nfs共享文件信息，常用选项 -e：显示指定服务器输出的共享目录</p><pre><code>showmount -e 192.168.1.152Export list for 192.168.1.152:/westos *  </code></pre><h4 id="五、挂载共享目录"><a href="#五、挂载共享目录" class="headerlink" title="五、挂载共享目录"></a>五、挂载共享目录</h4><pre><code>mount 服务器名或IP地址：共享目录 本地挂载目录# 将共享目录挂载到本地/mnt     ls /mnt/mount 192.168.1.152:/westos /mnt/ hello   #有我们的测试文件，说明目录共享成功 vim /etc/fstab # 让共享目录自动挂载192.168.1.152:/westos /mnt/ nfs defaults 0 0 </code></pre><h4 id="六、autofs的安装"><a href="#六、autofs的安装" class="headerlink" title="六、autofs的安装"></a>六、autofs的安装</h4><pre><code>yum install autofs -ysystemctl start autofs.service</code></pre><h4 id="七、特殊映射-net"><a href="#七、特殊映射-net" class="headerlink" title="七、特殊映射/net"></a>七、特殊映射/net</h4><blockquote><p>autofs服务开启之后，将自动生成/net目录，默认将共享目录挂载在该目录中，只要使用 cd 命令指定 NFS<br>服务器的IP地址，就可以直接挂载使用远程主机上的 NFS 共享</p></blockquote><pre><code># 使用cd命令时就会自动挂载共享目录cd /net/192.168.1.152/westos              lshello</code></pre><h4 id="八、自定义卸载时间"><a href="#八、自定义卸载时间" class="headerlink" title="八、自定义卸载时间"></a>八、自定义卸载时间</h4><pre><code># 等待时间配置文件vim /etc/sysconfig/autofs      # 切出共享目录路径，5秒后就自动卸载timeout=5                         </code></pre><h4 id="九、测试"><a href="#九、测试" class="headerlink" title="九、测试"></a>九、测试</h4><p>重启测试是否完成挂载。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux网络运维 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PXE自动安装Linux系统</title>
       <link href="/2019/10/19/pxe-zi-dong-an-zhuang-linux-xi-tong/"/>
       <url>/2019/10/19/pxe-zi-dong-an-zhuang-linux-xi-tong/</url>
@@ -372,11 +397,11 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 优先队列 </tag>
+            
+            <tag> 贪心 </tag>
             
         </tags>
       

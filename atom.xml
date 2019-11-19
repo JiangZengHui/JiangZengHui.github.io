@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jzenghui.top/"/>
-  <updated>2019-11-18T13:33:10.417Z</updated>
+  <updated>2019-11-19T12:29:15.890Z</updated>
   <id>https://jzenghui.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NFS服务器搭建与autofs自动挂载</title>
+    <link href="https://jzenghui.top/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/"/>
+    <id>https://jzenghui.top/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/</id>
+    <published>2019-10-26T12:04:12.000Z</published>
+    <updated>2019-11-19T12:29:15.890Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、NFS和autofs简介&quot;&gt;&lt;a href=&quot;#一、NFS和autofs简介&quot; class=&quot;headerlink&quot; title=&quot;一、NFS和autofs简介&quot;&gt;&lt;/a&gt;一、NFS和autofs简介&lt;/h4&gt;&lt;p&gt;NFS（Network File
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://jzenghui.top/categories/Linux/"/>
+    
+    
+      <category term="Linux网络运维" scheme="https://jzenghui.top/tags/Linux%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>PXE自动安装Linux系统</title>
@@ -407,11 +433,11 @@
       <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="贪心" scheme="https://jzenghui.top/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="并查集" scheme="https://jzenghui.top/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     
       <category term="优先队列" scheme="https://jzenghui.top/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    
+      <category term="贪心" scheme="https://jzenghui.top/tags/%E8%B4%AA%E5%BF%83/"/>
     
   </entry>
   
@@ -526,32 +552,6 @@
     
     
       <category term="单调堆" scheme="https://jzenghui.top/tags/%E5%8D%95%E8%B0%83%E5%A0%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>火车进出栈问题</title>
-    <link href="https://jzenghui.top/2019/08/12/huo-che-jin-chu-zhan-wen-ti/"/>
-    <id>https://jzenghui.top/2019/08/12/huo-che-jin-chu-zhan-wen-ti/</id>
-    <published>2019-08-12T04:12:53.000Z</published>
-    <updated>2019-11-04T13:06:50.670Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="https://jzenghui.top/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="卡特兰数" scheme="https://jzenghui.top/tags/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/"/>
     
   </entry>
   
