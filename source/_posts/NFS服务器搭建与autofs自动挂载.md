@@ -19,7 +19,7 @@ Autofs：mount是用来挂载文件系统的，可以在系统启动的时候挂
 
 #### 二、服务端NFS安装
 
-```
+```cpp
 yum install nfs-utils -y   #安装nfs
 systemctl start nfs   #开启nfs服务
 systemctl enable nfs   #开机自启动
@@ -27,7 +27,7 @@ systemctl enable nfs   #开机自启动
 
 #### 三、配置NFS服务
 
-```
+```cpp
 mkdir /westos
 echo 'hello,world' > /westos/hello  
 # 建立目录 /westos, 在其中创建测试文件hello
@@ -40,7 +40,7 @@ echo 'hello,world' > /westos/hello
 
 showmount命令查看指定服务器的nfs共享文件信息，常用选项 -e：显示指定服务器输出的共享目录
 
-```
+```cpp
 showmount -e 192.168.1.152
 Export list for 192.168.1.152:
 /westos *  
@@ -48,7 +48,7 @@ Export list for 192.168.1.152:
 
 #### 五、挂载共享目录
 
-```
+```cpp
 mount 服务器名或IP地址：共享目录 本地挂载目录
 # 将共享目录挂载到本地/mnt     ls /mnt/
 mount 192.168.1.152:/westos /mnt/ 
@@ -60,7 +60,7 @@ vim /etc/fstab
 
 #### 六、autofs的安装
 
-```
+```cpp
 yum install autofs -y
 systemctl start autofs.service
 ```
@@ -70,7 +70,7 @@ systemctl start autofs.service
 > autofs服务开启之后，将自动生成/net目录，默认将共享目录挂载在该目录中，只要使用 cd 命令指定 NFS
 > 服务器的IP地址，就可以直接挂载使用远程主机上的 NFS 共享
 
-```
+```cpp
 # 使用cd命令时就会自动挂载共享目录
 cd /net/192.168.1.152/westos              
 ls
@@ -79,7 +79,7 @@ hello
 
 #### 八、自定义卸载时间
 
-```
+```cpp
 # 等待时间配置文件
 vim /etc/sysconfig/autofs      
 # 切出共享目录路径，5秒后就自动卸载

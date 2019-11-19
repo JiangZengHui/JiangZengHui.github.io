@@ -68,7 +68,7 @@ Please, DO NOT output extra spaces at the end of each line, or your solution may
 #### 代码
  
 
-```
+```cpp 
 #include<iostream>
 #include<algorithm>
 #include<queue>

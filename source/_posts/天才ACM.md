@@ -61,7 +61,7 @@ categories: 算法
 
 #### 代码
 
-```
+```cpp
 #include <iostream>
 #include <cmath>
 #include <algorithm>

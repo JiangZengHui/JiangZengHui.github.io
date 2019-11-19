@@ -15,6 +15,7 @@ categories: 算法
 `A^B所有约数之和对9901取模的值。`
 
 #### 输入 
+
 ```
 2 3
 ```
@@ -26,7 +27,7 @@ categories: 算法
 
 #### 解析 
 
-```
+```cpp 
 A= p1^k1 *p2^k2 *p3^k *...* pn^kn
 A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
 ```
@@ -34,7 +35,7 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
 而( pi^c *pj^d )也是A^B的约数。(所有最简约数的乘积也是他的约数)
 因此A^B的约数之和等于
 
-```
+```cpp 
  (p1^0 +p1^1 +... +pn^k1) * (p2^0 +p2^1 +.... +p2^k2) *... 
  *(pn^0 +pn^1 +... +pn^kn);
 ```
@@ -42,7 +43,7 @@ A^B= p1^k1B *p2^k2B *p3^k3B *... *pn^knB
  - 计算 
  - 当k为奇数时 
 
-```
+```cpp 
 sum(p,k)= p^0 +p^1 +... +p^k
         =( p^0 +p^1 +...+p^(k/2)) +(p^(k/2+1) +...p^k);
         =( p^0 +p^1 +...+p^(k/2)) +p^(k/2+1) (p^0 +... p^(k/2));
@@ -53,7 +54,7 @@ sum(p,k)= p^0 +p^1 +... +p^k
   - 当k为偶数时 
  
 
-```
+```cpp 
 sum(p,k)=sum(p,k-1)*p+1    
 ```
 
@@ -64,7 +65,7 @@ sum(p,k)=sum(p,k-1)*p+1
 
 #### 代码
 
-```
+```cpp 
 #include <iostream>
 using namespace std;
 const int mod=9901;

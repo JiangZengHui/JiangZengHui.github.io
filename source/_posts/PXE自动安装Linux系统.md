@@ -31,7 +31,7 @@ PXE当初是作为Intel的有线管理体系的一部分，Intel 和 Systemsoft�
 2. 关闭VMware的DHCP服务
 3. 给服务器分配一个IP地址，地址建议为静态地址。配置文件如下：
 
-```
+```cpp 
 TYPE=Ethernet
 BOOTPROTO=static
 IPADDR=192.168.11.2
@@ -63,7 +63,7 @@ ONBOOT=yes
 执行以下两条命令确保关闭防火墙
 
 
-```
+```cpp 
 systemctl stop firewalld
 systemctl disable firewalld
 ```
@@ -72,7 +72,7 @@ systemctl disable firewalld
 以上是CentOS 7，如果是CentOS 6的话
 
 
-```
+```cpp 
 service iptables stop
 chkconfig iptables off
 ```
@@ -83,7 +83,7 @@ chkconfig iptables off
 
 执行以下命令安装相关软件并启动服务，DHCP由于需要另外修改配置文件先跳过
 
-```
+```cpp 
 yum install httpd dhcp syslinux tftp-server
 systemctl start httpd tftp.socket
 systemctl enable dhcpd tftp.socket httpd
@@ -113,7 +113,7 @@ systemctl enable dhcpd tftp.socket httpd
 
 > 注：此为最小化安装文件内容，如果是图形界面，内容会有些许不同
 
-```
+```cpp 
 #platform=86, AMD64, or Intel EM64T
 #version=DEVEL
 # System authorization information
@@ -179,7 +179,7 @@ zsh
 大概以下几项修改就可以了：
 1. 安装介质即把cdrom改为以下内容
 
-```
+```cpp 
 url --url="http://192.168.11.2/centos/7/"
 ```
 
@@ -212,7 +212,7 @@ url --url="http://192.168.11.2/centos/7/"
 - DNS：用于客户机从DHCP服务器获取的DNS地址
 如下一个示例：
 
-```
+```cpp 
 # 指定从DHCP服务器获取的DNS地址
 option domain-name-servers 114.114.114.114
 # 默认IP地址的租期
@@ -259,7 +259,7 @@ subnet 192.168.11.0 netmask 255.255.255.0
 
 如果只有一个系统，应该有5个文件两个目录，结构如下
 
-```
+```cpp 
 [root@DHCP_Svr]/var/lib/tftpboot# tree
 .
 ├── 7
@@ -275,7 +275,7 @@ subnet 192.168.11.0 netmask 255.255.255.0
 
 修改default文件,从光盘复制过来的文件有很多内容，不够大部分我们并不需要，参考下面的内容就可以了。
 
-```
+```cpp 
 #就是刚才复制到菜单文件
 default menu.c32
 #超时时间，就是菜单倒计时

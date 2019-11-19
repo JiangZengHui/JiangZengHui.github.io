@@ -16,7 +16,7 @@ categories: 算法
  - dp[i][j]代表以i为起点，2^j 宽的最值 ，即以i+2^j-1结束。
  - arr[i]代表原数组。
 
-```
+```cpp 
 void ST_prework(int n){
 	fir(i,1,n) dp[i][0]=arr[i];	
 	int k=log(n*1.0)/log(2.0);
@@ -32,7 +32,7 @@ void ST_prework(int n){
 
  - 取出L到R的最值。
 
-```
+```cpp 
 int ST_query(int l,int r){
 	int k=log((r-l+1)*1.0)/log(2.0);
 	return min(dp[l][k],dp[r-(1<<k)+1][k]); 

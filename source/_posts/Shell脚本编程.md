@@ -28,7 +28,7 @@ Shell是一个用C语言编写的程序，通过Shell用户可以访问操作系
 #### 三、Shell脚本解释器
 Linux的Shell脚本解释器种类众多，一个系统可以存在多个shell脚本解释器，可以通过cat /etc/shells 命令查看系统中安装的shell脚本解释器。
 
-```
+```cpp 
 [root@centos6-1 ~]# cat /etc/shells 
 /bin/sh
 /bin/bash
@@ -45,13 +45,13 @@ bash由于易用和免费，在日常工作中被广泛使用。同时，Bash也
 #### 四、Hello World
 新建helloworld.sh
 
-```
+```cpp 
 [root@centos6-1 ~]# touch helloworld.sh
 ```
 
 编辑helloworld.sh文件，添入一下内容
 
-```
+```cpp 
 #!/bin/bash
 echo "helloworld"
 ```
@@ -60,13 +60,13 @@ echo "helloworld"
  - echo 是Shell的一个内部指令，用于在屏幕上打印出指定的字符串
 赋予当前用户helloworld.sh的执行权限(刚创建的文件没有执行权限)
 
-```
+```cpp 
 [root@centos6-1 ~]# chmod u+x helloworld.sh
 ```
 
 执行hellowo.sh脚本方式一
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh 
 helloworld
 [root@centos6-1 ~]# 
@@ -76,7 +76,7 @@ helloworld
 
 执行hellowo.sh脚本方式二
 
-```
+```cpp 
 [root@centos6-1 ~]# /bin/sh helloworld.sh 
 helloworld
 [root@centos6-1 ~]# 
@@ -90,7 +90,7 @@ helloworld
 
 shell变量定义的严格语法限制：
 
-```
+```cpp 
 1.变量名和等号之间不能有空格
 2.变量名首个字符必须为英文字母
 3.不能包含标点符号但能够使用下划线(_)
@@ -108,13 +108,13 @@ shell变量定义的严格语法限制：
 
 ##### 2.定义变量
 
-```
+```cpp 
 name="zaomianbao"
 ```
 
 ##### 3.引用变量
 
-```
+```cpp 
 name="zaomianbao"
 echo ${name}
 echo $name
@@ -126,7 +126,7 @@ echo $name
 
 > 已定义的变量，可以被重新定义
 
-```
+```cpp 
 name="zaomianbao"
 echo ${name}
 name="tiechui"
@@ -137,7 +137,7 @@ echo ${name}
 
 > 使用readonly命令可以将变量定义为只读变量，只读变量的值不能被改变
 
-```
+```cpp 
 name="zaomianbao"
 readonly name
 name="tiechui"
@@ -145,7 +145,7 @@ name="tiechui"
 
 ##### 6.删除变量
 
-```
+```cpp 
 name="zaomianbao"
 unset name
 echo $name
@@ -160,7 +160,7 @@ echo $name
 
 1.修改helloworld.sh为
 
-```
+```cpp 
 #!/bin/bash
 echo $1
 echo $2
@@ -169,7 +169,7 @@ echo $3
 
 2.执行携带参数
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh haha wowow nini
 haha
 wowow
@@ -183,7 +183,7 @@ nini
 
 单引号
 
-```
+```cpp 
 name='my name is zaomianbao'
 ```
 
@@ -191,7 +191,7 @@ name='my name is zaomianbao'
  - 单引号字串中不能出现单引号（对单引号使用转义符后也不行）
 双引号
 
-```
+```cpp 
 name='my name is zaomianbao'
 name_again="\"${name}\""
 ```
@@ -201,14 +201,14 @@ name_again="\"${name}\""
  
 字符串长度
 
-```
+```cpp 
 name='my name is zaomianbao'
 echo ${#name}   //执行输出为21
 ```
 
 截取字符串
 
-```
+```cpp 
 name='my name is zaomianbao'
 echo ${name:11:20}   //执行输出zaomianbao
 ```
@@ -220,7 +220,7 @@ echo ${name:11:20}   //执行输出zaomianbao
 
 > 下面的例子将展示shell数组常见的所有操作
 
-```
+```cpp 
 //第一数组
 [root@centos6-1 ~]# usernames=(1 2 33 44 adsd1)
 //默认读取第一个
@@ -263,7 +263,7 @@ echo ${name:11:20}   //执行输出zaomianbao
 
 下面是详细例子
 
-```
+```cpp 
 #!/bin/bash
 
 a=10
@@ -296,7 +296,7 @@ fi
 
 执行
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh 
 a + b : 30
 a - b : -10
@@ -327,7 +327,8 @@ a 不等于 b
 |-le|	LESS THAN OR EQUAL 小于等|
 
 下面是详细例子
-```
+
+```cpp 
 #!/bin/bash
 
 a=10
@@ -372,7 +373,7 @@ fi
 ```
 执行
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh  
 10 -eq 20: a 不等于 b
 10 -ne 20: a 不等于 b
@@ -391,7 +392,8 @@ fi
 | \|\| |	或|
 
 下面是详细例子
-```
+
+```cpp 
 #!/bin/bash
 
 a=10
@@ -415,7 +417,7 @@ fi
 
 执行
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh 
 返回 false
 返回 true
@@ -430,7 +432,8 @@ fi
 |str|	字符串是否为空，不为空返回 true|
 
 下面是详细例子
-```
+
+```cpp 
 #!/bin/bash
 
 a="abc"
@@ -470,7 +473,7 @@ fi
 
 执行
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh 
 abc = efg: a 不等于 b
 abc != efg : a 不等于 b
@@ -498,7 +501,8 @@ abc : 字符串不为空
 |-e file|	文件（包括目录）是否存在，如果是，则返回 true|
 
 下面是详细例子
-```
+
+```cpp 
 #!/bin/bash
 
 file="/com/zaomianbao"
@@ -549,7 +553,7 @@ fi
 
 执行
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh 
 文件不可读
 文件不可写
@@ -564,7 +568,7 @@ fi
 #### 十、流程控制
 ##### 1.if-else
 
-```
+```cpp 
 if condition
 then
     //做你想做的事
@@ -587,7 +591,7 @@ fi
 ##### 2.case
 case 语句匹配一个值或一个模式，如果匹配成功，执行相匹配的命令
 
-```
+```cpp 
 case 值 in
 模式1)
     //做你想做的事
@@ -606,7 +610,7 @@ esac
 
 ##### 3.for
 
-```
+```cpp 
 for 变量 in 列表
 do
     //做你想做的事
@@ -615,7 +619,7 @@ done
 
 ##### 4.while
 
-```
+```cpp 
 while command
 do
    //做你想做的是
@@ -626,7 +630,7 @@ done
 ##### 5.until
 until 循环执行一系列命令直至条件为 true 时停止。until 循环与 while 循环在处理方式上刚好相反。一般while循环优于until循环，但在某些时候，也只是极少数情况下，until 循环更加有用。
 
-```
+```cpp 
 until command
 do
    //做你想做的事
@@ -638,7 +642,7 @@ done
 #### 十一、函数
 函数可以让我们将一个复杂功能划分成若干模块，让程序结构更加清晰，代码重复利用率更高。像其他编程语言一样，Shell 也支持函数。Shell 函数必须先定义后使用。
 
-```
+```cpp 
 #!/bin/bash
 
 demoFun(){
@@ -652,7 +656,7 @@ echo "-----函数执行完毕-----"
 
 执行
 
-```
+```cpp 
 [root@centos6-1 ~]# ./helloworld.sh 
 -----函数开始执行-----
 这是我的第一个 shell 函数!
