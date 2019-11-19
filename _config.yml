@@ -38,6 +38,7 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
+
 highlight:
   enable: false
   line_number: false
@@ -46,7 +47,7 @@ highlight:
 
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: 'tomorrow'
+  theme: 'atom-dark'
   line_number: true    # default false
   custom_css:
 
