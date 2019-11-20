@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>网络存储服务器IP-SAN的搭建</title>
+      <link href="/2019/11/02/wang-luo-cun-chu-fu-wu-qi-ip-san-de-da-jian/"/>
+      <url>/2019/11/02/wang-luo-cun-chu-fu-wu-qi-ip-san-de-da-jian/</url>
+      
+        <content type="html"><![CDATA[<h4 id="一、IP-SAN简介"><a href="#一、IP-SAN简介" class="headerlink" title="一、IP SAN简介"></a>一、IP SAN简介</h4><p>IP SAN简称SAN（Storage Area Network），中文意思存储局域网络，IP SAN使存储空间得到更加充分的利用，并使得安装和管理更加有效。</p><p>SAN是一种将存储设备、连接设备和接口集成在一个高速网络中的技术。SAN本身就是一个存储网络，承担了数据存储任务，SAN网络与LAN业务网络相隔离，存储数据流不会占用业务网络带宽。</p><h4 id="二、服务端配置"><a href="#二、服务端配置" class="headerlink" title="二、服务端配置"></a>二、服务端配置</h4><h5 id="1-安装ISCSI服务器端"><a href="#1-安装ISCSI服务器端" class="headerlink" title="1. 安装ISCSI服务器端"></a>1. 安装ISCSI服务器端</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># yum -y install scsi-target-utils</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h5 id="2-启动服务器端"><a href="#2-启动服务器端" class="headerlink" title="2.  启动服务器端"></a>2.  启动服务器端</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># service tgtd start</span><span class="token macro property"># chkconfig tgtd on</span><span class="token macro property"># netstat -tnlp | grep 3260</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h5 id="3-建分区"><a href="#3-建分区" class="headerlink" title="3. 建分区"></a>3. 建分区</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># fdisk -l |grep "Disk"</span><span class="token macro property"># fdisk  /dev/sdb</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h5 id="4-共享分区"><a href="#4-共享分区" class="headerlink" title="4. 共享分区"></a>4. 共享分区</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># vi /etc/tgt/targets.conf   </span><span class="token operator">&lt;</span>target iqn<span class="token number">.2016</span><span class="token operator">-</span><span class="token number">08</span><span class="token punctuation">.</span>cn<span class="token punctuation">.</span>node01<span class="token punctuation">.</span>www<span class="token operator">:</span>target4_scan<span class="token operator">></span>         backing<span class="token operator">-</span>store <span class="token operator">/</span>dev<span class="token operator">/</span>sdb1            initiator<span class="token operator">-</span>address <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">25.12</span>              initiator<span class="token operator">-</span>address <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">25.13</span>        vendor_id node                product_id target4      <span class="token operator">&lt;</span><span class="token operator">/</span>target<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h4 id="二、客户端配置"><a href="#二、客户端配置" class="headerlink" title="二、客户端配置"></a>二、客户端配置</h4><h5 id="1-安装ISCSI客户端"><a href="#1-安装ISCSI客户端" class="headerlink" title="1. 安装ISCSI客户端"></a>1. 安装ISCSI客户端</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># yum -y install iscsi-initiator-utils</span><span class="token macro property"># iscsiadm -m discovery -t sendtargets -p 192.168.25.11   </span># <span class="token operator">/</span>etc<span class="token operator">/</span>init<span class="token punctuation">.</span>d<span class="token operator">/</span>iscsid status  <span class="token macro property"># tree /var/lib/iscsi/        </span># <span class="token operator">/</span>etc<span class="token operator">/</span>init<span class="token punctuation">.</span>d<span class="token operator">/</span>iscsid  start        # <span class="token operator">/</span>etc<span class="token operator">/</span>init<span class="token punctuation">.</span>d<span class="token operator">/</span>iscsi  start <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h5 id="2-寻找ISCS设备"><a href="#2-寻找ISCS设备" class="headerlink" title="2. 寻找ISCS设备"></a>2. 寻找ISCS设备</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># iscsiadm -m discovery -t st -p 192.168.25.15:3260</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h5 id="3-登录到iSCSI设备"><a href="#3-登录到iSCSI设备" class="headerlink" title="3. 登录到iSCSI设备"></a>3. 登录到iSCSI设备</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># iscsiadm -m node -T iqn.2015-03.com.xsl.www:</span>  xsl<span class="token punctuation">.</span>disk1 <span class="token operator">-</span>p <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">25.15</span><span class="token operator">:</span><span class="token number">3260</span> <span class="token operator">-</span>l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h5 id="4-验证iscsi设备"><a href="#4-验证iscsi设备" class="headerlink" title="4.验证iscsi设备"></a>4.验证iscsi设备</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#fdisk -l</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h5 id="5-测试"><a href="#5-测试" class="headerlink" title="5.测试"></a>5.测试</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property"># iscsiadm -m discovery -t st -p 192.168.25.15:3260</span><span class="token macro property"># iscsiadm -m node -T iqn.2015-03.com.xsl.www:</span>  xsl<span class="token punctuation">.</span>disk1 <span class="token operator">-</span>p <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">25.15</span><span class="token operator">:</span><span class="token number">3260</span> <span class="token operator">-</span>l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux网络运维 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NFS服务器搭建与autofs自动挂载</title>
       <link href="/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/"/>
       <url>/2019/10/26/nfs-fu-wu-qi-da-jian-yu-autofs-zi-dong-gua-zai/</url>
@@ -397,11 +422,11 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 优先队列 </tag>
+            
+            <tag> 贪心 </tag>
             
         </tags>
       
@@ -482,9 +507,9 @@
       
         <tags>
             
-            <tag> 排序 </tag>
-            
             <tag> Hash </tag>
+            
+            <tag> 排序 </tag>
             
             <tag> 二分 </tag>
             
@@ -879,9 +904,9 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 前缀和 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> 中位数 </tag>
             
