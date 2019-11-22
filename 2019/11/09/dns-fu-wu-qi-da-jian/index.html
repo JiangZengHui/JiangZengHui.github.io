@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="城市游戏, 蒋曾辉 网络工程 网络安全">
+    <meta name="keywords" content="DNS服务器搭建, 蒋曾辉 网络工程 网络安全">
     <meta name="baidu-site-verification" content="RFKXEadp8E">
     <meta name="google-site-verification" content="RFKXEadp8E">
     <meta name="360-site-verification" content>
-    <meta name="description" content="题目有一天，小猫rainbow和freda来到了湘西张家界的天门山玉蟾宫，玉蟾宫宫主蓝兔盛情地款待了它们，并赐予它们一片土地。
-这片土地被分成N*M个格子，每个格子里写着’R’或者’F’，R代表这块土地被赐予了rainbow，F代表这块土地">
+    <meta name="description" content="一、DNS简介DNS（Domain Name Server，域名服务器）是进行域名(domain name)和与之相对应的IP地址 (IP address)转换的服务器。
+DNS中保存了一张域名(domain name)和与之相对应的IP地">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>城市游戏 | 蒋曾辉的博客</title>
+    <title>DNS服务器搭建 | 蒋曾辉的博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +291,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        城市游戏
+                        DNS服务器搭建
                     </div>
                 </div>
             </div>
@@ -408,8 +408,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/单调堆/" target="_blank">
-                            <span class="chip bg-color">单调堆</span>
+                        <a href="/tags/Linux网络运维/" target="_blank">
+                            <span class="chip bg-color">Linux网络运维</span>
                         </a>
                         
                     </div>
@@ -420,8 +420,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/算法/" class="post-category" target="_blank">
-                            算法
+                        <a href="/categories/Linux/" class="post-category" target="_blank">
+                            Linux
                         </a>
                         
                     </div>
@@ -432,7 +432,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-27
+                    2019-11-09
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -446,14 +446,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    672
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    8 分
                 </div>
                 
                 
@@ -469,79 +469,198 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>有一天，小猫rainbow和freda来到了湘西张家界的天门山玉蟾宫，玉蟾宫宫主蓝兔盛情地款待了它们，并赐予它们一片土地。</p>
-<p>这片土地被分成N*M个格子，每个格子里写着’R’或者’F’，R代表这块土地被赐予了rainbow，F代表这块土地被赐予了freda。</p>
-<p>现在freda要在这里卖萌。。。它要找一块矩形土地，要求这片土地都标着’F’并且面积最大。</p>
-<p>但是rainbow和freda的OI水平都弱爆了，找不出这块土地，而蓝兔也想看freda卖萌（她显然是不会编程的……），所以它们决定，如果你找到的土地面积为S，它们将给你3*S两银子。</p>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行包括两个整数N,M，表示矩形土地有N行M列。</p>
-<p>接下来N行，每行M个用空格隔开的字符’F’或’R’，描述了矩形土地。</p>
-<p>每行末尾没有多余空格。</p>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示你能得到多少银子，即(3*最大’F’矩形土地面积)的值。</p>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤N,M≤1000</p>
-<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>5 6
-R F F F F F
-F F F F F F
-R R R F F F
-F F F F F F
-F F F F F F</code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>45</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
-<li>这个题和直方图中最大矩形类似：<a href="https://blog.csdn.net/qq_41934571/article/details/98111288" target="_blank" rel="noopener">https://blog.csdn.net/qq_41934571/article/details/98111288</a></li>
-<li>那怎么转化过去呢？  我们可以这样，枚举每一行，然后对每一行用求直方图最大矩形的方法求最大矩形即可。</li>
-<li>我们需要初始化每一行的第j列的高，即以他开始的‘F’有多高. </li>
+                <h4 id="一、DNS简介"><a href="#一、DNS简介" class="headerlink" title="一、DNS简介"></a>一、DNS简介</h4><p>DNS（Domain Name Server，域名服务器）是进行域名(domain name)和与之相对应的IP地址 (IP address)转换的服务器。</p>
+<p>DNS中保存了一张域名(domain name)和与之相对应的IP地址 (IP address)的表，以解析消息的域名。 域名是Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。</p>
+<p>域名是由一串用点分隔的名字组成的，通常包含组织名，而且始终包括两到三个字母的后缀，以指明组织的类型或该域所在的国家或地区。</p>
+<h4 id="二、DNS原理"><a href="#二、DNS原理" class="headerlink" title="二、DNS原理"></a>二、DNS原理</h4><p>域名解析主要有三种方法:</p>
+<ol>
+<li>host 表用在本机上面 hosts</li>
+<li>NIS（网络信息服务）主要用在小型网络，并且已大部分不在使用</li>
+<li>DNS域名服务，分层分布式数据库来处理IP地址和域名的转换。</li>
+</ol>
+<blockquote>
+<p>DNS组成：DNS域名+DNS服务器+解析器</p>
+</blockquote>
+<p>解析过程：</p>
+<ol>
+<li>本地解析（使用之前的缓存信息，或者本地HOSTS文件）</li>
+<li>直接解析（直接有所设定的DNS服务器解析）</li>
+<li>递归查询（由DNS服务器代表客户机向其他DNS 服务器查询）</li>
+<li>迭代查询（DNS向客户机返回可以解析的其他DNS服务器）</li>
+</ol>
+<h4 id="三、DNS软件的安装"><a href="#三、DNS软件的安装" class="headerlink" title="三、DNS软件的安装"></a>三、DNS软件的安装</h4><pre class="line-numbers language-cpp"><code class="language-cpp">yum install <span class="token operator">-</span>y bind
+rpm <span class="token operator">-</span>ql bind <span class="token comment" spellcheck="true">//查看没有安装</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>DNS相关配置文件:</p>
+<ol>
+<li>/etc/named.conf 是BIND的核心配置文件，它包含了BIND 的基本配置，但其并不包括区域数据。</li>
+<li>/var/named/目录是DNS数据库文件存放目录，每一个域文件都放在这里。</li>
+</ol>
+</blockquote>
+<h4 id="四、配置文件参数"><a href="#四、配置文件参数" class="headerlink" title="四、配置文件参数"></a>四、配置文件参数</h4><p>在/etc/named.conf中大致分为针对全局生效，存放常规设置的options部分；以及针对某个区域，由各个区域设置的zone部分。另外还有logging（日志选项）和acl（访问控制列表）可选。</p>
+<p>去除注释后的/etc/named.conf配置文件如下：</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># cat <span class="token operator">/</span>etc<span class="token operator">/</span>named<span class="token punctuation">.</span>conf
+options <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">//指定BIND通过哪些网络接口和哪个端口来接收客户端请求。</span>
+<span class="token comment" spellcheck="true">//如果省略端口号，则使用默认端口53。127.0.0.1允许接收来自本地的请求。</span>
+<span class="token comment" spellcheck="true">//如果完全省略此项或网络接口是any，则默认使用所有端口。</span>
+        listen<span class="token operator">-</span>on port <span class="token number">53</span> <span class="token punctuation">{</span> <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//指定BIND通过哪个端口监听IPv6客户端请求。IPv6，</span>
+<span class="token comment" spellcheck="true">//服务器只接受通配符地址，any和none。</span>
+        listen<span class="token operator">-</span>on<span class="token operator">-</span>v6 port <span class="token number">53</span> <span class="token punctuation">{</span> <span class="token operator">::</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//BIND可以在该目录中找到包含区域数据的文件</span>
+        directory       <span class="token string">"/var/named"</span><span class="token punctuation">;</span>
+        dump<span class="token operator">-</span>file       <span class="token string">"/var/named/data/cache_dump.db"</span><span class="token punctuation">;</span>
+        statistics<span class="token operator">-</span>file <span class="token string">"/var/named/data/named_stats.txt"</span><span class="token punctuation">;</span>
+        memstatistics<span class="token operator">-</span>file <span class="token string">"/var/named/data/named_mem_stats.txt"</span><span class="token punctuation">;</span>
+        recursing<span class="token operator">-</span>file  <span class="token string">"/var/named/data/named.recursing"</span><span class="token punctuation">;</span>
+        secroots<span class="token operator">-</span>file   <span class="token string">"/var/named/data/named.secroots"</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//定义客户端可以自此发送DNS请求的网络。</span>
+<span class="token comment" spellcheck="true">//可以用地址信息（192.168.5.101/24）替换或使用any替换</span>
+        allow<span class="token operator">-</span>query     <span class="token punctuation">{</span> localhost<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        recursion yes<span class="token punctuation">;</span>
+        dnssec<span class="token operator">-</span>enable yes<span class="token punctuation">;</span>
+        dnssec<span class="token operator">-</span>validation yes<span class="token punctuation">;</span>
+        bindkeys<span class="token operator">-</span>file <span class="token string">"/etc/named.iscdlv.key"</span><span class="token punctuation">;</span>
+        managed<span class="token operator">-</span>keys<span class="token operator">-</span>directory <span class="token string">"/var/named/dynamic"</span><span class="token punctuation">;</span>
+        pid<span class="token operator">-</span>file <span class="token string">"/run/named/named.pid"</span><span class="token punctuation">;</span>
+        session<span class="token operator">-</span>keyfile <span class="token string">"/run/named/session.key"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+logging <span class="token punctuation">{</span>
+        channel default_debug <span class="token punctuation">{</span>
+                file <span class="token string">"data/named.run"</span><span class="token punctuation">;</span>
+                severity dynamic<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+zone <span class="token string">"."</span> IN <span class="token punctuation">{</span>
+        type hint<span class="token punctuation">;</span>　　<span class="token comment" spellcheck="true">//指定区域类型</span>
+        file <span class="token string">"named.ca"</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//区域文件，需要手动创建。</span>
+                        <span class="token comment" spellcheck="true">//范例文件为named.localhost</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+include <span class="token string">"/etc/named.rfc1912.zones"</span><span class="token punctuation">;</span>
+include <span class="token string">"/etc/named.root.key"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>type字段指定区域的类型，对于区域的管理至关重要，一共分为5种：</p>
+<ul>
+<li><p>master：主DNS服务器，拥有区域数据文件，并对此区域提供管理数据。</p>
+</li>
+<li><p>slave：辅助DNS服务器，拥有主DNS服务器的区域数据文件的副本，服务器DNS服务器会从主DNS服务器同步所有区域数据。</p>
+</li>
+<li><p>stub：stub区域与slave区域类似，但只复制主DNS服务器上的NS记录，而不像slave会复制所有区域数据</p>
+</li>
+<li><p>forward：转发配置域</p>
+</li>
+<li><p>hint：根域服务器的初始化使用的参数</p>
+</li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stack></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e3</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
-<span class="token keyword">typedef</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> PII<span class="token punctuation">;</span>
-<span class="token keyword">int</span> sum<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>l<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>r<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<h4 id="五、搭建DNS服务器"><a href="#五、搭建DNS服务器" class="headerlink" title="五、搭建DNS服务器"></a>五、搭建DNS服务器</h4><h5 id="1、备份DNS服务器的配置文件-etc-named-conf"><a href="#1、备份DNS服务器的配置文件-etc-named-conf" class="headerlink" title="1、备份DNS服务器的配置文件/etc/named.conf"></a>1、备份DNS服务器的配置文件/etc/named.conf</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># cp <span class="token operator">/</span>etc<span class="token operator">/</span>named<span class="token punctuation">.</span>conf <span class="token operator">/</span>etc<span class="token operator">/</span>named<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>bak<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="2、修改DNS服务器的配置文件-etc-named-conf"><a href="#2、修改DNS服务器的配置文件-etc-named-conf" class="headerlink" title="2、修改DNS服务器的配置文件/etc/named.conf"></a>2、修改DNS服务器的配置文件/etc/named.conf</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># cat <span class="token operator">/</span>etc<span class="token operator">/</span>named<span class="token punctuation">.</span>conf
+options <span class="token punctuation">{</span>
+        listen<span class="token operator">-</span>on port <span class="token number">53</span> <span class="token punctuation">{</span> any<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>　　<span class="token comment" spellcheck="true">//修改为</span>
+        listen<span class="token operator">-</span>on<span class="token operator">-</span>v6 port <span class="token number">53</span> <span class="token punctuation">{</span> any<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>　　<span class="token comment" spellcheck="true">//修改为any</span>
+        directory       <span class="token string">"/var/named"</span><span class="token punctuation">;</span>
+        dump<span class="token operator">-</span>file       <span class="token string">"/var/named/data/cache_dump.db"</span><span class="token punctuation">;</span>
+        statistics<span class="token operator">-</span>file <span class="token string">"/var/named/data/named_stats.txt"</span><span class="token punctuation">;</span>
+        memstatistics<span class="token operator">-</span>file <span class="token string">"/var/named/data/named_mem_stats.txt"</span><span class="token punctuation">;</span>
+        recursing<span class="token operator">-</span>file  <span class="token string">"/var/named/data/named.recursing"</span><span class="token punctuation">;</span>
+        secroots<span class="token operator">-</span>file   <span class="token string">"/var/named/data/named.secroots"</span><span class="token punctuation">;</span>
+        allow<span class="token operator">-</span>query     <span class="token punctuation">{</span> any<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        recursion yes<span class="token punctuation">;</span>
+        dnssec<span class="token operator">-</span>enable yes<span class="token punctuation">;</span>
+        dnssec<span class="token operator">-</span>validation yes<span class="token punctuation">;</span>
+        dnssec<span class="token operator">-</span>lookaside <span class="token keyword">auto</span><span class="token punctuation">;</span>　　<span class="token comment" spellcheck="true">//添加此行</span>
+        bindkeys<span class="token operator">-</span>file <span class="token string">"/etc/named.iscdlv.key"</span><span class="token punctuation">;</span>
+        managed<span class="token operator">-</span>keys<span class="token operator">-</span>directory <span class="token string">"/var/named/dynamic"</span><span class="token punctuation">;</span>
+        pid<span class="token operator">-</span>file <span class="token string">"/run/named/named.pid"</span><span class="token punctuation">;</span>
+        session<span class="token operator">-</span>keyfile <span class="token string">"/run/named/session.key"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">char</span> c<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
-    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            cin<span class="token operator">>></span>c<span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'F'</span><span class="token punctuation">)</span> sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>sum<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+logging <span class="token punctuation">{</span>
+        channel default_debug <span class="token punctuation">{</span>
+                file <span class="token string">"data/named.run"</span><span class="token punctuation">;</span>
+                severity dynamic<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true">//    for(int i=1;i&lt;=n;i++){</span>
-<span class="token comment" spellcheck="true">//        for(int j=1;j&lt;=m;j++){</span>
-<span class="token comment" spellcheck="true">//            cout&lt;&lt;sum[i][j]&lt;&lt;" ";</span>
-<span class="token comment" spellcheck="true">//        }</span>
-<span class="token comment" spellcheck="true">//        cout&lt;&lt;endl;</span>
-<span class="token comment" spellcheck="true">//    }</span>
+zone <span class="token string">"test.cn"</span> IN <span class="token punctuation">{</span>　　<span class="token comment" spellcheck="true">//区域名称改为test.cn</span>
+        type master<span class="token punctuation">;</span>　　<span class="token comment" spellcheck="true">//区域类型为主DNS服务器</span>
+        file <span class="token string">"test.cn.zone"</span><span class="token punctuation">;</span>　　<span class="token comment" spellcheck="true">//区域文件，需要手动创建。范例文件为named.localhost</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        stack<span class="token operator">&lt;</span>PII<span class="token operator">></span> s1<span class="token punctuation">;</span>
-        s1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>s1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token operator">>=</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> s1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            l<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span> s1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-            s1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>j<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+include <span class="token string">"/etc/named.rfc1912.zones"</span><span class="token punctuation">;</span>
+include <span class="token string">"/etc/named.root.key"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="3、创建区域文件，修改权限，并进行修改"><a href="#3、创建区域文件，修改权限，并进行修改" class="headerlink" title="3、创建区域文件，修改权限，并进行修改"></a>3、创建区域文件，修改权限，并进行修改</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//-a选项保留源文件的权限</span>
+<span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># cp <span class="token operator">-</span>a 
+<span class="token operator">/</span>var<span class="token operator">/</span>named<span class="token operator">/</span>named<span class="token punctuation">.</span>localhost <span class="token operator">/</span>var<span class="token operator">/</span>named<span class="token operator">/</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>zone
+<span class="token operator">-</span>rw<span class="token operator">-</span>r<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token number">1</span> root named <span class="token number">257</span> <span class="token number">5</span>月 <span class="token number">20</span> <span class="token number">17</span><span class="token operator">:</span><span class="token number">13</span> <span class="token operator">/</span>var<span class="token operator">/</span>named<span class="token operator">/</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>zone
+<span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># vim <span class="token operator">/</span>var<span class="token operator">/</span>named<span class="token operator">/</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>zone
+$TTL 1D　　<span class="token comment" spellcheck="true">//设置有效地址解析记录的默认缓存时间，默认为1天</span>
+<span class="token comment" spellcheck="true">//test.cn.也可以使用@，表示当前的域</span>
+<span class="token comment" spellcheck="true">//dns.test.cn.该域的主域名</span>
+<span class="token comment" spellcheck="true">//root.test.cn.管理员邮件地址</span>
+test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>        IN SOA  dns<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span> root<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span> <span class="token punctuation">(</span>
+<span class="token comment" spellcheck="true">//更新序列号，用于标示数据库的变换，可以在10位以内。如果存在辅助DNS区域，建议每次更新完数据库，手动加1</span>
+                                        <span class="token number">0</span>       <span class="token punctuation">;</span> serial
+<span class="token comment" spellcheck="true">//刷新时间，从域名服务器更新该地址数据库文件的间隔时间，默认为1天</span>
+                                        1D      <span class="token punctuation">;</span> refresh
+<span class="token comment" spellcheck="true">//重试延时，从域名服务器更新地址数据库失败后，等待多长时间，默认为1小时</span>
+                                        1H      <span class="token punctuation">;</span> retry
+<span class="token comment" spellcheck="true">//到期失效时间，超过改时间人无法更新地址数据库，那么不再尝试，默认为1周</span>
+                                        1W      <span class="token punctuation">;</span> expire
+<span class="token comment" spellcheck="true">//无效地址解析记录默认缓存时间（该数据库中不存在的地址），默认为3小时。</span>
+                                        3H <span class="token punctuation">)</span>    <span class="token punctuation">;</span> minimum
+test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>        NS      dns<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>
+dns<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>    A       <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span>
+www<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>    A       <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span>
+cname<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span>  CNAME   www<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="4、重启DNS服务器"><a href="#4、重启DNS服务器" class="headerlink" title="4、重启DNS服务器"></a>4、重启DNS服务器</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># systemctl restart named<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="5、测试主机上修改DNS地址和网卡信息"><a href="#5、测试主机上修改DNS地址和网卡信息" class="headerlink" title="5、测试主机上修改DNS地址和网卡信息"></a>5、测试主机上修改DNS地址和网卡信息</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># vim <span class="token operator">/</span>etc<span class="token operator">/</span>resolv<span class="token punctuation">.</span>conf
+<span class="token macro property"># Generated by NetworkManager</span>
+nameserver <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span>
+<span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># vim <span class="token operator">/</span>etc<span class="token operator">/</span>sysconfig<span class="token operator">/</span>network<span class="token operator">-</span>scripts<span class="token operator">/</span>ifcfg<span class="token operator">-</span>ens33
+TYPE<span class="token operator">=</span><span class="token string">"Ethernet"</span>
+PROXY_METHOD<span class="token operator">=</span><span class="token string">"none"</span>
+BROWSER_ONLY<span class="token operator">=</span><span class="token string">"no"</span>
+BOOTPROTO<span class="token operator">=</span><span class="token string">"none"</span>
+DEFROUTE<span class="token operator">=</span><span class="token string">"yes"</span>
+IPV4_FAILURE_FATAL<span class="token operator">=</span><span class="token string">"yes"</span>
+NAME<span class="token operator">=</span><span class="token string">"ens33"</span>
+UUID<span class="token operator">=</span><span class="token string">"a12d9bb2-85cb-4db0-9b94-e4ed3baa6470"</span>
+DEVICE<span class="token operator">=</span><span class="token string">"ens33"</span>
+ONBOOT<span class="token operator">=</span><span class="token string">"yes"</span>
+IPADDR<span class="token operator">=</span><span class="token string">"192.168.5.102"</span>
+PREFIX<span class="token operator">=</span><span class="token string">"24"</span>
+GATEWAY<span class="token operator">=</span><span class="token string">"192.168.5.2"</span>
+DNS1<span class="token operator">=</span><span class="token string">"192.168.5.101"</span><span class="token operator">&lt;</span>br<span class="token operator">></span><span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># systemctl restart network<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="6、测试"><a href="#6、测试" class="headerlink" title="6、测试"></a>6、测试</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># ping www<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn
+PING www<span class="token punctuation">.</span>test<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span> <span class="token function">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data<span class="token punctuation">.</span>
+<span class="token number">64</span> bytes from jzh<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span><span class="token operator">:</span> icmp_seq<span class="token operator">=</span><span class="token number">1</span> ttl<span class="token operator">=</span><span class="token number">64</span> time<span class="token operator">=</span><span class="token number">2.73</span> ms
+<span class="token number">64</span> bytes from jzh<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span><span class="token operator">:</span> icmp_seq<span class="token operator">=</span><span class="token number">2</span> ttl<span class="token operator">=</span><span class="token number">64</span> time<span class="token operator">=</span><span class="token number">0.423</span> ms
+<span class="token operator">^</span>C
 
-        stack<span class="token operator">&lt;</span>PII<span class="token operator">></span> s2<span class="token punctuation">;</span>
-        s2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>m<span class="token punctuation">;</span>j<span class="token operator">>=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>s2<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token operator">>=</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> s2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            r<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span> s2<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second<span class="token number">-1</span><span class="token punctuation">;</span>
-            s2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>j<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">//            cout&lt;&lt;r[j]&lt;&lt;" "&lt;&lt;l[j]&lt;&lt;" "&lt;&lt;sum[i][j]&lt;&lt;endl;</span>
-            ans<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span><span class="token punctuation">(</span>r<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">-</span>l<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//        cout&lt;&lt;endl;</span>
-    <span class="token punctuation">}</span>
+<span class="token operator">--</span><span class="token operator">-</span> www<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn ping statistics <span class="token operator">--</span><span class="token operator">-</span>
+<span class="token number">2</span> packets transmitted<span class="token punctuation">,</span> <span class="token number">2</span> received<span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> packet loss<span class="token punctuation">,</span> time 1002ms
+rtt min<span class="token operator">/</span>avg<span class="token operator">/</span>max<span class="token operator">/</span>mdev <span class="token operator">=</span> <span class="token number">0.423</span><span class="token operator">/</span><span class="token number">1.581</span><span class="token operator">/</span><span class="token number">2.739</span><span class="token operator">/</span><span class="token number">1.158</span> ms
+<span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># ping cname<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn
+PING www<span class="token punctuation">.</span>test<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span> <span class="token function">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data<span class="token punctuation">.</span>
+<span class="token number">64</span> bytes from jzh<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span><span class="token operator">:</span> icmp_seq<span class="token operator">=</span><span class="token number">1</span> ttl<span class="token operator">=</span><span class="token number">64</span> time<span class="token operator">=</span><span class="token number">4.39</span> ms
+<span class="token number">64</span> bytes from jzh<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span><span class="token operator">:</span> icmp_seq<span class="token operator">=</span><span class="token number">2</span> ttl<span class="token operator">=</span><span class="token number">64</span> time<span class="token operator">=</span><span class="token number">0.414</span> ms
+<span class="token operator">^</span>C
 
-    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">*</span><span class="token number">3</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">--</span><span class="token operator">-</span> www<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn ping statistics <span class="token operator">--</span><span class="token operator">-</span>
+<span class="token number">2</span> packets transmitted<span class="token punctuation">,</span> <span class="token number">2</span> received<span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> packet loss<span class="token punctuation">,</span> time 1001ms
+rtt min<span class="token operator">/</span>avg<span class="token operator">/</span>max<span class="token operator">/</span>mdev <span class="token operator">=</span> <span class="token number">0.414</span><span class="token operator">/</span><span class="token number">2.405</span><span class="token operator">/</span><span class="token number">4.396</span><span class="token operator">/</span><span class="token number">1.991</span> ms
+<span class="token punctuation">[</span>root@jzh <span class="token operator">~</span><span class="token punctuation">]</span># ping dns<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn 
+PING dns<span class="token punctuation">.</span>test<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span> <span class="token function">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data<span class="token punctuation">.</span>
+<span class="token number">64</span> bytes from jzh<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span><span class="token operator">:</span> icmp_seq<span class="token operator">=</span><span class="token number">1</span> ttl<span class="token operator">=</span><span class="token number">64</span> time<span class="token operator">=</span><span class="token number">2.81</span> ms
+<span class="token number">64</span> bytes from jzh<span class="token punctuation">.</span><span class="token function">cn</span> <span class="token punctuation">(</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.101</span><span class="token punctuation">)</span><span class="token operator">:</span> icmp_seq<span class="token operator">=</span><span class="token number">2</span> ttl<span class="token operator">=</span><span class="token number">64</span> time<span class="token operator">=</span><span class="token number">0.388</span> ms
+<span class="token operator">^</span>C
+
+<span class="token operator">--</span><span class="token operator">-</span> dns<span class="token punctuation">.</span>test<span class="token punctuation">.</span>cn ping statistics <span class="token operator">--</span><span class="token operator">-</span>
+<span class="token number">2</span> packets transmitted<span class="token punctuation">,</span> <span class="token number">2</span> received<span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> packet loss<span class="token punctuation">,</span> time 1001ms
+rtt min<span class="token operator">/</span>avg<span class="token operator">/</span>max<span class="token operator">/</span>mdev <span class="token operator">=</span> <span class="token number">0.388</span><span class="token operator">/</span><span class="token number">1.601</span><span class="token operator">/</span><span class="token number">2.814</span><span class="token operator">/</span><span class="token number">1.213</span> ms<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -700,9 +819,9 @@ F F F F F F</code></pre><h4 id="输出样例："><a href="#输出样例：" clas
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《城市游戏》
+                    《DNS服务器搭建》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/cheng-shi-you-xi/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/09/dns-fu-wu-qi-da-jian/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蒋曾辉
             </a> 采用
@@ -743,7 +862,7 @@ F F F F F F</code></pre><h4 id="输出样例："><a href="#输出样例：" clas
         repo: 'JiangZengHui.github.io',
         owner: 'JiangZengHui',
         admin: "JiangZengHui",
-        id: '2019/08/27/cheng-shi-you-xi/',
+        id: '2019/11/09/dns-fu-wu-qi-da-jian/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1030,31 +1149,31 @@ F F F F F F</code></pre><h4 id="输出样例："><a href="#输出样例：" clas
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/28/he-ma-shi-shi/">
+                <a href="/2019/11/16/fu-dong-jing-tai-lu-you-he-bfd-lian-dong-shi-xian-lu-you-zi-dong-geng-xin/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="荷马史诗">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="浮动静态路由和BFD联动实现路由自动更新">
                         
-                        <span class="card-title">荷马史诗</span>
+                        <span class="card-title">浮动静态路由和BFD联动实现路由自动更新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            追逐影子的人，自己就是影子。 ——荷马
+                            浮动静态路由是一种特殊的静态路由
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-28
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-16
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
@@ -1064,8 +1183,8 @@ F F F F F F</code></pre><h4 id="输出样例："><a href="#输出样例：" clas
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/优先队列/" target="_blank">
-                        <span class="chip bg-color">优先队列</span>
+                    <a href="/tags/Linux网络运维/" target="_blank">
+                        <span class="chip bg-color">Linux网络运维</span>
                     </a>
                     
                 </div>
@@ -1079,31 +1198,31 @@ F F F F F F</code></pre><h4 id="输出样例："><a href="#输出样例：" clas
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/26/shuang-zhan-pai-xu/">
+                <a href="/2019/11/02/wang-luo-cun-chu-fu-wu-qi-ip-san-de-da-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="双栈排序">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="网络存储服务器IP-SAN的搭建">
                         
-                        <span class="card-title">双栈排序</span>
+                        <span class="card-title">网络存储服务器IP-SAN的搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Tom最近在研究一个有趣的排序问题。
+                            IP SAN简称SAN（Storage Area Network），中文意思存储局域网络
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-26
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
@@ -1113,8 +1232,8 @@ F F F F F F</code></pre><h4 id="输出样例："><a href="#输出样例：" clas
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/二分图/" target="_blank">
-                        <span class="chip bg-color">二分图</span>
+                    <a href="/tags/Linux网络运维/" target="_blank">
+                        <span class="chip bg-color">Linux网络运维</span>
                     </a>
                     
                 </div>
