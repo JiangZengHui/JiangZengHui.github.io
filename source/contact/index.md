@@ -23,5 +23,5 @@ layout: "contact"
 例如我的博客友链，大家可以加到自己博客里哦：
 * **名称：**JZengHui
 * **地址：**https://jzenghui.top
-* **简介：**Acmer
+* **简介：**追逐影子的人，自己就是影子。
 * **头像：**https://jzenghui.top/medias/avatars/avatar.jpg
