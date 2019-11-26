@@ -17,5 +17,17 @@
         "title": "访问主页",
         "introduction": "中欧可靠智能软件联合实验室欢迎您的加入！",
         "avatar": "/medias/avatars/ids2.jpg"
+    },{
+        "name": "过客~励む",
+        "url": "https://yafine-blog.cn",
+        "title": "访问主页",
+        "introduction": "你现在的努力，是为了以后有更多的选择。",
+        "avatar": "https://yafine-blog.cn/medias/avatar.jpg"
+    },{
+        "name": "水风车",
+        "url": "https://blog.shuifengche.top",
+        "title": "访问主页",
+        "introduction": "未来，属于一心实现自己预言的人。",
+        "avatar": "https://blog.shuifengche.top/img/avatar.png"
     }
 ]

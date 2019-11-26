@@ -408,3 +408,6 @@ reprint:
 # 雪花特效
 snow:
   enable: false
+  
+# 百度搜索资源平台提交链接
+baiduPush: true
